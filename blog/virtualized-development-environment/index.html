@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Virtualized Development Environment">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>Virtualized Development Environment - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/blog/virtualized-development-environment/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="post">
+                <h2>Virtualized Development Environment<br> <small>Virtualized Development Environment</small></h2>
+                <hr>
+                <p>Recently, while developing, I have had people looking over my shoulder and
+asking questions like; &ldquo;How are you able to code and test so quickly?&rdquo; and
+&ldquo;You just wrote that, how is the person you are talking to on Skype able to
+view and test it already?&ldquo;. When I explain to them how my development
+environment is set up, they usually replay, &ldquo;you should really blog about
+that&rdquo;. So here it is&hellip;</p>
+
+<p>First, here is a little bit of background. I have been developing web
+applications for quite a few years now and I always ran into the same issues;
+browser compatibility, showing clients a work in progress, managing
+development and production environments. A couple years ago I started working
+for a new <a href="http://www.syntenic.com/">company</a> and they asked me to brush up on
+my knowledge of virtualization techniques. While researching what was
+available in this space, my virtualized development environment was born.</p>
+
+<p>Here is a list of tools I use:</p>
+
+<ul>
+<li><a href="http://store.apple.com/us/browse/home/shop_mac/family/macbook_pro">A Mac Laptop</a></li>
+<li><a href="http://www.parallels.com/products/virtuozzo/">Parallels Virtuozzo Containers</a></li>
+<li><a href="http://www.parallels.com/products/desktop/">Parallels Desktop 4.0 for Mac</a></li>
+<li><a href="http://macromates.com/">Textmate</a></li>
+<li><a href="http://cyberduck.ch/">Cyberduck</a></li>
+<li><a href="http://tredosoft.com/Multiple_IE">Multiple IEs</a></li>
+</ul>
+
+<p>For pretty much every site, I have a production (prod) environment and a
+development (dev) environment. I want my dev environment to be an exact copy
+of my prod environment so that when I make changes to it I know exactly how
+the prod system is going to deal with the changes. Managing this was a PITA
+until I found Parallels Virtuozzo Containers. I was then able to have one
+machine that had both a prod and dev environment on it in different virtual
+containers. There are quite a few cool features in Virtuozzo, but the main one
+that is relevant to this post is the &lsquo;Clone&rsquo; feature. If you have a prod
+machine up and running and you want to make changes, but you don&rsquo;t want to
+mess with the live machine, you can clone it to a new container and then
+develop on that new dev container. This means that if I want to test some
+changes to the site, I can just take 30 seconds to clone the live site, do the
+changes and test&hellip;</p>
+
+<p>I am very comfortable with ssh and working in a terminal, but if you are
+developing a lot, you do not want to have to deal with working only in VI or
+VIM. Because of this, I use Cyberduck over SFTP to edit my code. Cyberduck is
+an open source FTP client that is relatively simple and lightweight, but has
+enough features that you will never feel handcuffed. I set my preferred editor
+in Cyberduck to Textmate and my development environment is set up on my Mac. I
+never have to copy files from the server to my machine and back because I just
+edit them directly on my cloned dev machine. It really is as easy as clone,
+edit, test&hellip;</p>
+
+<p>One of the biggest annoyances in web development is having to deal with cross
+browser compatibility for your web apps. Developing for Internet Explorer is a
+nightmare and because of this some developers neglect it. Unfortunately I do
+not have that luxury and have to make sure that my sites work in all browsers.
+Since I am working on a Mac, testing IE for Windows poses a small problem. I
+use Parallels Desktop for Mac to solve that problem. Parallels Desktop is a
+virtualization platform that allows you to install Windows on your Mac in a
+way that allows you to run Windows programs without having to reboot your
+machine. Basically, you just load the Windows machine and you have access to
+all of your Mac and Windows applications at the same time. Since Windows does
+not allow you to install both IE6 and IE7 on the same machine, I use Multiple
+IEs as a little hack so that I can have both IE6 and IE7 on my Windows install
+for testing purposes.</p>
+
+<p>That is basically it&hellip;</p>
+
+<p>Pros:</p>
+
+<ul>
+<li>Very fast to get development environments set up.</li>
+<li>Your code is not on your laptop, so if it gets stolen, you are still fine.</li>
+<li>You can make changes to code with the client on the phone so they can view the changes in real time (your dev machine is public).</li>
+</ul>
+
+<p>Cons:</p>
+
+<ul>
+<li>Your code is not actually in a code repository (I am working on setting up a version of this that is backed by Git).</li>
+<li>If you do not have a network connection, you can not work on the site.</li>
+</ul>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>December 8, 2008<br>
+                <small>741 words</small></h4>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://localhost:1313/swillops.com/tags/cyberduck">Cyberduck</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/development">Development</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/parallels">Parallels</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/textmate">Textmate</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/workflow">Workflow</a> 
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 2px 15px;">
+                    <h4>Similar Posts</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                    
+                    
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/">Install Ubuntu in Parallel to Mac OSX</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/beginning/">From the beginning...</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

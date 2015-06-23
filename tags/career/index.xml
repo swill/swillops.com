@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Career on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/career/</link>
+    <description>Recent content in Career on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 20 Apr 2007 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/career/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>From the beginning...</title>
+      <link>http://localhost:1313/swillops.com/blog/beginning/</link>
+      <pubDate>Fri, 20 Apr 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/beginning/</guid>
+      <description>&lt;p&gt;I started working with web based development and design when I was 16. I
+started out working mainly with graphic design and then moving more towards
+web development as I got closer to heading off to university.&lt;/p&gt;
+
+&lt;p&gt;In 2005 I got my bachelors degree from McGill University in Computer Science.
+I had done quite a bit of freelance work with the web while I was in school,
+but I wasn&amp;rsquo;t really considering it as a career at the time. I thought it would
+be smart to become a &amp;ldquo;developer&amp;rdquo; rather than a &amp;ldquo;web developer&amp;rdquo;, so when I
+graduated I started working for a pretty big company coding in C# on .NET. It
+didn&amp;rsquo;t take me long to realize that I don&amp;rsquo;t think the way that &amp;lsquo;versioned&amp;rsquo;
+software developers think. Added to that, this was my first experience working
+with a big company. I had no control over our shipped product, I was just a
+cog in a big (inefficient) machine. I realized that I had not become a
+&amp;ldquo;developer&amp;rdquo; at all, but a &amp;ldquo;programmer&amp;rdquo;. You may be thinking that there is no
+difference between the two, so let me clarify my point. I was once told, &amp;ldquo;a
+software developer is like a poet or a painter. They all start with a blank
+piece of paper and their only limit is their imagination&amp;rdquo;. I find this very
+true. As a software developer you are dealing directly with a client and you
+are working together with them to solve their problems in the best way
+possible. By intimately understanding the clients needs you have more freedom
+to be creative and build an elegant solution. On the flip side, as a
+programmer you have very little freedom. You are given a strict set of
+specifications that need to be implemented and your job is to build it. The
+problem is, most of the time this set of specifications has gone through about
+6 levels of documentation, from a high level estimate all the way down to the
+technical spec document that you were handed. The client is often only
+consulted for the first half of that documentation process, so it is very
+possible that right from the beginning you are not even building what the
+client needs. Of course, when the client is not happy with the end result, the
+programmer takes all the flak. Being a very entrepreneurial person, this
+setting really was not working out for me. I began looking into the web
+environment again because I had always enjoyed working in that field. In my
+research to get caught up with all the new happenings in this industry I
+realized that my year and a half away from web development had put me way
+behind. I knew right away that I was in the wrong industry and started taking
+steps to correct my previous decisions.&lt;/p&gt;
+
+&lt;p&gt;Update: I have quit my job and started working for a small company as a web
+developer and it has been amazing. I work too much now days, but I couldn&amp;rsquo;t be
+happier&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

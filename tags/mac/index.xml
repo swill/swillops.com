@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mac on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/mac/</link>
+    <description>Recent content in Mac on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Jul 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Batch image resizing on a Mac</title>
+      <link>http://localhost:1313/swillops.com/blog/batch-image-resizing-mac/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/batch-image-resizing-mac/</guid>
+      <description>&lt;p&gt;As a web developer I need simple ways to manipulate images easily so I can get
+them online without wasting large amounts of time. Resizing huge digital
+images to a reasonable web size was always difficult until I found this.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.macosxtips.co.uk/index_files/access-extra-preview-
+features-through-automator.html#unique-entry-id-148&#34;&gt;Access hidden Preview features through
+Automator&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This makes it a snap to resize a large number of images without having to
+install any additional software&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dead simple GIT install on Mac</title>
+      <link>http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/</link>
+      <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; is the new cool kid in town when it comes to source
+code management. I wanted to install Git on my Mac, but I had heard installing
+it could be a bit of a pain. I did a bunch of research before I tried an
+install and it seemed &lt;a href=&#34;http://www.macports.org/&#34;&gt;Macports&lt;/a&gt; would be the
+easiest way to get it working.&lt;/p&gt;
+
+&lt;p&gt;I found &lt;a href=&#34;http://solutions.treypiepmeier.com/2008/02/25
+/installing-git-on-os-x-leopard/&#34;&gt;this article&lt;/a&gt; and had no problems getting everything
+working&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I will now be using &lt;a href=&#34;http://github.com/&#34;&gt;github&lt;/a&gt; for all of my source code
+management.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MySQL on a Mac: What a headache</title>
+      <link>http://localhost:1313/swillops.com/blog/mysql-mac-what-headache/</link>
+      <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/mysql-mac-what-headache/</guid>
+      <description>&lt;p&gt;I have spent a stupid amount of time trying to get MySQL
+installed/configured/working on my Mac. Since I am coming from Ubuntu, I am
+used to being able to install an entire LAMPs stack with this one command:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ sudo apt-get install apache2 mysql-server php5 libapache2-mod-php5 php5-xsl
+php5-gd php-pear libapache2-mod-auth-mysql php5-mysql&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Apparently on a Mac this is a complete PITA.&lt;/p&gt;
+
+&lt;p&gt;After spending hours installing and uninstalling MySQL with the final result
+being the dreaded error:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Starting mysqld daemon with databases from /usr/local/mysql/data&lt;br /&gt;
+STOPPING server from pid file /usr/local/mysql/data/will-stevenss-macbook-
+pro.local.pid&lt;br /&gt;
+080613 11:18:38 mysqld ended&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I finally ran into &lt;a href=&#34;http://2tbsp.com/content/install_and_configure_mysql_5_macports&#34;&gt;this
+article&lt;/a&gt;
+which has finally gotten me totally set up. Thanks Guys&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;br /&gt;
+Since you can have multiple MySQL installs (4 and 5) with Macports; when you
+issue commands such as &amp;lsquo;mysql&amp;rsquo;, you need to specify the version, so you would
+use &amp;lsquo;mysql5&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;The command that is specified for starting the MySQL server at startup did not
+work for me because it was the wrong path. Here is the command I used:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Install Ubuntu in Parallel to Mac OSX</title>
+      <link>http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/</link>
+      <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/</guid>
+      <description>
+
+&lt;p&gt;If you are trying to do this you will need &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;Parallels Desktop 3.0 for Mac
+(~$79.99 USD)&lt;/a&gt;. This software allows
+you to run Windows and Linux on your Mac so you have access to all three
+operating systems without rebooting. I think this will be an ideal web
+developing environment, but that is another article all together&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Install Parallels Desktop 3.0 for Mac and then launch it. Go to &lt;strong&gt;File -&amp;gt;
+New&lt;/strong&gt;. In the new window select &lt;strong&gt;Typical&lt;/strong&gt;, then click &lt;strong&gt;(Next)&lt;/strong&gt;. Select
+&lt;strong&gt;Linux&lt;/strong&gt; and &lt;strong&gt;Ubuntu Linux&lt;/strong&gt;, then click &lt;strong&gt;(Next)&lt;/strong&gt;. Finish the guide with
+the appropriate information that you want for the system.&lt;/p&gt;
+
+&lt;p&gt;I got an error when I tried to install Ubuntu 7.10 (Gutsy):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The display server has been shut down about 6 times in the last 90 seconds.
+It is likely that something bad is going on. Waiting for 2 minutes before
+trying again on display.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OK&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you get this error, follow &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;this
+guide&lt;/a&gt; in the very good knowledge base
+provided by Parallels.&lt;/p&gt;
+
+&lt;h3 id=&#34;troubleshooting-section:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Troubleshooting Section:&lt;/h3&gt;
+
+&lt;h4 id=&#34;you-can-t-update-ubuntu:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;You can&amp;rsquo;t Update Ubuntu&lt;/h4&gt;
+
+&lt;p&gt;You have to manually connect to your internet connection. Just go up to the
+top right of your Ubuntu screen and select &amp;lsquo;Wired Network&amp;rsquo; from the network
+monitor and it will connect (assuming your Mac has an internet connection).
+Also since the install could not find a connection, it may have commented out
+all of your repositories in &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;. &lt;a href=&#34;http://
+ubuntuguide.org/wiki/Ubuntu:Gutsy#Manual_Method_for_Adding_Repositories&#34;&gt;Follow this guide&lt;/a&gt; to
+set up your repositories (you should probably use these repositories anyway).&lt;/p&gt;
+
+&lt;h4 id=&#34;can-t-start-ubuntu-after-an-update:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Can&amp;rsquo;t start Ubuntu after an Update&lt;/h4&gt;
+
+&lt;p&gt;For some reason &lt;strong&gt;single&lt;/strong&gt; gets added back into the string &lt;code&gt;kernel /boot/....&lt;/code&gt;
+in your &lt;code&gt;/boot/grub/menu.lst&lt;/code&gt; file. Refer back to &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;step 5 in this
+guide&lt;/a&gt; to fix that problem.&lt;br /&gt;
+&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; My machine crashed after the update and before the reboot which may
+have caused this issue.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;cant-use-full-screen-resolution:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Cant use Full Screen Resolution&lt;/h4&gt;
+
+&lt;p&gt;If you are getting warnings telling you that you cant set a resolution that
+size when you start the Ubuntu machine, &lt;a href=&#34;http://muffinresearch.co.uk/archives/2006/08/13/running-ubuntu-under-
+parallels-desktop-for-mac/&#34;&gt;check out this
+article&lt;/a&gt;. Basically, changing the setting in
+&lt;code&gt;/etc/X11/xorg.conf&lt;/code&gt; does not work, you have to use &lt;code&gt;sudo dpkg-reconfigure 
+-phigh xserver-xorg&lt;/code&gt; to change the resolution settings.&lt;/p&gt;
+
+&lt;p&gt;At this point you should be set. Enjoy the wonderfulness of Linux on your
+Mac&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mac Tweaks</title>
+      <link>http://localhost:1313/swillops.com/blog/mac-tweaks/</link>
+      <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/mac-tweaks/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/39&#34;&gt;Firefox Mouse Gestures Plugin&lt;/a&gt;&lt;/strong&gt;: &lt;em&gt;Click and drag a mouse button to navigate web pages.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Go to the link above and click on the &amp;ldquo;Install Now&amp;rdquo; button in the middle of
+the page. It will install the plugin, and when it tells you to restart, go
+ahead, your session will be saved on restart.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;If you use Windows or Linux, this is as far as you need to go.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;On a Mac, do this to make it work: &lt;code&gt;Tools Menu -&amp;gt; Add-ons -&amp;gt; (In the new
+window) Mouse Gestures -&amp;gt; Preferences&lt;/code&gt;
+Change the mouse button to the one you want to use (I use the right button),
+and check the &lt;strong&gt;⌘&lt;/strong&gt; symbol. Then press &lt;strong&gt;(OK)&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;This post will be continually updated to add new tips or tweaks.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

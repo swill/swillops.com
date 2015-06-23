@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Snow Leopard on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/snow-leopard/</link>
+    <description>Recent content in Snow Leopard on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 May 2010 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/snow-leopard/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Apache, MySQL and PHP on Snow Leopard</title>
+      <link>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
+      <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
+Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
+downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup
+their AMP stack, so this is how I was able to get an acceptable one setup.&lt;/p&gt;
+
+&lt;p&gt;Note: This method uses MacPorts, so you will need to install that first.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo port clean php52&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port -f uninstall installed&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port installed&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install grep&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install apache2&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install mysql5-server&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install php52 +apache2 +mysql5&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

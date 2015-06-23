@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Setting up a new UTF8 MySQL Database">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>Setting up a new UTF8 MySQL Database - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="post">
+                <h2>Setting up a new UTF8 MySQL Database<br> <small>Setting up a new UTF8 MySQL Database</small></h2>
+                <hr>
+                <p>Create a UTF8 database:<br />
+<code>&gt; CREATE DATABASE db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;</code></p>
+
+<p>Create a user for the database:<br />
+<code>&gt; CREATE USER 'user_name'@'localhost' IDENTIFIED BY 'user_pass';</code></p>
+
+<p>Grant all privileges to the user:<br />
+<code>&gt; GRANT ALL PRIVILEGES ON *.* TO 'user_name'@'localhost' WITH GRANT OPTION;</code><br />
+<code>&gt; FLUSH PRIVILEGES;</code></p>
+
+<p>You should probably not give him all privileges on all databases, but you can
+change that as needed.</p>
+
+<p>If for some reason the IDENTIFIED BY clause did not work (you probably uses
+&lsquo;%&rsquo; instead of &lsquo;localhost&rsquo;), then do the following to fix that users password.<br />
+<code># mysql -u root -p</code><br />
+<code>&gt; use mysql;</code><br />
+<code>&gt; UPDATE user SET Password = PASSWORD('new_pass') WHERE User = 'user_name';</code></p>
+
+<p>Thats it. Enjoy&hellip;</p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>January 20, 2010<br>
+                <small>114 words</small></h4>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://localhost:1313/swillops.com/tags/mysql">MySQL</a> 
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 2px 15px;">
+                    <h4>Similar Posts</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                    
+                    
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/">Apache, MySQL and PHP on Snow Leopard</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/">Installing Django with Satchmo on Debian Etch</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/">Debian Rails Stack - NginX and Mongrel</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/mysql-mac-what-headache/">MySQL on a Mac: What a headache</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

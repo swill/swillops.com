@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Macports on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/macports/</link>
+    <description>Recent content in Macports on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 May 2010 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/macports/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Apache, MySQL and PHP on Snow Leopard</title>
+      <link>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
+      <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
+Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
+downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup
+their AMP stack, so this is how I was able to get an acceptable one setup.&lt;/p&gt;
+
+&lt;p&gt;Note: This method uses MacPorts, so you will need to install that first.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo port clean php52&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port -f uninstall installed&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port installed&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install grep&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install apache2&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install mysql5-server&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install php52 +apache2 +mysql5&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dead simple GIT install on Mac</title>
+      <link>http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/</link>
+      <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; is the new cool kid in town when it comes to source
+code management. I wanted to install Git on my Mac, but I had heard installing
+it could be a bit of a pain. I did a bunch of research before I tried an
+install and it seemed &lt;a href=&#34;http://www.macports.org/&#34;&gt;Macports&lt;/a&gt; would be the
+easiest way to get it working.&lt;/p&gt;
+
+&lt;p&gt;I found &lt;a href=&#34;http://solutions.treypiepmeier.com/2008/02/25
+/installing-git-on-os-x-leopard/&#34;&gt;this article&lt;/a&gt; and had no problems getting everything
+working&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I will now be using &lt;a href=&#34;http://github.com/&#34;&gt;github&lt;/a&gt; for all of my source code
+management.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MySQL on a Mac: What a headache</title>
+      <link>http://localhost:1313/swillops.com/blog/mysql-mac-what-headache/</link>
+      <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/mysql-mac-what-headache/</guid>
+      <description>&lt;p&gt;I have spent a stupid amount of time trying to get MySQL
+installed/configured/working on my Mac. Since I am coming from Ubuntu, I am
+used to being able to install an entire LAMPs stack with this one command:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ sudo apt-get install apache2 mysql-server php5 libapache2-mod-php5 php5-xsl
+php5-gd php-pear libapache2-mod-auth-mysql php5-mysql&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Apparently on a Mac this is a complete PITA.&lt;/p&gt;
+
+&lt;p&gt;After spending hours installing and uninstalling MySQL with the final result
+being the dreaded error:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Starting mysqld daemon with databases from /usr/local/mysql/data&lt;br /&gt;
+STOPPING server from pid file /usr/local/mysql/data/will-stevenss-macbook-
+pro.local.pid&lt;br /&gt;
+080613 11:18:38 mysqld ended&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I finally ran into &lt;a href=&#34;http://2tbsp.com/content/install_and_configure_mysql_5_macports&#34;&gt;this
+article&lt;/a&gt;
+which has finally gotten me totally set up. Thanks Guys&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;br /&gt;
+Since you can have multiple MySQL installs (4 and 5) with Macports; when you
+issue commands such as &amp;lsquo;mysql&amp;rsquo;, you need to specify the version, so you would
+use &amp;lsquo;mysql5&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;The command that is specified for starting the MySQL server at startup did not
+work for me because it was the wrong path. Here is the command I used:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

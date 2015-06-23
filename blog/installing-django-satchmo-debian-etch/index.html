@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Installing Django with Satchmo on Debian Etch">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>Installing Django with Satchmo on Debian Etch - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="post">
+                <h2>Installing Django with Satchmo on Debian Etch<br> <small>Installing Django with Satchmo on Debian Etch</small></h2>
+                <hr>
+                <p>This is how I got Django and Satchmo set up on my Debian Etch box with
+Apache2, MySQL, mod_python and Memcached.</p>
+
+<p>The machine I started with had Debian Etch installed as well as Apache2 and
+MySQL.</p>
+
+<p>Note: I am assuming you are working as root on your machine. If not you will
+have to do <code>sudo</code> in front of all of the following commands.</p>
+
+<p>Make sure that your <code>/etc/apt/sources.list</code> is up to date and then update your
+repositories and installed packages. I usually get my <a href="http://www.linuxquestions.org/questions/debian-26/post-your-
+source.list-330913/">sources from
+here</a>&hellip;<br />
+<code># apt-get update</code><br />
+<code># apt-get upgrade</code></p>
+
+<p>Since it is a new server and my <code>locales</code> are not right, I reconfigure them.<br />
+<code># dpkg-reconfigure locales</code></p>
+
+<p>Install GCC, G++ and Make so you can compile code<br />
+<code># apt-get install gcc g++ make</code></p>
+
+<p>Install the newest version of
+<a href="http://www.python.org/download/releases/">Python</a>
+(<a href="http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz">2.5.2</a> as of this
+writing).<br />
+<code># cd ~/</code><br />
+<code># wget http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz</code><br />
+<code># tar -zxvf Python*</code><br />
+<code># cd Python*</code><br />
+<code># ./configure --enable-shared</code><br />
+<code># make</code><br />
+<code># make install</code></p>
+
+<p>Set up a config file for python.<br />
+<code># vi /etc/ld.so.conf.d/python2.5.conf</code></p>
+
+<p>Put the following in it (path to the libpython2.5.so.1.0):<br />
+<code>/usr/local/lib</code></p>
+
+<p>Make the settings take effect.<br />
+<code># ldconfig</code></p>
+
+<p>Make this version of python the default version.<br />
+<code># vi /usr/share/python/debian_defaults</code></p>
+
+<p>Change the contents of this file to:</p>
+
+<pre><code class="language-ini">[DEFAULT]
+# the default python version  
+default-version = python2.5
+
+# all supported python versions  
+supported-versions = python2.4, python2.5
+
+# formerly supported python versions  
+old-versions = python2.3
+
+# unsupported versions, including older versions  
+unsupported-versions = python2.3
+</code></pre>
+
+<p>Create a symlink to point to the new version of python.<br />
+<code># rm /usr/bin/python</code><br />
+<code># ln -s /usr/local/bin/python2.5 /usr/bin/python</code></p>
+
+<p>Set up MySQL (<a href="http://sourceforge.net/projects/mysql-python">MySQL-python</a>) to
+work with Python.<br />
+<code># apt-get install libmysqlclient15-dev</code><br />
+<code># cd ~/</code><br />
+<code># wget http://voxel.dl.sourceforge.net/sourceforge/mysql-python/MySQL-
+python-1.2.2.tar.gz</code><br />
+<code># tar -zxvf MySQL-python*</code><br />
+<code># cd MySQL-python*</code><br />
+<code># python setup.py build</code><br />
+<code># python setup.py install</code></p>
+
+<p>Installing <code>mod_python</code> for Apache2 in Debian Etch is a total PITA. Here are
+the steps I took to get it installed&hellip;<br />
+<code># apt-get install apache2-prefork-dev</code><br />
+<code># cd ~/</code><br />
+<code># wget http://ftp.wayne.edu/apache/httpd/modpython/mod_python-3.3.1.tgz</code><br />
+<code># tar -zxvf mod_python*</code><br />
+<code># cd mod_python*</code><br />
+<code># ./configure --with-apxs=/usr/bin/apxs2 --with-
+python=/usr/local/bin/python2.5</code><br />
+<code># make</code><br />
+<code># make install</code></p>
+
+<p>Install the newest version of <a href="http://www.djangoproject.com/">Django</a> (1.0 as
+of this writing).<br />
+<code># cd ~/</code><br />
+<code># wget http://www.djangoproject.com/download/1.0/tarball/</code><br />
+<code># tar -zxvf Django*</code><br />
+<code># cd Django*</code><br />
+<code># python setup.py install</code></p>
+
+<p>On my machine, this installed Django into <code>/usr/local/lib/python2.5/site-
+packages</code>.</p>
+
+<p>Set up your Django project.<br />
+<code># cd ~/</code><br />
+<code># django-admin.py startproject mysite</code></p>
+
+<p>Set up your MySQL database. Since my machine is a fresh install I need to set
+up a password first.<br />
+<code># mysqladmin -u root password PASSWORD</code><br />
+<code># mysql -u root -p</code><br />
+<code>mysql&gt; CREATE DATABASE mysite CHARACTER SET utf8;</code></p>
+
+<p>Set up your project settings in <code>settings.py</code>.<br />
+* Enter up your admin information.<br />
+* Enter up your <a href="http://docs.djangoproject.com/en/dev/ref/databases/#ref-databases">database connection info</a>.<br />
+* Change your timezone and language settings if needed.</p>
+
+<p>Sync your installed apps and your database.<br />
+<code># cd ~/mysite</code><br />
+<code># python manage.py syncdb</code></p>
+
+<p>Check this <a href="http://docs.djangoproject.com/en/dev/howto/deployment/modpython
+/#howto-deployment-modpython">Django
+documentation</a> page for how to set up <code>mod_python</code>.</p>
+
+<p>You need to set up a directory where mod_python can extract eggs and you need
+to set up the permissions so it can write to it (don&rsquo;t use 777 as in my
+example in production).<br />
+<code># cd ~/mysite</code><br />
+<code># mkdir cache_directory</code><br />
+<code># chmod 777 cache_directory</code><br />
+<code># chown www-data cache_directory</code></p>
+
+<p>Now set up a config file to import those settings.<br />
+<code># vi cache_file.py</code></p>
+
+<p>Put the following lines in that file:</p>
+
+<pre><code class="language-python">import os
+os.environ['PYTHON_EGG_CACHE'] = '/absolute/path/to/cache_directory'
+</code></pre>
+
+<p>Configure <code>mod_python</code> to work with Apache2.<br />
+<code># vi /etc/apache2/httpd.conf</code></p>
+
+<p>Add the following lines to that file:</p>
+
+<pre><code>LoadModule python_module /usr/lib/apache2/modules/mod_python.so
+PythonInterpreter mysite
+PythonImport /absolute/path/to/cache_file.py mysite
+&lt;Location &quot;/&quot;&gt;
+  SetHandler python-program
+  PythonHandler django.core.handlers.modpython
+  SetEnv DJANGO_SETTINGS_MODULE mysite.settings
+  PythonOption django.root /mysite
+  PythonDebug On
+  PythonPath &quot;['/path/to/project'] + sys.path&quot;
+&lt;/Location&gt;
+</code></pre>
+
+<p>Restart Apache.<br />
+<code># /etc/init.d/apache2 restart</code></p>
+
+<p>At this point you should have a working Django install and you should be able
+to start adding apps&hellip;</p>
+
+<p>Now lets get our install ready for Satchmo. We will need to install a bunch of
+things, as laid out <a href="http://www.satchmoproject.com/docs/rel/0.7/requirements.html">on this
+page</a>&hellip;</p>
+
+<p>Install <a href="http://www.pythonware.com/products/pil/">Python Imaging Library</a>&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz</code><br />
+<code># tar -zxvf Imaging*</code><br />
+<code># cd Imaging*</code><br />
+<code># python setup.py install</code></p>
+
+<p>Install <a href="http://www.amk.ca/python/code/crypto">Python cryptography</a> toolkit&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://www.amk.ca/files/python/crypto/pycrypto-2.0.1.tar.gz</code><br />
+<code># tar -zxvf pycrypto*</code><br />
+<code># cd pycrypto*</code><br />
+<code># python setup.py install</code></p>
+
+<p>Install <a href="http://www.reportlab.org/">ReportLab</a>&hellip;<br />
+<code># apt-get install libfreetype6 libfreetype6-dev</code><br />
+<code># cd ~/</code><br />
+<code># wget http://www.reportlab.org/ftp/ReportLab_2_2.tgz</code><br />
+<code># tar -zxvf ReportLab*</code><br />
+<code># cd ReportLab*</code><br />
+<code># python setup.py install</code></p>
+
+<p>Install <a href="http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz">Tiny
+RML2PDF</a>&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz</code><br />
+<code># tar -zxvf trml2pdf*</code><br />
+<code># cd trml2pdf*</code><br />
+<code># mv trml2pdf /usr/local/lib/python2.5/site-packages</code><br />
+<code># python</code><br />
+<code>&gt;&gt;&gt; import trml2pdf</code></p>
+
+<p>Install <a href="http://code.google.com/p/django-comment-
+utils/">django-comment-utils</a>&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://django-comment-
+utils.googlecode.com/files/comment_utils-0.3p1.tar.gz</code><br />
+<code># tar -zxvf comment_utils*</code><br />
+<code># cd comment_utils*</code><br />
+<code># python setup.py install</code></p>
+
+<p>Install <a href="http://code.google.com/p/django-
+registration/">Django Registration</a>&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://django-registration.googlecode.com/files/django-
+registration-0.6.tar.gz</code><br />
+<code># tar -zxvf django-registration*</code><br />
+<code># cd django-registration*</code><br />
+<code># python setup.py install</code></p>
+
+<p>Install <a href="http://www.danga.com/memcached/">Memcached</a> for
+<a href="http://docs.djangoproject.com/en/dev/topics/cache/">caching</a> (including its
+dependencies and python bindings)&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://www.monkey.org/~provos/libevent-1.4.8-stable.tar.gz</code><br />
+<code># tar -zxvf libevent*</code><br />
+<code># cd libevent*</code><br />
+<code># ./configure</code><br />
+<code># make</code><br />
+<code># make install</code><br />
+Create a link so the memcached knows where to find the library&hellip;<br />
+<code># ln -s /usr/local/lib/libevent-1.4.so.2 /lib/libevent-1.4.so.2</code></p>
+
+<p><code># cd ~/</code><br />
+<code># wget http://danga.com/memcached/dist/memcached-1.2.6.tar.gz</code><br />
+<code># tar -zxvf memcached*</code><br />
+<code># cd memcached*</code><br />
+<code># ./configure</code><br />
+<code># make</code><br />
+<code># make install</code></p>
+
+<p><code># cd ~/</code><br />
+<code># wget ftp://ftp.tummy.com/pub/python-memcached/python-memcached-
+latest.tar.gz</code><br />
+<code># tar -zxvf python-memcached*</code><br />
+<code># cd python-memcached*</code><br />
+<code># python setup.py install</code></p>
+
+<p>Start the memcached daemon&hellip;<br />
+<code># memcached -d -u www-data -m 32 127.0.0.1 -p 11211</code></p>
+
+<p>Configure your django project to use memcached&hellip;<br />
+<code># cd ~/mysite</code><br />
+<code># vi settings.py</code></p>
+
+<p>In that file add:</p>
+
+<pre><code>CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+</code></pre>
+
+<p>Install <a href="http://pyyaml.org/">PyYaml</a>&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://pyyaml.org/download/pyyaml/PyYAML-3.05.tar.gz</code><br />
+<code># tar -zxvf PyYAML*</code><br />
+<code># cd PyYAML*</code><br />
+<code># python setup.py install</code></p>
+
+<p>Install <a href="http://docutils.sourceforge.net/">Docutils</a>&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://docutils.sf.net/docutils-snapshot.tgz</code><br />
+<code># tar -zxvf docutils-snapshot*</code><br />
+<code># cd docutils*</code><br />
+<code># python setup.py install</code></p>
+
+<p>Install <a href="http://gosatchmo.com/apps/django-threaded-
+multihost/">Django Threaded Multihost</a>&hellip;<br />
+<code># cd ~/</code><br />
+<code># wget http://gosatchmo.com/static/files/threaded-multihost-1.1-source.tgz</code><br />
+<code># tar -zxvf threaded-multihost*</code><br />
+<code># cd django-threaded-multihost</code><br />
+<code># python setup.py install</code></p>
+
+<p>Now you have all the prerequisites installed for Satchmo&hellip;<br />
+Its time to install <a href="http://www.satchmoproject.com/">Satchmo</a>&hellip;<br />
+<code># apt-get install subversion</code><br />
+<code># cd ~/</code><br />
+<code># svn co svn://satchmoproject.com/satchmo/trunk</code><br />
+<code># cd trunk</code><br />
+<code># python setup.py install</code></p>
+
+<p>Check it&hellip;<br />
+<code># cd ~/</code><br />
+<code># python</code><br />
+<code>&gt;&gt;&gt; import django</code><br />
+<code>&gt;&gt;&gt; import satchmo</code></p>
+
+<p>If they both import fine, then you are all set&hellip; Enjoy&hellip;</p>
+
+<p>To finish configuring your store <a href="http://www.satchmoproject.com/docs/svn/new_installation.html">check this
+page</a>&hellip;</p>
+
+<p>I like to have a clean machine, so I remove all of the source files after
+installs&hellip;<br />
+<code># cd ~/</code><br />
+<code># rm -rf Python* MySQL-python* mod_python* Django* Imaging* pycrypto*
+ReportLab* trml2pdf* comment_utils* django-registration* libevent* memcached*
+python-memcached* PyYAML* docutils* trunk* django-threaded-multihost threaded-
+multihost*</code></p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>September 11, 2008<br>
+                <small>1062 words</small></h4>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://localhost:1313/swillops.com/tags/apache">Apache</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/debian">Debian</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/django">Django</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/memcached">Memcached</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/mod_python">mod_python</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/mysql">MySQL</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/python">Python</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/satchmo">Satchmo</a> 
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 2px 15px;">
+                    <h4>Similar Posts</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                    
+                    
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/">Redirect traffic from a wordpress site</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/">Secure push and pull with git-http-backend</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/">Apache, MySQL and PHP on Snow Leopard</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/">Setting up a new UTF8 MySQL Database</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/">Debian Rails Stack - NginX and Mongrel</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/">Drupal Clean Urls on Debian LAMP Stack</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/mysql-mac-what-headache/">MySQL on a Mac: What a headache</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

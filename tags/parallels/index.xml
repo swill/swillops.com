@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Parallels on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/parallels/</link>
+    <description>Recent content in Parallels on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Dec 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/parallels/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Virtualized Development Environment</title>
+      <link>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</link>
+      <pubDate>Mon, 08 Dec 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</guid>
+      <description>&lt;p&gt;Recently, while developing, I have had people looking over my shoulder and
+asking questions like; &amp;ldquo;How are you able to code and test so quickly?&amp;rdquo; and
+&amp;ldquo;You just wrote that, how is the person you are talking to on Skype able to
+view and test it already?&amp;ldquo;. When I explain to them how my development
+environment is set up, they usually replay, &amp;ldquo;you should really blog about
+that&amp;rdquo;. So here it is&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;First, here is a little bit of background. I have been developing web
+applications for quite a few years now and I always ran into the same issues;
+browser compatibility, showing clients a work in progress, managing
+development and production environments. A couple years ago I started working
+for a new &lt;a href=&#34;http://www.syntenic.com/&#34;&gt;company&lt;/a&gt; and they asked me to brush up on
+my knowledge of virtualization techniques. While researching what was
+available in this space, my virtualized development environment was born.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of tools I use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://store.apple.com/us/browse/home/shop_mac/family/macbook_pro&#34;&gt;A Mac Laptop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.parallels.com/products/virtuozzo/&#34;&gt;Parallels Virtuozzo Containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.parallels.com/products/desktop/&#34;&gt;Parallels Desktop 4.0 for Mac&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://macromates.com/&#34;&gt;Textmate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://cyberduck.ch/&#34;&gt;Cyberduck&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tredosoft.com/Multiple_IE&#34;&gt;Multiple IEs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For pretty much every site, I have a production (prod) environment and a
+development (dev) environment. I want my dev environment to be an exact copy
+of my prod environment so that when I make changes to it I know exactly how
+the prod system is going to deal with the changes. Managing this was a PITA
+until I found Parallels Virtuozzo Containers. I was then able to have one
+machine that had both a prod and dev environment on it in different virtual
+containers. There are quite a few cool features in Virtuozzo, but the main one
+that is relevant to this post is the &amp;lsquo;Clone&amp;rsquo; feature. If you have a prod
+machine up and running and you want to make changes, but you don&amp;rsquo;t want to
+mess with the live machine, you can clone it to a new container and then
+develop on that new dev container. This means that if I want to test some
+changes to the site, I can just take 30 seconds to clone the live site, do the
+changes and test&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I am very comfortable with ssh and working in a terminal, but if you are
+developing a lot, you do not want to have to deal with working only in VI or
+VIM. Because of this, I use Cyberduck over SFTP to edit my code. Cyberduck is
+an open source FTP client that is relatively simple and lightweight, but has
+enough features that you will never feel handcuffed. I set my preferred editor
+in Cyberduck to Textmate and my development environment is set up on my Mac. I
+never have to copy files from the server to my machine and back because I just
+edit them directly on my cloned dev machine. It really is as easy as clone,
+edit, test&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;One of the biggest annoyances in web development is having to deal with cross
+browser compatibility for your web apps. Developing for Internet Explorer is a
+nightmare and because of this some developers neglect it. Unfortunately I do
+not have that luxury and have to make sure that my sites work in all browsers.
+Since I am working on a Mac, testing IE for Windows poses a small problem. I
+use Parallels Desktop for Mac to solve that problem. Parallels Desktop is a
+virtualization platform that allows you to install Windows on your Mac in a
+way that allows you to run Windows programs without having to reboot your
+machine. Basically, you just load the Windows machine and you have access to
+all of your Mac and Windows applications at the same time. Since Windows does
+not allow you to install both IE6 and IE7 on the same machine, I use Multiple
+IEs as a little hack so that I can have both IE6 and IE7 on my Windows install
+for testing purposes.&lt;/p&gt;
+
+&lt;p&gt;That is basically it&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Very fast to get development environments set up.&lt;/li&gt;
+&lt;li&gt;Your code is not on your laptop, so if it gets stolen, you are still fine.&lt;/li&gt;
+&lt;li&gt;You can make changes to code with the client on the phone so they can view the changes in real time (your dev machine is public).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your code is not actually in a code repository (I am working on setting up a version of this that is backed by Git).&lt;/li&gt;
+&lt;li&gt;If you do not have a network connection, you can not work on the site.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Install Ubuntu in Parallel to Mac OSX</title>
+      <link>http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/</link>
+      <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/</guid>
+      <description>
+
+&lt;p&gt;If you are trying to do this you will need &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;Parallels Desktop 3.0 for Mac
+(~$79.99 USD)&lt;/a&gt;. This software allows
+you to run Windows and Linux on your Mac so you have access to all three
+operating systems without rebooting. I think this will be an ideal web
+developing environment, but that is another article all together&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Install Parallels Desktop 3.0 for Mac and then launch it. Go to &lt;strong&gt;File -&amp;gt;
+New&lt;/strong&gt;. In the new window select &lt;strong&gt;Typical&lt;/strong&gt;, then click &lt;strong&gt;(Next)&lt;/strong&gt;. Select
+&lt;strong&gt;Linux&lt;/strong&gt; and &lt;strong&gt;Ubuntu Linux&lt;/strong&gt;, then click &lt;strong&gt;(Next)&lt;/strong&gt;. Finish the guide with
+the appropriate information that you want for the system.&lt;/p&gt;
+
+&lt;p&gt;I got an error when I tried to install Ubuntu 7.10 (Gutsy):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The display server has been shut down about 6 times in the last 90 seconds.
+It is likely that something bad is going on. Waiting for 2 minutes before
+trying again on display.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OK&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you get this error, follow &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;this
+guide&lt;/a&gt; in the very good knowledge base
+provided by Parallels.&lt;/p&gt;
+
+&lt;h3 id=&#34;troubleshooting-section:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Troubleshooting Section:&lt;/h3&gt;
+
+&lt;h4 id=&#34;you-can-t-update-ubuntu:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;You can&amp;rsquo;t Update Ubuntu&lt;/h4&gt;
+
+&lt;p&gt;You have to manually connect to your internet connection. Just go up to the
+top right of your Ubuntu screen and select &amp;lsquo;Wired Network&amp;rsquo; from the network
+monitor and it will connect (assuming your Mac has an internet connection).
+Also since the install could not find a connection, it may have commented out
+all of your repositories in &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;. &lt;a href=&#34;http://
+ubuntuguide.org/wiki/Ubuntu:Gutsy#Manual_Method_for_Adding_Repositories&#34;&gt;Follow this guide&lt;/a&gt; to
+set up your repositories (you should probably use these repositories anyway).&lt;/p&gt;
+
+&lt;h4 id=&#34;can-t-start-ubuntu-after-an-update:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Can&amp;rsquo;t start Ubuntu after an Update&lt;/h4&gt;
+
+&lt;p&gt;For some reason &lt;strong&gt;single&lt;/strong&gt; gets added back into the string &lt;code&gt;kernel /boot/....&lt;/code&gt;
+in your &lt;code&gt;/boot/grub/menu.lst&lt;/code&gt; file. Refer back to &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;step 5 in this
+guide&lt;/a&gt; to fix that problem.&lt;br /&gt;
+&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; My machine crashed after the update and before the reboot which may
+have caused this issue.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;cant-use-full-screen-resolution:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Cant use Full Screen Resolution&lt;/h4&gt;
+
+&lt;p&gt;If you are getting warnings telling you that you cant set a resolution that
+size when you start the Ubuntu machine, &lt;a href=&#34;http://muffinresearch.co.uk/archives/2006/08/13/running-ubuntu-under-
+parallels-desktop-for-mac/&#34;&gt;check out this
+article&lt;/a&gt;. Basically, changing the setting in
+&lt;code&gt;/etc/X11/xorg.conf&lt;/code&gt; does not work, you have to use &lt;code&gt;sudo dpkg-reconfigure 
+-phigh xserver-xorg&lt;/code&gt; to change the resolution settings.&lt;/p&gt;
+
+&lt;p&gt;At this point you should be set. Enjoy the wonderfulness of Linux on your
+Mac&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Mar 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Install Ubuntu in Parallel to Mac OSX</title>
+      <link>http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/</link>
+      <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/</guid>
+      <description>
+
+&lt;p&gt;If you are trying to do this you will need &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;Parallels Desktop 3.0 for Mac
+(~$79.99 USD)&lt;/a&gt;. This software allows
+you to run Windows and Linux on your Mac so you have access to all three
+operating systems without rebooting. I think this will be an ideal web
+developing environment, but that is another article all together&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Install Parallels Desktop 3.0 for Mac and then launch it. Go to &lt;strong&gt;File -&amp;gt;
+New&lt;/strong&gt;. In the new window select &lt;strong&gt;Typical&lt;/strong&gt;, then click &lt;strong&gt;(Next)&lt;/strong&gt;. Select
+&lt;strong&gt;Linux&lt;/strong&gt; and &lt;strong&gt;Ubuntu Linux&lt;/strong&gt;, then click &lt;strong&gt;(Next)&lt;/strong&gt;. Finish the guide with
+the appropriate information that you want for the system.&lt;/p&gt;
+
+&lt;p&gt;I got an error when I tried to install Ubuntu 7.10 (Gutsy):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The display server has been shut down about 6 times in the last 90 seconds.
+It is likely that something bad is going on. Waiting for 2 minutes before
+trying again on display.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OK&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you get this error, follow &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;this
+guide&lt;/a&gt; in the very good knowledge base
+provided by Parallels.&lt;/p&gt;
+
+&lt;h3 id=&#34;troubleshooting-section:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Troubleshooting Section:&lt;/h3&gt;
+
+&lt;h4 id=&#34;you-can-t-update-ubuntu:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;You can&amp;rsquo;t Update Ubuntu&lt;/h4&gt;
+
+&lt;p&gt;You have to manually connect to your internet connection. Just go up to the
+top right of your Ubuntu screen and select &amp;lsquo;Wired Network&amp;rsquo; from the network
+monitor and it will connect (assuming your Mac has an internet connection).
+Also since the install could not find a connection, it may have commented out
+all of your repositories in &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;. &lt;a href=&#34;http://
+ubuntuguide.org/wiki/Ubuntu:Gutsy#Manual_Method_for_Adding_Repositories&#34;&gt;Follow this guide&lt;/a&gt; to
+set up your repositories (you should probably use these repositories anyway).&lt;/p&gt;
+
+&lt;h4 id=&#34;can-t-start-ubuntu-after-an-update:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Can&amp;rsquo;t start Ubuntu after an Update&lt;/h4&gt;
+
+&lt;p&gt;For some reason &lt;strong&gt;single&lt;/strong&gt; gets added back into the string &lt;code&gt;kernel /boot/....&lt;/code&gt;
+in your &lt;code&gt;/boot/grub/menu.lst&lt;/code&gt; file. Refer back to &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;step 5 in this
+guide&lt;/a&gt; to fix that problem.&lt;br /&gt;
+&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; My machine crashed after the update and before the reboot which may
+have caused this issue.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;cant-use-full-screen-resolution:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Cant use Full Screen Resolution&lt;/h4&gt;
+
+&lt;p&gt;If you are getting warnings telling you that you cant set a resolution that
+size when you start the Ubuntu machine, &lt;a href=&#34;http://muffinresearch.co.uk/archives/2006/08/13/running-ubuntu-under-
+parallels-desktop-for-mac/&#34;&gt;check out this
+article&lt;/a&gt;. Basically, changing the setting in
+&lt;code&gt;/etc/X11/xorg.conf&lt;/code&gt; does not work, you have to use &lt;code&gt;sudo dpkg-reconfigure 
+-phigh xserver-xorg&lt;/code&gt; to change the resolution settings.&lt;/p&gt;
+
+&lt;p&gt;At this point you should be set. Enjoy the wonderfulness of Linux on your
+Mac&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu: An Alternative to Windows</title>
+      <link>http://localhost:1313/swillops.com/blog/ubuntu-alternative-windows/</link>
+      <pubDate>Mon, 06 Aug 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/ubuntu-alternative-windows/</guid>
+      <description>&lt;p&gt;I think Windows release of Vista is a turning point in the desktop environment
+landscape. People are going to start looking for alternatives instead of
+trying to relearn how to use their computer, all the while dealing with the
+fact that it is slower than it ever was.&lt;/p&gt;
+
+&lt;p&gt;Windows has been on this train for a while now. Their entire business model
+has pretty much been; build a product, ship it, support it for a little while,
+ship a new product and force the user to upgrade. That is why you went from
+95, to 98 (to realize it was 95 with bugz), Millennium (if you were really
+unlucky), 2000, and then XP. And now you are considering &amp;lsquo;upgrading&amp;rsquo; to Vista.
+So what have all these upgrades been giving you? Features&amp;hellip; Ya, thats pretty
+much it. You are getting an extra 101 things that you will never use. Since
+the interface can only support a set number of features, they have been trying
+to cut down on space by replacing text with images. These images are getting
+more and more ambiguous. For example, my uncle is an average computer user
+whose new laptop came with Windows Vista installed. He worked his way around
+it for a little while learning where everything was that had changed since XP.
+When he went to shutdown his computer he was confused. He couldn&amp;rsquo;t find
+shutdown. He called tech support to figure it out (and the person at the front
+desk couldn&amp;rsquo;t figure it out either, so she had to transfer him to an actual
+technician). Is this realistic? I don&amp;rsquo;t think so&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Its not just the interface either. Windows has been developing most of its
+software with &lt;a href=&#34;http://en.wikipedia.org/wiki/Moore%27s_Law&#34;&gt;Moores Law&lt;/a&gt; in
+mind. This is basically the idea that every 18 months computers will have a
+substantial improvement in resources. Because of this, they have been building
+systems that are more and more resource dependent. When the Windows OS
+(Operating System) loads, it takes a large chunk of your resources and never
+frees them. All of your actual processing is done with the remaining
+resources.&lt;/p&gt;
+
+&lt;p&gt;I didn&amp;rsquo;t believe that this was the best solution available, so about 2 years
+ago I started looking for other options. This is when I came upon Ubuntu. Its
+a Linux distribution that has been written with the user in mind. When I
+started using it 2 years ago the project was relatively new and had some minor
+annoyances. Now it is a completely different story. From the 10 minute
+install, to the improved speed and functionality, I could never go back to
+Windows. They have really thought out what the priorities should be for an OS
+and have implemented the requirement beautifully.&lt;/p&gt;
+
+&lt;p&gt;Ubuntu and all the software you will use on it is free (for the most part,
+unless you run Windows software on it). There is a repository system that you
+get all of the software from as well as Ubuntu it self. Once installed, Ubuntu
+and all installed software will be kept up to date with the most recent
+releases through an online package management interface similar to Windows
+Update. The major difference between Windows Update the the Ubuntu approach is
+that EVERYTHING in Ubuntu is updated through this package manager. So if you
+need to change drivers, install new software or just keep your system up to
+date, everything is done through the same interface. This is beautiful because
+all of the dependencies are taken care of behind the scenes so you just have
+to tell it what you want and it will take care of everything else.&lt;/p&gt;
+
+&lt;p&gt;I know that some people will not be able to part with some of there Windows
+software, but you don&amp;rsquo;t have to. You can actually run Windows software on
+Linux through a program called &lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Feist
+y#How_to_install_and_run_Wine_.28Open_Source_version_of_CrossOver_Linux.29&#34;&gt;Wine&lt;/a&gt;. A
+good example of how much better Ubuntu is than Windows is my experience with
+World of Warcraft. I wanted to try the game, but my Windows machine couldn&amp;rsquo;t
+run it because the system did not meet requirements. I figured I would give it
+a shot in Ubuntu to see if I would have any luck. I installed it without too
+much difficulty and after tweaking some graphics settings I was playing WoW on
+my Linux machine (the exact same system that could not run it using Windows).&lt;/p&gt;
+
+&lt;p&gt;I could go on and on with a list of reasons why you should switch, but I will
+just get tired and you will get bored, so I will just give you a few links to
+consider.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.ubuntu.com/&#34;&gt;Ubuntu Homepage&lt;/a&gt;: This is the Ubuntu homepage where
+you can download the Live CD from. Once you burn the Live CD you will be able
+to load Ubuntu without installing anything, so you can try the OS without
+changing anything on your current system. Once you decide to install Ubuntu
+you can just double click on the &amp;ldquo;Install&amp;rdquo; icon on the desktop and it will
+walk you through the install. 10 minutes later you will be a Linux user
+(probably with Windows on another partition)&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ubuntuforums.org/&#34;&gt;Ubuntu Forums&lt;/a&gt;: These are the Forums for Ubuntu.
+There is a great community of people who can help you with any questions you
+have. This is a great resource that doesn&amp;rsquo;t even exist for Windows users&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Feisty&#34;&gt;Ubuntu Starter Guide&lt;/a&gt;: This is an
+incredible resource for solving just about any problem with Ubuntu. Once you
+install Ubuntu I would recommend checking out this page. This is probably the
+best guide for anything you could ever want to do with the OS&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Happy Computing&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu: backed by a great community</title>
+      <link>http://localhost:1313/swillops.com/blog/ubuntu-backed-great-community/</link>
+      <pubDate>Fri, 20 Apr 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/ubuntu-backed-great-community/</guid>
+      <description>&lt;p&gt;I promised to come back and visit the community aspect of Ubuntu because I
+feel that it is an underrated feature of this OS. I&amp;rsquo;m sure most of you have
+had an experience where you are trying to do something with Windows and you
+just cant seem to figure it out. I have been in that situation many times and
+I have always been kind of discouraged with the amount of support that I can
+get. Its not that the answers are not out there, because for the most part
+they are, but you can only really rely on google to find them.&lt;/p&gt;
+
+&lt;p&gt;When I switched to Ubuntu I had a reasonable foundation in Linux, but I was
+still pretty green. There were a lot of basic things that I had to go looking
+for because I didn&amp;rsquo;t understand how everything worked with this OS. I was
+pleasantly surprised with the wealth of information and the willingness of
+other people to help when I was searching for answers. Because Linux is open
+source (for the most part), there is a huge community of people who know it
+very well, and since a lot of the same questions get asked, many of them
+already have guides written to solve most of your problems. Ubuntu has
+centralized its community a bit by offering forums, wikis and technical
+support. I cant remember a question that I have not been able to find the
+answer to, either on the forums or with a quick google search.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

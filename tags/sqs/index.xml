@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sqs on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/sqs/</link>
+    <description>Recent content in Sqs on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Feb 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/sqs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Amazon: The New Web Empire</title>
+      <link>http://localhost:1313/swillops.com/blog/amazon-new-web-empire/</link>
+      <pubDate>Tue, 26 Feb 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/amazon-new-web-empire/</guid>
+      <description>&lt;p&gt;I have been trying to sit down to write this article for a while, but I never
+seem to have the time. I had put together some links while researching that
+were pretty good, so I figured I would publish them anyway so interested
+people would have somewhere to start from.&lt;/p&gt;
+
+&lt;p&gt;Amazon.com, while building a book selling machine, has put together a pretty
+extensive set of cloud computing services. This article is meant to give you a
+brief overview of a few of their services and give you a starting point if you
+are interested in researching this technology.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://www.amazon.com/gp/browse.html?node=3435361&#34;&gt;Amazon Web Services&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
+This is a good place to start if you are a marketing person or just want to
+get a basic idea what is going on. This is a non-technical overview of their
+services. This gives you info about SLAs and a basic idea of the technical
+relevance, but does not get into too much detail. It is basically an info and
+sign up section.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://developer.amazonwebservices.com/connect/index.jspa&#34;&gt;Amazon Developer Connection&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;
+If your like me, you learn by getting your hands dirty. You will want to sign
+up for an amazon web services account and get into their APIs and development
+documentation. This is the starting point for getting into that for each of
+their services.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Amazon Elastic Compute Cloud (Beta) (EC2)&lt;/strong&gt;&lt;br /&gt;
+Marketing: &lt;a href=&#34;http://www.amazon.com/b/ref=s
+c_fe_l_2?ie=UTF8&amp;amp;node=201590011&amp;amp;no=3435361&amp;amp;me=A36L942TSJ2AJA&#34;&gt;Amazon Elastic Compute Cloud (Beta)&lt;/a&gt;&lt;br /&gt;
+Developers: &lt;a href=&#34;http://developer.amazonwebse
+rvices.com/connect/kbcategory.jspa?categoryID=84&#34;&gt;Amazon Elastic Compute Cloud (Beta)&lt;/a&gt;&lt;br /&gt;
+This is basically like a web based CPU that you can run processes on. Need a
+computer to do some thinking for you? Check this service.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Amazon Simple Storage Service (S3)&lt;/strong&gt;&lt;br /&gt;
+Marketing: &lt;a href=&#34;http://www.amazon.com/S3-AWS-home-
+page-Money/b/ref=sc_fe_l_2?ie=UTF8&amp;amp;node=16427261&amp;amp;no=3435361&amp;amp;me=A36L942TSJ2AJA&#34;&gt;Amazon Simple Storage Service&lt;/a&gt;&lt;br /&gt;
+Developer: &lt;a href=&#34;http://developer.amazonwebservices.
+com/connect/kbcategory.jspa?categoryID=46&#34;&gt;Amazon Simple Storage Service&lt;/a&gt;&lt;br /&gt;
+This is basically like a web based Hard Drive that you can store files on.
+Does your app have files that need to be stored somewhere? Check this service.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Amazon SimpleDB&lt;/strong&gt;&lt;br /&gt;
+Marketing: &lt;a href=&#34;http://www.amazon.com/b/ref=sc_fe_l_2?ie=UTF8&amp;amp;nod
+e=342335011&amp;amp;no=3435361&amp;amp;me=A36L942TSJ2AJA&#34;&gt;Amazon SimpleDB&lt;/a&gt;&lt;br /&gt;
+Developer: &lt;a href=&#34;http://developer.amazonwebservices.com/connect/kb
+category.jspa?categoryID=141&#34;&gt;Amazon SimpleDB&lt;/a&gt;&lt;br /&gt;
+This is basically a web based Database that you can use for storage. Does your
+app need a database? Check this service.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Amazon Simple Queue Service (SQS)&lt;/strong&gt;&lt;br /&gt;
+Marketing: &lt;a href=&#34;http://www.amazon.com/Simple-Queue-
+Service-home-
+page/b/ref=sc_fe_l_2?ie=UTF8&amp;amp;node=13584001&amp;amp;no=3435361&amp;amp;me=A36L942TSJ2AJA&#34;&gt;Amazon Simple Queue Service&lt;/a&gt;&lt;br /&gt;
+Developer: &lt;a href=&#34;http://developer.amazonwebservices.co
+m/connect/kbcategory.jspa?categoryID=8&#34;&gt;Amazon Simple Queue Service&lt;/a&gt;&lt;br /&gt;
+This is basically the way that the different Amazon web services can talk to
+each other and tell each other what to do. Do you need EC2 to talk to S3?
+Check this service.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.readwriteweb.com/archives/amazon_dynamo.php&#34;&gt;Amazon Dynamo: The Next Generation Of Virtual Distributed
+Storage&lt;/a&gt;&lt;br /&gt;
+This is an interesting article about how Amazon stores their data in a cloud.&lt;/p&gt;
+
+&lt;p&gt;Amazon has a lot of cool things going right now and they are definitely a
+company to watch. If you are a developer, you may want to check out the
+different interfacing that they have with many of the popular networks and
+technologies. Primarily building Facebook applications with Ruby on Rails.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

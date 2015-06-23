@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/security/</link>
+    <description>Recent content in Security on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Feb 2009 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Manage and deploy Drupal code securely with Git, gitosis and Capistrano</title>
+      <link>http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
+      <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
+
+&lt;p&gt;I have quite a few sites set up with Drupal and it has been working
+beautifully for me. However, with the fast turn over of Drupal code, I was
+having trouble keeping all of the sites up to date with the most current code
+releases. I needed to figure out how to manage my Drupal code in a way that
+allowed me to upgrade easily without stressing about what I might break. After
+a lot of research and trial and error, I have finally settled on the following
+setup.&lt;/p&gt;
+
+&lt;p&gt;The main motivation for using Git is the painless branching and merging. I am
+using Capistrano cause it is easy to set up and work with.&lt;/p&gt;
+
+&lt;p&gt;This post is meant to be a tutorial of sorts, but is more likely to be uses as
+a reference when setting up or changing your sites.&lt;/p&gt;
+
+&lt;p&gt;What we will do (or need to do):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Git on your local machine&lt;/li&gt;
+&lt;li&gt;Install Git on your repository machine&lt;/li&gt;
+&lt;li&gt;Install Git on your staging machine (optional)&lt;/li&gt;
+&lt;li&gt;Install Git on your production machine&lt;/li&gt;
+&lt;li&gt;Install gitosis on your repository machine&lt;/li&gt;
+&lt;li&gt;Setup gitosis&lt;/li&gt;
+&lt;li&gt;Setup your sites in Git and push to the repository machine&lt;/li&gt;
+&lt;li&gt;Install and setup Capistrano&lt;/li&gt;
+&lt;li&gt;Deploy your site to a staging machine (optional)&lt;/li&gt;
+&lt;li&gt;Deploy your site to a production machine&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Get the machines ready to do some real work&amp;hellip;&lt;/strong&gt;&lt;br /&gt;
+Install &lt;a href=&#34;http://git-scm.com/&#34;&gt;Git&lt;/a&gt; on your local machine, repository machine
+and production machine (and the other machines as needed). This is easy
+enough, so I will not got into detail. If you have problems, you can checkout
+&lt;a href=&#34;http://www.forwardthinkingdesign.com/category/tags/git&#34;&gt;these articles&lt;/a&gt;
+because I have gone into installation details there.&lt;/p&gt;
+
+&lt;p&gt;Install gitosis on your Repository machine&lt;br /&gt;
+&lt;code&gt;cd ~/src&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git clone git://eagain.net/gitosis.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd gitosis&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you get errors on the above line of code, then you will need to install
+&lt;a href=&#34;http://pypi.python.org/pypi/setuptools&#34;&gt;python-setuptools&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now set up a user on your Repository machine that will be the one who owns the
+repositories. I use &amp;lsquo;git&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo adduser \  
+  -system \  
+  -shell /bin/sh \  
+  -gecos &#39;git version control&#39; \  
+  -group \  
+  -disabled-password \  
+  -home /home/git \  
+  git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you need to have an SSH Key set up on your local machine. If you don&amp;rsquo;t
+have one, do this (on your local machine)&amp;hellip;&lt;br /&gt;
+&lt;code&gt;ssh-keygen -t rsa&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Assuming that you created the file &lt;code&gt;id_rsa.pub&lt;/code&gt;, now you need to copy it to
+your Repository machine. I put mine in &lt;code&gt;/tmp/id_rsa.pub&lt;/code&gt; so it is easy to
+access.&lt;/p&gt;
+
+&lt;p&gt;Now initialize gitosis with that key (on the Repository machine).&lt;br /&gt;
+&lt;code&gt;sudo -H -u git gitosis-init &amp;lt; /tmp/id_rsa.pub&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure that &lt;code&gt;post-update&lt;/code&gt; is set to executable.&lt;br /&gt;
+&lt;code&gt;sudo chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To set up the gitosis admin on your local machine.&lt;br /&gt;
+&lt;em&gt;(Everything from here on is on your local machine&amp;hellip;)&lt;/em&gt;&lt;br /&gt;
+Note: &lt;code&gt;cd&lt;/code&gt; into the directory you want your code to live first.&lt;br /&gt;
+&lt;code&gt;git clone git@YOUR_REPOSITORY_MACHINE:gitosis-admin.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd gitosis-admin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Setup the admin for the repositories.&lt;br /&gt;
+Open the file &lt;code&gt;gitosis.conf&lt;/code&gt; and make sure it has the following for the admin
+setup.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[gitosis]  
+[group gitosis-admin]  
+writable = gitosis-admin  
+members = youruser@machine
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(youruser@machine is going to be taken from your &lt;code&gt;id_rsa.pub&lt;/code&gt; file. it will be
+the last piece of that file and will look something like: hzvu4nTtw3Q==
+youruser@machine)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I have had some problems with this method of specifying a user. What I do now, which seems to work, is make sure that my .pub files have unique names when I create them (eg: __ which could be something like, forwardthinkingdesign_prod_root) and I use the filename in the &amp;lsquo;members&amp;rsquo; section.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup and manage your repositories&amp;hellip;&lt;/strong&gt;&lt;br /&gt;
+Also in &lt;code&gt;gitosis.conf&lt;/code&gt; add your project (your_project in this example).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[group yourteam]  
+members = youruser@machine  
+writable = your_project
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Push this updated configuration to the server.&lt;br /&gt;
+(you will probably have to add the appropriate files to be committed with &amp;lsquo;git
+add&amp;rsquo;. when you have more than one project, you will have more files here that
+will be untracked.)&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Allow youruser@machine write access to your_project&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you are going to actually create &lt;code&gt;your_project&lt;/code&gt; and push it to the gitosis
+repository.&lt;br /&gt;
+&lt;code&gt;mkdir your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git init&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git remote add origin git@REPOSITORY_MACHINE:your_project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you need to setup the how you are going to manage your Drupal
+code. You can put it all in one branch with &lt;code&gt;git push origin
+master:refs/heads/master&lt;/code&gt;, but I would NOT recommend this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Git setup I recommend for managing Drupal projects.&lt;/strong&gt;&lt;br /&gt;
+Create a branch &lt;code&gt;drupal&lt;/code&gt; just for the Drupal code. You never make changes to
+this branch other than upgrading to newer versions of Drupal. Git created a
+&lt;code&gt;master&lt;/code&gt; branch when you did &lt;code&gt;git init&lt;/code&gt; and since Git does not like you trying
+to branch from it without doing any &amp;lsquo;real work&amp;rsquo;, we are going to add to the
+&lt;code&gt;master&lt;/code&gt; branch and then rename it to &lt;code&gt;drupal&lt;/code&gt; before we add it to the
+repository machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;tar xvzf drupal-6.x.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal-6.x.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv drupal-6.x drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also add a &lt;code&gt;.gitignore&lt;/code&gt; file to this base &lt;code&gt;drupal&lt;/code&gt; branch so I do not have
+to worry about stuff I do not want getting into my repository.&lt;/p&gt;
+
+&lt;p&gt;Create a &lt;code&gt;.gitignore&lt;/code&gt; file in the root of your repository and add the
+following lines to it.&lt;br /&gt;
+&lt;code&gt;.DS_Store&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;drupal/sites/default/files/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Capfile&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;config/deploy.rb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Explanation of ignores:&lt;br /&gt;
+&lt;em&gt;.DS_Store&lt;/em&gt; -&amp;gt; This is because I am on a Mac and it creates these files all
+over the place. They should not be in my repository.&lt;br /&gt;
+&lt;em&gt;drupal/sites/default/files/&lt;/em&gt; -&amp;gt; This is because I run a local server on my
+machine that needs the &amp;lsquo;files&amp;rsquo; directory, but I do not want to track the
+&amp;lsquo;files&amp;rsquo; directory in my repo. (this may also be &lt;em&gt;drupal/files/&lt;/em&gt; depending on
+what version of drupal you are on.)&lt;br /&gt;
+&lt;em&gt;Capfile&lt;/em&gt; -&amp;gt; We have not gotten this far, but this is for Capistrano.&lt;br /&gt;
+&lt;em&gt;config/deploy.rb&lt;/em&gt; -&amp;gt; Again, this is for Capistrano.&lt;/p&gt;
+
+&lt;p&gt;Now add and commit these changes.&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial Drupal commit&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Rename the &lt;code&gt;master&lt;/code&gt; branch to our &lt;code&gt;drupal&lt;/code&gt; branch.&lt;br /&gt;
+&lt;code&gt;git branch -m master drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We now have the &lt;code&gt;drupal&lt;/code&gt; branch up to date on our local machine. Lets push it
+to the repository server.&lt;br /&gt;
+&lt;code&gt;git push origin drupal:refs/heads/drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;From the &lt;code&gt;drupal&lt;/code&gt; branch we want to create a &lt;code&gt;modules&lt;/code&gt; branch that will be
+used to manage all of the unmodified contributed modules. This should only be
+the module code that you get from drupal.org. You do not modify any of the
+code in this branch, just upgrade the modules when needed.&lt;/p&gt;
+
+&lt;p&gt;You need to make sure you are on the &lt;code&gt;drupal&lt;/code&gt; branch and then you will create
+a &lt;code&gt;modules&lt;/code&gt; branch. Once there you will add all your modules to the &lt;code&gt;modules&lt;/code&gt;
+branch.&lt;br /&gt;
+&lt;code&gt;git checkout drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd drupal/sites/all&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mkdir modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;tar xzvf yourmodule.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf yourmodule.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;... (repeat for all your modules) ...&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial add of all of my sites modules&amp;quot;&lt;/code&gt;&lt;br /&gt;
+(i also track my themes that are not modified in this branch)&lt;/p&gt;
+
+&lt;p&gt;When you are done adding all of your modules then you will want to push the
+&lt;code&gt;modules&lt;/code&gt; branch to the repository machine.&lt;br /&gt;
+&lt;code&gt;git push origin modules:refs/heads/modules&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you should have all of the base modules (and themes) tracked in your
+repository. At this point you want a branch where you can do all your
+modifications that are custom to your site. I track all my custom site
+specific modules, custom site specific themes and all of my module and core
+hacks in this branch. I call this branch &lt;code&gt;production&lt;/code&gt; since it is what I push
+out to my staging and production machines.&lt;/p&gt;
+
+&lt;p&gt;Lets create the &lt;code&gt;production&lt;/code&gt; branch and add our site specific stuff (including
+drupal/sites/default/settings.php).&lt;br /&gt;
+&lt;code&gt;git checkout modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b production&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make all of your changes that are custom to the site.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial add of all of my site specific
+hacks/modules/themes/etc...&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets push this branch to the repository machine.&lt;br /&gt;
+&lt;code&gt;git push origin production:refs/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Updating to a new version of Drupal (or updating modules)&lt;/strong&gt;&lt;br /&gt;
+This is where the real power of Git comes in and this is why I use this
+method.&lt;/p&gt;
+
+&lt;p&gt;When upgrading the Drupal core, we only want to change the &lt;code&gt;drupal&lt;/code&gt; branch
+because that is where the Drupal core is stored.&lt;br /&gt;
+Checkout the &lt;code&gt;drupal&lt;/code&gt; branch and once there we are going to replace the
+current version of Drupal with a new version.&lt;br /&gt;
+&lt;code&gt;git checkout drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;tar xvzf drupal-6.xx.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal-6.xx.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv drupal-6.xx drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets update the local repository and then push it to the repository
+machine.&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Drupal 6.xx update&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin drupal:refs/heads/drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We have to propagate this change up through our other branches, so we will
+pull these changes into the &lt;code&gt;modules&lt;/code&gt; branch and then commit and push it to
+the repository machine.&lt;br /&gt;
+&lt;code&gt;git checkout modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin modules:refs/heads/modules&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And likewise for the &lt;code&gt;production&lt;/code&gt; branch.&lt;br /&gt;
+&lt;code&gt;git checkout production&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin production:refs/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now all of your code is up to date on your local machine as well as your
+repository machine. You can update the &lt;code&gt;modules&lt;/code&gt; branch just the same my
+downloading newer versions of the modules code and just update the &lt;code&gt;modules&lt;/code&gt;
+and then the &lt;code&gt;production&lt;/code&gt; branches.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Deploying your code to the staging and production machines&lt;/strong&gt;&lt;br /&gt;
+At this point some people may choose to just copy and paste the code from
+their repository to their staging/production machines. As a simple solution,
+that is not too bad, but I want a more elegant method for deploying. For this
+I use Capistrano. Capistrano is built on Ruby and is very popular with Ruby on
+Rails developers. In order for it to work nicely with PHP and Drupal, we need
+to create our own &lt;code&gt;config/deploy.rb&lt;/code&gt; file. Luckily for you, I have already
+done this and you can find it attached at the end of this article. Lets get
+started&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup your remote machines with permission to access your repository&lt;/strong&gt;&lt;br /&gt;
+In order for you staging and production machines to be allowed to access your
+repository machine to get the latest code, you need to setup an rsa key for
+each of them. Do the following on all the machines that need to access the
+repository (staging and production).&lt;br /&gt;
+&lt;code&gt;ssh YOUR_USER@REMOTE_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;ssh-keygen -t rsa&lt;/code&gt; -&amp;gt; Be sure to create it with a unique name (example:
+&amp;lsquo;staging&amp;rsquo;)&lt;/p&gt;
+
+&lt;p&gt;Copy the &lt;code&gt;staging.pub&lt;/code&gt; file from REMOTE_MACHINE to your local machine and
+place it in the &lt;code&gt;gitosis-admin/keydir&lt;/code&gt; folder. You need to edit the &lt;code&gt;gitosis-
+admin/gitosis.conf&lt;/code&gt; file and add the user from your REMOTE_MACHINE in the
+appropriate section as we did before.&lt;/p&gt;
+
+&lt;p&gt;Example (added the bold):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[group yourteam]  
+members = youruser@machine **remoteuser@remotemachine**  
+writable = your_project
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now add, commit and push the changes to the repository machine (needs to be
+done from inside the &lt;code&gt;gitosis-admin&lt;/code&gt; directory).&lt;br /&gt;
+&lt;code&gt;git add gitosis.conf keydir/staging.pub&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Gave the staging machine the ability to access the
+repository&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;(Repeat for all the machines that need access to the repository)&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Giving additional users access to your repository&lt;/strong&gt;&lt;br /&gt;
+If you need to add someone to the project, set them up with access the same
+way you just did above for the &amp;lsquo;staging&amp;rsquo; machine. Once they are setup with
+permissions, they will need to clone the project to have access.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git clone git@REPOSITORY_MACHINE:your_project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt; (start)&lt;br /&gt;
+&lt;strong&gt;If you are on Mac OS X Snow Leopard&lt;/strong&gt;, it may ask you for a password. This is because Snow Leopard ships with key forwarding disabled by default and you will have to modify the file &lt;code&gt;/etc/ssh_config&lt;/code&gt; to get it working.&lt;/p&gt;
+
+&lt;p&gt;Change the lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Host * 
+# ForwardAgent no
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Host *
+ForwardAgent yes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If it still asks you for a password on Snow Leopard, you may need to add your
+passphrases to the Apple keychain. Type the following in a terminal.&lt;br /&gt;
+&lt;code&gt;ssh-add -K ~/.ssh/name_of_your_key&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you still have problems, you may want to add &lt;code&gt;loglevel = DEBUG&lt;/code&gt; under the
+&lt;code&gt;[gitosis]&lt;/code&gt; section of your &lt;code&gt;gitosis.conf&lt;/code&gt; file to get more information about
+what is happening.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Permission Denied&lt;/strong&gt;&lt;br /&gt;
+This often happens and is a PITA to figure out. One thing that I have found is
+that once you add a user to the remote repository, they have problems
+connection to the remote machine to clone the repository. This may resolve the
+issue (this has always been on a Mac).&lt;/p&gt;
+
+&lt;p&gt;Add the following to the file: &lt;code&gt;~/.ssh/config&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Host REPOSITORY_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;User git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Hostname REPOSITORY_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;PreferredAuthentications publickey&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;IdentityFile /path/to/.ssh/filename&lt;/code&gt;&lt;br /&gt;
+(filename is the same as the filename.pub file, but without the .pub at the
+end)&lt;br /&gt;
+&lt;strong&gt;Notes&lt;/strong&gt; (end)&lt;/p&gt;
+
+&lt;p&gt;Once it clones the project, you will probably get the following error:&lt;br /&gt;
+&lt;code&gt;Warning: Remote HEAD refers to nonexistent ref, unable to checkout.&lt;/code&gt;&lt;br /&gt;
+This is basically saying &amp;ldquo;I don&amp;rsquo;t know what branch to checkout&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Check and see what branches you have available:&lt;br /&gt;
+&lt;code&gt;cd your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git branch -a&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This should show you:&lt;br /&gt;
+&lt;code&gt;origin/drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;origin/modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;origin/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You will not want to check those branches out directly because they are remote
+branches and you will detach the head if you do. Basically you want to create
+local branches that you can change that will be linked to the remote branches.&lt;br /&gt;
+&lt;code&gt;git checkout -b drupal origin/drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b modules origin/modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b production origin/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now they will have a working local copy of the repository and they will be
+able to make commits to the remote repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup Capistrano and server configuration&lt;/strong&gt;&lt;br /&gt;
+You need to &lt;a href=&#34;http://www.capify.org/getting-started/&#34;&gt;install Capistrano&lt;/a&gt; on
+your local machine. They have great documentation at the Capistrano website
+which I reference every time I do this, so I will leave that as an exercise
+for you to do.&lt;/p&gt;
+
+&lt;p&gt;At this point I am assuming that you have Capistrano installed on your local
+machine. We now need to setup our project to deploy with Capistrano.&lt;/p&gt;
+
+&lt;p&gt;In the root of your repository directory (eg: &lt;code&gt;your_project&lt;/code&gt;) on your local
+machine, do this.&lt;br /&gt;
+&lt;code&gt;mkdir config&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;capify .&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Download the file (&lt;code&gt;deploy.rb&lt;/code&gt;) that is attached and replace the &lt;code&gt;deploy.rb&lt;/code&gt;
+file in the &lt;code&gt;config&lt;/code&gt; directory. You will have to go through the file and
+change all the sections that are IN_CAPS to the correct information. I will
+try to make this painless, but it may take some playing to get it setup for
+your environment. A lot of this depends on how you want to setup your server,
+so you may have to change the configuration as needed&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Now that your configuration is correct we are going to do the setup.&lt;br /&gt;
+&lt;strong&gt;Note:&lt;/strong&gt; You need to setup your staging and production machines the same as you setup in the deploy.rb file. So you need to create the directory that you want to deploy to (in my example it is: &lt;code&gt;/var/www/&lt;/code&gt;, and make sure it is owned by the user that you specified in your deploy.rb file).&lt;/p&gt;
+
+&lt;p&gt;Now we need to create the skeleton of your deploy file structure.&lt;br /&gt;
+&lt;code&gt;cap deploy:setup&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure that you have everything in place to do the deploy.&lt;br /&gt;
+&lt;code&gt;cap deploy:check&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;(If you already have &amp;lsquo;files&amp;rsquo; for your project, you may want to copy them into
+the &lt;code&gt;/var/www/your_project/shared/files/&lt;/code&gt; directory at this point so the
+actual deploy command can change the permissions correctly.)&lt;/p&gt;
+
+&lt;p&gt;Lets do the deployment&amp;hellip;&lt;br /&gt;
+&lt;code&gt;cap deploy&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You have just deployed your code from your repository machine to you staging
+or production machine. You will have to make sure that your apache
+configuration is setup correctly to serve the site that is currently deployed.
+To do that I have attached a sample vhosts file (&lt;code&gt;sample_site.conf&lt;/code&gt;) that may
+get you moving in the right direction.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Congratulations!!!&lt;/strong&gt; Now you can hack the core to your hearts content and you will still have a clean upgrade path (just do it in your &lt;code&gt;production&lt;/code&gt; branch). ;)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way&#34;&gt;Hosting Git repositories, The Easy (and Secure) Way&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.ruzee.com/blog/2008/10/drupal-development-and-deployment-using-git&#34;&gt;Drupal Development and Deployment using Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.simplicidade.org/notes/archives/2008/09/installing_gito.html&#34;&gt;Installing gitosis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tempe.st/tag/capistrano/&#34;&gt;A Tempest of Thoughts - Capistrano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.schmidp.com/2009/06/23/enable-ssh-agent-key-forwarding-on-snow-leopard/comment-page-1/&#34;&gt;Enable SSH Agent (Key) Forwarding on Snow Leopard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Attachments:&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;http://www.swillops.com/files/deploy.rb&#34;&gt;deploy.rb&lt;/a&gt; 3.16 KB&lt;br /&gt;
+&lt;a href=&#34;http://www.swillops.com/files/sample_site.conf&#34;&gt;sample_site.conf&lt;/a&gt; 864 bytes&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

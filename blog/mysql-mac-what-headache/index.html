@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MySQL on a Mac: What a headache">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>MySQL on a Mac: What a headache - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/blog/mysql-mac-what-headache/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="post">
+                <h2>MySQL on a Mac: What a headache<br> <small>MySQL on a Mac: What a headache</small></h2>
+                <hr>
+                <p>I have spent a stupid amount of time trying to get MySQL
+installed/configured/working on my Mac. Since I am coming from Ubuntu, I am
+used to being able to install an entire LAMPs stack with this one command:</p>
+
+<p><code>$ sudo apt-get install apache2 mysql-server php5 libapache2-mod-php5 php5-xsl
+php5-gd php-pear libapache2-mod-auth-mysql php5-mysql</code></p>
+
+<p>Apparently on a Mac this is a complete PITA.</p>
+
+<p>After spending hours installing and uninstalling MySQL with the final result
+being the dreaded error:</p>
+
+<blockquote>
+<p>Starting mysqld daemon with databases from /usr/local/mysql/data<br />
+STOPPING server from pid file /usr/local/mysql/data/will-stevenss-macbook-
+pro.local.pid<br />
+080613 11:18:38 mysqld ended</p>
+</blockquote>
+
+<p>I finally ran into <a href="http://2tbsp.com/content/install_and_configure_mysql_5_macports">this
+article</a>
+which has finally gotten me totally set up. Thanks Guys&hellip;</p>
+
+<p><strong>Notes:</strong><br />
+Since you can have multiple MySQL installs (4 and 5) with Macports; when you
+issue commands such as &lsquo;mysql&rsquo;, you need to specify the version, so you would
+use &lsquo;mysql5&rsquo;.</p>
+
+<p>The command that is specified for starting the MySQL server at startup did not
+work for me because it was the wrong path. Here is the command I used:</p>
+
+<p><code>sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist</code></p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>June 13, 2008<br>
+                <small>174 words</small></h4>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://localhost:1313/swillops.com/tags/mac">Mac</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/macports">Macports</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/mysql">MySQL</a> 
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 2px 15px;">
+                    <h4>Similar Posts</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                    
+                    
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/">Apache, MySQL and PHP on Snow Leopard</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/">Setting up a new UTF8 MySQL Database</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/">Installing Django with Satchmo on Debian Etch</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/">Debian Rails Stack - NginX and Mongrel</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/batch-image-resizing-mac/">Batch image resizing on a Mac</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/">Dead simple GIT install on Mac</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/">Install Ubuntu in Parallel to Mac OSX</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/mac-tweaks/">Mac Tweaks</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Image on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/image/</link>
+    <description>Recent content in Image on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Jul 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/image/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Batch image resizing on a Mac</title>
+      <link>http://localhost:1313/swillops.com/blog/batch-image-resizing-mac/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/batch-image-resizing-mac/</guid>
+      <description>&lt;p&gt;As a web developer I need simple ways to manipulate images easily so I can get
+them online without wasting large amounts of time. Resizing huge digital
+images to a reasonable web size was always difficult until I found this.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.macosxtips.co.uk/index_files/access-extra-preview-
+features-through-automator.html#unique-entry-id-148&#34;&gt;Access hidden Preview features through
+Automator&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This makes it a snap to resize a large number of images without having to
+install any additional software&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

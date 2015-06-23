@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gh Pages on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/gh-pages/</link>
+    <description>Recent content in Gh Pages on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/gh-pages/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugo on gh-pages</title>
+      <link>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</link>
+      <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</guid>
+      <description>&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
+
+&lt;p&gt;Your config.toml file will probably look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-toml&#34;&gt;baseurl = &amp;quot;http://&amp;lt;username&amp;gt;.github.io/&amp;lt;reponame&amp;gt;/&amp;quot;
+languageCode = &amp;quot;en-us&amp;quot;
+title = &amp;quot;Website Title&amp;quot;
+theme = &amp;quot;your-theme&amp;quot;
+canonifyurls = true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you are ready to start working with &lt;code&gt;gh-pages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# create the git repository to track your actual website on gh-pages
+$ cd public # or whatever your hugo &#39;publishdir&#39; is set to
+$ git init # to create a git repo
+$ git add .
+$ git commit -am &amp;quot;initial publication of content&amp;quot;
+$ git branch -m master gh-pages # rename master branch to gh-pages
+# create a new repository on GitHub and then set it up as the remote for this repo
+$ git remote add origin https://github.com/&amp;lt;username&amp;gt;/&amp;lt;reponame&amp;gt;.git
+$ git push origin gh-pages
+
+# now track the whole source in a different git repo
+$ cd ..
+$ git init
+$ git add .
+$ git commit -am &amp;quot;source of initial publication&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

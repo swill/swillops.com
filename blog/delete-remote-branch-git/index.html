@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Delete a remote branch in Git">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>Delete a remote branch in Git - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/blog/delete-remote-branch-git/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="post">
+                <h2>Delete a remote branch in Git<br> <small>Delete a remote branch in Git</small></h2>
+                <hr>
+                <p>I run into this all the time. I am typing too fast when I push code to my
+remote repository and I make a typo that creates a new branch in my remote
+repository.</p>
+
+<p>Correct: <code>git push origin production:refs/heads/production</code></p>
+
+<p>Mistake: <code>git push origin production:ref/heads/production</code><br />
+Result: <code>* [new branch]    production -&gt; ref/heads/production</code></p>
+
+<p>Obviously I do not want this new branch on my remote server, so I want to
+remove it. You can remove this newly created branch with.</p>
+
+<p>The Fix: <code>git push origin :ref/heads/production</code></p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>December 17, 2010<br>
+                <small>83 words</small></h4>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://localhost:1313/swillops.com/tags/git">Git</a> 
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 2px 15px;">
+                    <h4>Similar Posts</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                    
+                    
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/">Git branches to manage third party app customization</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/using-1and1-git-repository/">Using a 1and1 git repository</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/">Secure push and pull with git-http-backend</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/">Manage and deploy Drupal code securely with Git, gitosis and Capistrano</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/">Debian Rails Stack - NginX and Mongrel</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/">Dead simple GIT install on Mac</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

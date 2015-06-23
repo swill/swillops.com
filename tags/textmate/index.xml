@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Textmate on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/textmate/</link>
+    <description>Recent content in Textmate on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Dec 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/textmate/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Virtualized Development Environment</title>
+      <link>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</link>
+      <pubDate>Mon, 08 Dec 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</guid>
+      <description>&lt;p&gt;Recently, while developing, I have had people looking over my shoulder and
+asking questions like; &amp;ldquo;How are you able to code and test so quickly?&amp;rdquo; and
+&amp;ldquo;You just wrote that, how is the person you are talking to on Skype able to
+view and test it already?&amp;ldquo;. When I explain to them how my development
+environment is set up, they usually replay, &amp;ldquo;you should really blog about
+that&amp;rdquo;. So here it is&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;First, here is a little bit of background. I have been developing web
+applications for quite a few years now and I always ran into the same issues;
+browser compatibility, showing clients a work in progress, managing
+development and production environments. A couple years ago I started working
+for a new &lt;a href=&#34;http://www.syntenic.com/&#34;&gt;company&lt;/a&gt; and they asked me to brush up on
+my knowledge of virtualization techniques. While researching what was
+available in this space, my virtualized development environment was born.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of tools I use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://store.apple.com/us/browse/home/shop_mac/family/macbook_pro&#34;&gt;A Mac Laptop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.parallels.com/products/virtuozzo/&#34;&gt;Parallels Virtuozzo Containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.parallels.com/products/desktop/&#34;&gt;Parallels Desktop 4.0 for Mac&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://macromates.com/&#34;&gt;Textmate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://cyberduck.ch/&#34;&gt;Cyberduck&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tredosoft.com/Multiple_IE&#34;&gt;Multiple IEs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For pretty much every site, I have a production (prod) environment and a
+development (dev) environment. I want my dev environment to be an exact copy
+of my prod environment so that when I make changes to it I know exactly how
+the prod system is going to deal with the changes. Managing this was a PITA
+until I found Parallels Virtuozzo Containers. I was then able to have one
+machine that had both a prod and dev environment on it in different virtual
+containers. There are quite a few cool features in Virtuozzo, but the main one
+that is relevant to this post is the &amp;lsquo;Clone&amp;rsquo; feature. If you have a prod
+machine up and running and you want to make changes, but you don&amp;rsquo;t want to
+mess with the live machine, you can clone it to a new container and then
+develop on that new dev container. This means that if I want to test some
+changes to the site, I can just take 30 seconds to clone the live site, do the
+changes and test&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I am very comfortable with ssh and working in a terminal, but if you are
+developing a lot, you do not want to have to deal with working only in VI or
+VIM. Because of this, I use Cyberduck over SFTP to edit my code. Cyberduck is
+an open source FTP client that is relatively simple and lightweight, but has
+enough features that you will never feel handcuffed. I set my preferred editor
+in Cyberduck to Textmate and my development environment is set up on my Mac. I
+never have to copy files from the server to my machine and back because I just
+edit them directly on my cloned dev machine. It really is as easy as clone,
+edit, test&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;One of the biggest annoyances in web development is having to deal with cross
+browser compatibility for your web apps. Developing for Internet Explorer is a
+nightmare and because of this some developers neglect it. Unfortunately I do
+not have that luxury and have to make sure that my sites work in all browsers.
+Since I am working on a Mac, testing IE for Windows poses a small problem. I
+use Parallels Desktop for Mac to solve that problem. Parallels Desktop is a
+virtualization platform that allows you to install Windows on your Mac in a
+way that allows you to run Windows programs without having to reboot your
+machine. Basically, you just load the Windows machine and you have access to
+all of your Mac and Windows applications at the same time. Since Windows does
+not allow you to install both IE6 and IE7 on the same machine, I use Multiple
+IEs as a little hack so that I can have both IE6 and IE7 on my Windows install
+for testing purposes.&lt;/p&gt;
+
+&lt;p&gt;That is basically it&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Very fast to get development environments set up.&lt;/li&gt;
+&lt;li&gt;Your code is not on your laptop, so if it gets stolen, you are still fine.&lt;/li&gt;
+&lt;li&gt;You can make changes to code with the client on the phone so they can view the changes in real time (your dev machine is public).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your code is not actually in a code repository (I am working on setting up a version of this that is backed by Git).&lt;/li&gt;
+&lt;li&gt;If you do not have a network connection, you can not work on the site.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

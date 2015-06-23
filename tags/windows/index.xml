@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/windows/</link>
+    <description>Recent content in Windows on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Mar 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Install Ubuntu in Parallel to Mac OSX</title>
+      <link>http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/</link>
+      <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/</guid>
+      <description>
+
+&lt;p&gt;If you are trying to do this you will need &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;Parallels Desktop 3.0 for Mac
+(~$79.99 USD)&lt;/a&gt;. This software allows
+you to run Windows and Linux on your Mac so you have access to all three
+operating systems without rebooting. I think this will be an ideal web
+developing environment, but that is another article all together&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Install Parallels Desktop 3.0 for Mac and then launch it. Go to &lt;strong&gt;File -&amp;gt;
+New&lt;/strong&gt;. In the new window select &lt;strong&gt;Typical&lt;/strong&gt;, then click &lt;strong&gt;(Next)&lt;/strong&gt;. Select
+&lt;strong&gt;Linux&lt;/strong&gt; and &lt;strong&gt;Ubuntu Linux&lt;/strong&gt;, then click &lt;strong&gt;(Next)&lt;/strong&gt;. Finish the guide with
+the appropriate information that you want for the system.&lt;/p&gt;
+
+&lt;p&gt;I got an error when I tried to install Ubuntu 7.10 (Gutsy):&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The display server has been shut down about 6 times in the last 90 seconds.
+It is likely that something bad is going on. Waiting for 2 minutes before
+trying again on display.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OK&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you get this error, follow &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;this
+guide&lt;/a&gt; in the very good knowledge base
+provided by Parallels.&lt;/p&gt;
+
+&lt;h3 id=&#34;troubleshooting-section:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Troubleshooting Section:&lt;/h3&gt;
+
+&lt;h4 id=&#34;you-can-t-update-ubuntu:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;You can&amp;rsquo;t Update Ubuntu&lt;/h4&gt;
+
+&lt;p&gt;You have to manually connect to your internet connection. Just go up to the
+top right of your Ubuntu screen and select &amp;lsquo;Wired Network&amp;rsquo; from the network
+monitor and it will connect (assuming your Mac has an internet connection).
+Also since the install could not find a connection, it may have commented out
+all of your repositories in &lt;code&gt;/etc/apt/sources.list&lt;/code&gt;. &lt;a href=&#34;http://
+ubuntuguide.org/wiki/Ubuntu:Gutsy#Manual_Method_for_Adding_Repositories&#34;&gt;Follow this guide&lt;/a&gt; to
+set up your repositories (you should probably use these repositories anyway).&lt;/p&gt;
+
+&lt;h4 id=&#34;can-t-start-ubuntu-after-an-update:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Can&amp;rsquo;t start Ubuntu after an Update&lt;/h4&gt;
+
+&lt;p&gt;For some reason &lt;strong&gt;single&lt;/strong&gt; gets added back into the string &lt;code&gt;kernel /boot/....&lt;/code&gt;
+in your &lt;code&gt;/boot/grub/menu.lst&lt;/code&gt; file. Refer back to &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;step 5 in this
+guide&lt;/a&gt; to fix that problem.&lt;br /&gt;
+&lt;em&gt;&lt;strong&gt;Note:&lt;/strong&gt; My machine crashed after the update and before the reboot which may
+have caused this issue.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;cant-use-full-screen-resolution:ed60267dc24e98ddc27c68ab970f1367&#34;&gt;Cant use Full Screen Resolution&lt;/h4&gt;
+
+&lt;p&gt;If you are getting warnings telling you that you cant set a resolution that
+size when you start the Ubuntu machine, &lt;a href=&#34;http://muffinresearch.co.uk/archives/2006/08/13/running-ubuntu-under-
+parallels-desktop-for-mac/&#34;&gt;check out this
+article&lt;/a&gt;. Basically, changing the setting in
+&lt;code&gt;/etc/X11/xorg.conf&lt;/code&gt; does not work, you have to use &lt;code&gt;sudo dpkg-reconfigure 
+-phigh xserver-xorg&lt;/code&gt; to change the resolution settings.&lt;/p&gt;
+
+&lt;p&gt;At this point you should be set. Enjoy the wonderfulness of Linux on your
+Mac&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/linux/</link>
+    <description>Recent content in Linux on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 06 Aug 2007 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ubuntu: An Alternative to Windows</title>
+      <link>http://localhost:1313/swillops.com/blog/ubuntu-alternative-windows/</link>
+      <pubDate>Mon, 06 Aug 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/ubuntu-alternative-windows/</guid>
+      <description>&lt;p&gt;I think Windows release of Vista is a turning point in the desktop environment
+landscape. People are going to start looking for alternatives instead of
+trying to relearn how to use their computer, all the while dealing with the
+fact that it is slower than it ever was.&lt;/p&gt;
+
+&lt;p&gt;Windows has been on this train for a while now. Their entire business model
+has pretty much been; build a product, ship it, support it for a little while,
+ship a new product and force the user to upgrade. That is why you went from
+95, to 98 (to realize it was 95 with bugz), Millennium (if you were really
+unlucky), 2000, and then XP. And now you are considering &amp;lsquo;upgrading&amp;rsquo; to Vista.
+So what have all these upgrades been giving you? Features&amp;hellip; Ya, thats pretty
+much it. You are getting an extra 101 things that you will never use. Since
+the interface can only support a set number of features, they have been trying
+to cut down on space by replacing text with images. These images are getting
+more and more ambiguous. For example, my uncle is an average computer user
+whose new laptop came with Windows Vista installed. He worked his way around
+it for a little while learning where everything was that had changed since XP.
+When he went to shutdown his computer he was confused. He couldn&amp;rsquo;t find
+shutdown. He called tech support to figure it out (and the person at the front
+desk couldn&amp;rsquo;t figure it out either, so she had to transfer him to an actual
+technician). Is this realistic? I don&amp;rsquo;t think so&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Its not just the interface either. Windows has been developing most of its
+software with &lt;a href=&#34;http://en.wikipedia.org/wiki/Moore%27s_Law&#34;&gt;Moores Law&lt;/a&gt; in
+mind. This is basically the idea that every 18 months computers will have a
+substantial improvement in resources. Because of this, they have been building
+systems that are more and more resource dependent. When the Windows OS
+(Operating System) loads, it takes a large chunk of your resources and never
+frees them. All of your actual processing is done with the remaining
+resources.&lt;/p&gt;
+
+&lt;p&gt;I didn&amp;rsquo;t believe that this was the best solution available, so about 2 years
+ago I started looking for other options. This is when I came upon Ubuntu. Its
+a Linux distribution that has been written with the user in mind. When I
+started using it 2 years ago the project was relatively new and had some minor
+annoyances. Now it is a completely different story. From the 10 minute
+install, to the improved speed and functionality, I could never go back to
+Windows. They have really thought out what the priorities should be for an OS
+and have implemented the requirement beautifully.&lt;/p&gt;
+
+&lt;p&gt;Ubuntu and all the software you will use on it is free (for the most part,
+unless you run Windows software on it). There is a repository system that you
+get all of the software from as well as Ubuntu it self. Once installed, Ubuntu
+and all installed software will be kept up to date with the most recent
+releases through an online package management interface similar to Windows
+Update. The major difference between Windows Update the the Ubuntu approach is
+that EVERYTHING in Ubuntu is updated through this package manager. So if you
+need to change drivers, install new software or just keep your system up to
+date, everything is done through the same interface. This is beautiful because
+all of the dependencies are taken care of behind the scenes so you just have
+to tell it what you want and it will take care of everything else.&lt;/p&gt;
+
+&lt;p&gt;I know that some people will not be able to part with some of there Windows
+software, but you don&amp;rsquo;t have to. You can actually run Windows software on
+Linux through a program called &lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Feist
+y#How_to_install_and_run_Wine_.28Open_Source_version_of_CrossOver_Linux.29&#34;&gt;Wine&lt;/a&gt;. A
+good example of how much better Ubuntu is than Windows is my experience with
+World of Warcraft. I wanted to try the game, but my Windows machine couldn&amp;rsquo;t
+run it because the system did not meet requirements. I figured I would give it
+a shot in Ubuntu to see if I would have any luck. I installed it without too
+much difficulty and after tweaking some graphics settings I was playing WoW on
+my Linux machine (the exact same system that could not run it using Windows).&lt;/p&gt;
+
+&lt;p&gt;I could go on and on with a list of reasons why you should switch, but I will
+just get tired and you will get bored, so I will just give you a few links to
+consider.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.ubuntu.com/&#34;&gt;Ubuntu Homepage&lt;/a&gt;: This is the Ubuntu homepage where
+you can download the Live CD from. Once you burn the Live CD you will be able
+to load Ubuntu without installing anything, so you can try the OS without
+changing anything on your current system. Once you decide to install Ubuntu
+you can just double click on the &amp;ldquo;Install&amp;rdquo; icon on the desktop and it will
+walk you through the install. 10 minutes later you will be a Linux user
+(probably with Windows on another partition)&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ubuntuforums.org/&#34;&gt;Ubuntu Forums&lt;/a&gt;: These are the Forums for Ubuntu.
+There is a great community of people who can help you with any questions you
+have. This is a great resource that doesn&amp;rsquo;t even exist for Windows users&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ubuntuguide.org/wiki/Ubuntu:Feisty&#34;&gt;Ubuntu Starter Guide&lt;/a&gt;: This is an
+incredible resource for solving just about any problem with Ubuntu. Once you
+install Ubuntu I would recommend checking out this page. This is probably the
+best guide for anything you could ever want to do with the OS&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Happy Computing&amp;hellip; :)&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

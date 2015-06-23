@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clean Urls on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/clean-urls/</link>
+    <description>Recent content in Clean Urls on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Jun 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/clean-urls/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Drupal Clean Urls on Debian LAMP Stack</title>
+      <link>http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</link>
+      <pubDate>Wed, 18 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</guid>
+      <description>&lt;p&gt;Clean Urls did not work out of the box for me when I installed
+&lt;a href=&#34;http://drupal.org/&#34;&gt;Drupal&lt;/a&gt; on a fresh install of
+&lt;a href=&#34;http://www.debian.org/&#34;&gt;Debian&lt;/a&gt;. These are the easy steps for setting them
+up.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Enable mod_rewrite:&lt;/strong&gt;&lt;br /&gt;
+You need to enable the rewrite module so Apache can do the rewrite. On Debian
+you can issue the following command to do this.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ a2enmod rewrite&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Note: If you are on a different Linux operating system you can basically do
+the same thing with the following code (the path might be slightly different).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ cd /etc/apache2/mods-enabled&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;$ sudo ln -s ../mods-available/rewrite.load rewrite.load&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Allow Apache to rewrite:&lt;/strong&gt;&lt;br /&gt;
+Now that rewrite is enabled, you need to allow Apache to rewrite the urls in
+the web root (my web root is &amp;lsquo;/var/www/&amp;rsquo;). Use your favorite editor and edit
+the following file (I use vi). You want to change the &lt;strong&gt;AllowOverride&lt;/strong&gt; of
+your Apache web root from &lt;strong&gt;None&lt;/strong&gt; to &lt;strong&gt;All&lt;/strong&gt; (I am assuming you are
+installing Drupal in the web root).&lt;/p&gt;
+
+&lt;p&gt;Edit the file: &lt;code&gt;$ vi /etc/apache2/sites-available/default&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Change the AllowOverride to All:&lt;br /&gt;
+&lt;code&gt;... stuff here ...&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;AllowOverride All&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;... stuff here ...&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now just restart the Apache server and you are good to go&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ /etc/init.d/apache2 force-reload&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,65 @@
+body {
+    margin-top: 75px; /* 100px is double the height of the navbar - I made it a big larger for some more space - keep it at 50px at least if you want to use the fixed top nav */
+}
+
+footer {
+	margin-bottom:15px;
+}
+
+.blog-title-li {
+	margin-bottom:1em;
+}
+.pull-right {
+	padding-top:7px;
+}
+
+.btn-space {
+	margin-left:5px;
+}
+
+.panel-body ul {
+	padding-left:20px;
+}
+
+a,
+a:hover {
+	color:#268bd2;
+}
+a.btn-social-icon:visited {
+	color:#268bd2;
+}
+a.btn-social-icon:hover {
+	color:#61839B;
+}
+
+pre {
+	color: #839496;
+	background-color: #002b36;
+	border: 1px solid #001F27;
+}
+
+code, 
+code a {
+	color: #268bd2;
+	background-color: #F2F8FD;
+}
+
+::selection {
+  background: #C3E1F7;
+}
+::-moz-selection {
+  background: #C3E1F7;
+}
+
+pre::selection, 
+pre *::selection {
+  background: #84B5D7
+}
+pre::-moz-selection, 
+pre *::-moz-selection {
+  background: #8F9CA0;
+}
+
+.label-default {
+  background-color: #646464;
+}

@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Install Ubuntu in Parallel to Mac OSX">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>Install Ubuntu in Parallel to Mac OSX - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/blog/install-ubuntu-parallel-mac-osx/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="post">
+                <h2>Install Ubuntu in Parallel to Mac OSX<br> <small>Install Ubuntu in Parallel to Mac OSX</small></h2>
+                <hr>
+                
+
+<p>If you are trying to do this you will need <a href="http://kb.parallels.com/entry/32/568/">Parallels Desktop 3.0 for Mac
+(~$79.99 USD)</a>. This software allows
+you to run Windows and Linux on your Mac so you have access to all three
+operating systems without rebooting. I think this will be an ideal web
+developing environment, but that is another article all together&hellip;</p>
+
+<p>Install Parallels Desktop 3.0 for Mac and then launch it. Go to <strong>File -&gt;
+New</strong>. In the new window select <strong>Typical</strong>, then click <strong>(Next)</strong>. Select
+<strong>Linux</strong> and <strong>Ubuntu Linux</strong>, then click <strong>(Next)</strong>. Finish the guide with
+the appropriate information that you want for the system.</p>
+
+<p>I got an error when I tried to install Ubuntu 7.10 (Gutsy):</p>
+
+<blockquote>
+<p>The display server has been shut down about 6 times in the last 90 seconds.
+It is likely that something bad is going on. Waiting for 2 minutes before
+trying again on display.</p>
+
+<p><strong>OK</strong></p>
+</blockquote>
+
+<p>If you get this error, follow <a href="http://kb.parallels.com/entry/32/568/">this
+guide</a> in the very good knowledge base
+provided by Parallels.</p>
+
+<h3 id="troubleshooting-section:ed60267dc24e98ddc27c68ab970f1367">Troubleshooting Section:</h3>
+
+<h4 id="you-can-t-update-ubuntu:ed60267dc24e98ddc27c68ab970f1367">You can&rsquo;t Update Ubuntu</h4>
+
+<p>You have to manually connect to your internet connection. Just go up to the
+top right of your Ubuntu screen and select &lsquo;Wired Network&rsquo; from the network
+monitor and it will connect (assuming your Mac has an internet connection).
+Also since the install could not find a connection, it may have commented out
+all of your repositories in <code>/etc/apt/sources.list</code>. <a href="http://
+ubuntuguide.org/wiki/Ubuntu:Gutsy#Manual_Method_for_Adding_Repositories">Follow this guide</a> to
+set up your repositories (you should probably use these repositories anyway).</p>
+
+<h4 id="can-t-start-ubuntu-after-an-update:ed60267dc24e98ddc27c68ab970f1367">Can&rsquo;t start Ubuntu after an Update</h4>
+
+<p>For some reason <strong>single</strong> gets added back into the string <code>kernel /boot/....</code>
+in your <code>/boot/grub/menu.lst</code> file. Refer back to <a href="http://kb.parallels.com/entry/32/568/">step 5 in this
+guide</a> to fix that problem.<br />
+<em><strong>Note:</strong> My machine crashed after the update and before the reboot which may
+have caused this issue.</em></p>
+
+<h4 id="cant-use-full-screen-resolution:ed60267dc24e98ddc27c68ab970f1367">Cant use Full Screen Resolution</h4>
+
+<p>If you are getting warnings telling you that you cant set a resolution that
+size when you start the Ubuntu machine, <a href="http://muffinresearch.co.uk/archives/2006/08/13/running-ubuntu-under-
+parallels-desktop-for-mac/">check out this
+article</a>. Basically, changing the setting in
+<code>/etc/X11/xorg.conf</code> does not work, you have to use <code>sudo dpkg-reconfigure 
+-phigh xserver-xorg</code> to change the resolution settings.</p>
+
+<p>At this point you should be set. Enjoy the wonderfulness of Linux on your
+Mac&hellip; :)</p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>March 10, 2008<br>
+                <small>364 words</small></h4>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://localhost:1313/swillops.com/tags/mac">Mac</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/parallels">Parallels</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/ubuntu">Ubuntu</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/windows">Windows</a> 
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 2px 15px;">
+                    <h4>Similar Posts</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                    
+                    
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/virtualized-development-environment/">Virtualized Development Environment</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/batch-image-resizing-mac/">Batch image resizing on a Mac</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/">Dead simple GIT install on Mac</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/mysql-mac-what-headache/">MySQL on a Mac: What a headache</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/mac-tweaks/">Mac Tweaks</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/ubuntu-alternative-windows/">Ubuntu: An Alternative to Windows</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/ubuntu-backed-great-community/">Ubuntu: backed by a great community</a></li>
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

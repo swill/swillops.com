@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Django on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/django/</link>
+    <description>Recent content in Django on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Sep 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/django/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Installing Django with Satchmo on Debian Etch</title>
+      <link>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</link>
+      <pubDate>Thu, 11 Sep 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
+      <description>&lt;p&gt;This is how I got Django and Satchmo set up on my Debian Etch box with
+Apache2, MySQL, mod_python and Memcached.&lt;/p&gt;
+
+&lt;p&gt;The machine I started with had Debian Etch installed as well as Apache2 and
+MySQL.&lt;/p&gt;
+
+&lt;p&gt;Note: I am assuming you are working as root on your machine. If not you will
+have to do &lt;code&gt;sudo&lt;/code&gt; in front of all of the following commands.&lt;/p&gt;
+
+&lt;p&gt;Make sure that your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; is up to date and then update your
+repositories and installed packages. I usually get my &lt;a href=&#34;http://www.linuxquestions.org/questions/debian-26/post-your-
+source.list-330913/&#34;&gt;sources from
+here&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get upgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Since it is a new server and my &lt;code&gt;locales&lt;/code&gt; are not right, I reconfigure them.&lt;br /&gt;
+&lt;code&gt;# dpkg-reconfigure locales&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install GCC, G++ and Make so you can compile code&lt;br /&gt;
+&lt;code&gt;# apt-get install gcc g++ make&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install the newest version of
+&lt;a href=&#34;http://www.python.org/download/releases/&#34;&gt;Python&lt;/a&gt;
+(&lt;a href=&#34;http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz&#34;&gt;2.5.2&lt;/a&gt; as of this
+writing).&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure --enable-shared&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up a config file for python.&lt;br /&gt;
+&lt;code&gt;# vi /etc/ld.so.conf.d/python2.5.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Put the following in it (path to the libpython2.5.so.1.0):&lt;br /&gt;
+&lt;code&gt;/usr/local/lib&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make the settings take effect.&lt;br /&gt;
+&lt;code&gt;# ldconfig&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make this version of python the default version.&lt;br /&gt;
+&lt;code&gt;# vi /usr/share/python/debian_defaults&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Change the contents of this file to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;[DEFAULT]
+# the default python version  
+default-version = python2.5
+
+# all supported python versions  
+supported-versions = python2.4, python2.5
+
+# formerly supported python versions  
+old-versions = python2.3
+
+# unsupported versions, including older versions  
+unsupported-versions = python2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a symlink to point to the new version of python.&lt;br /&gt;
+&lt;code&gt;# rm /usr/bin/python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/local/bin/python2.5 /usr/bin/python&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up MySQL (&lt;a href=&#34;http://sourceforge.net/projects/mysql-python&#34;&gt;MySQL-python&lt;/a&gt;) to
+work with Python.&lt;br /&gt;
+&lt;code&gt;# apt-get install libmysqlclient15-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://voxel.dl.sourceforge.net/sourceforge/mysql-python/MySQL-
+python-1.2.2.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf MySQL-python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd MySQL-python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py build&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Installing &lt;code&gt;mod_python&lt;/code&gt; for Apache2 in Debian Etch is a total PITA. Here are
+the steps I took to get it installed&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install apache2-prefork-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://ftp.wayne.edu/apache/httpd/modpython/mod_python-3.3.1.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf mod_python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd mod_python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure --with-apxs=/usr/bin/apxs2 --with-
+python=/usr/local/bin/python2.5&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install the newest version of &lt;a href=&#34;http://www.djangoproject.com/&#34;&gt;Django&lt;/a&gt; (1.0 as
+of this writing).&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.djangoproject.com/download/1.0/tarball/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Django*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Django*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;On my machine, this installed Django into &lt;code&gt;/usr/local/lib/python2.5/site-
+packages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Set up your Django project.&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# django-admin.py startproject mysite&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up your MySQL database. Since my machine is a fresh install I need to set
+up a password first.&lt;br /&gt;
+&lt;code&gt;# mysqladmin -u root password PASSWORD&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mysql -u root -p&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mysql&amp;gt; CREATE DATABASE mysite CHARACTER SET utf8;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up your project settings in &lt;code&gt;settings.py&lt;/code&gt;.&lt;br /&gt;
+* Enter up your admin information.&lt;br /&gt;
+* Enter up your &lt;a href=&#34;http://docs.djangoproject.com/en/dev/ref/databases/#ref-databases&#34;&gt;database connection info&lt;/a&gt;.&lt;br /&gt;
+* Change your timezone and language settings if needed.&lt;/p&gt;
+
+&lt;p&gt;Sync your installed apps and your database.&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python manage.py syncdb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Check this &lt;a href=&#34;http://docs.djangoproject.com/en/dev/howto/deployment/modpython
+/#howto-deployment-modpython&#34;&gt;Django
+documentation&lt;/a&gt; page for how to set up &lt;code&gt;mod_python&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You need to set up a directory where mod_python can extract eggs and you need
+to set up the permissions so it can write to it (don&amp;rsquo;t use 777 as in my
+example in production).&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mkdir cache_directory&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# chmod 777 cache_directory&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# chown www-data cache_directory&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now set up a config file to import those settings.&lt;br /&gt;
+&lt;code&gt;# vi cache_file.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Put the following lines in that file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import os
+os.environ[&#39;PYTHON_EGG_CACHE&#39;] = &#39;/absolute/path/to/cache_directory&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Configure &lt;code&gt;mod_python&lt;/code&gt; to work with Apache2.&lt;br /&gt;
+&lt;code&gt;# vi /etc/apache2/httpd.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Add the following lines to that file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LoadModule python_module /usr/lib/apache2/modules/mod_python.so
+PythonInterpreter mysite
+PythonImport /absolute/path/to/cache_file.py mysite
+&amp;lt;Location &amp;quot;/&amp;quot;&amp;gt;
+  SetHandler python-program
+  PythonHandler django.core.handlers.modpython
+  SetEnv DJANGO_SETTINGS_MODULE mysite.settings
+  PythonOption django.root /mysite
+  PythonDebug On
+  PythonPath &amp;quot;[&#39;/path/to/project&#39;] + sys.path&amp;quot;
+&amp;lt;/Location&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart Apache.&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/apache2 restart&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you should have a working Django install and you should be able
+to start adding apps&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Now lets get our install ready for Satchmo. We will need to install a bunch of
+things, as laid out &lt;a href=&#34;http://www.satchmoproject.com/docs/rel/0.7/requirements.html&#34;&gt;on this
+page&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.pythonware.com/products/pil/&#34;&gt;Python Imaging Library&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Imaging*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Imaging*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.amk.ca/python/code/crypto&#34;&gt;Python cryptography&lt;/a&gt; toolkit&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.amk.ca/files/python/crypto/pycrypto-2.0.1.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf pycrypto*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd pycrypto*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.reportlab.org/&#34;&gt;ReportLab&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install libfreetype6 libfreetype6-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.reportlab.org/ftp/ReportLab_2_2.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf ReportLab*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ReportLab*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz&#34;&gt;Tiny
+RML2PDF&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf trml2pdf*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd trml2pdf*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mv trml2pdf /usr/local/lib/python2.5/site-packages&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import trml2pdf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://code.google.com/p/django-comment-
+utils/&#34;&gt;django-comment-utils&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://django-comment-
+utils.googlecode.com/files/comment_utils-0.3p1.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf comment_utils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd comment_utils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://code.google.com/p/django-
+registration/&#34;&gt;Django Registration&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://django-registration.googlecode.com/files/django-
+registration-0.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf django-registration*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd django-registration*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.danga.com/memcached/&#34;&gt;Memcached&lt;/a&gt; for
+&lt;a href=&#34;http://docs.djangoproject.com/en/dev/topics/cache/&#34;&gt;caching&lt;/a&gt; (including its
+dependencies and python bindings)&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.monkey.org/~provos/libevent-1.4.8-stable.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf libevent*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd libevent*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;br /&gt;
+Create a link so the memcached knows where to find the library&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/local/lib/libevent-1.4.so.2 /lib/libevent-1.4.so.2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://danga.com/memcached/dist/memcached-1.2.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget ftp://ftp.tummy.com/pub/python-memcached/python-memcached-
+latest.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf python-memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd python-memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Start the memcached daemon&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# memcached -d -u www-data -m 32 127.0.0.1 -p 11211&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Configure your django project to use memcached&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# vi settings.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In that file add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CACHE_BACKEND = &#39;memcached://127.0.0.1:11211/&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://pyyaml.org/&#34;&gt;PyYaml&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://pyyaml.org/download/pyyaml/PyYAML-3.05.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf PyYAML*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd PyYAML*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://docutils.sourceforge.net/&#34;&gt;Docutils&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://docutils.sf.net/docutils-snapshot.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf docutils-snapshot*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd docutils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://gosatchmo.com/apps/django-threaded-
+multihost/&#34;&gt;Django Threaded Multihost&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://gosatchmo.com/static/files/threaded-multihost-1.1-source.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf threaded-multihost*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd django-threaded-multihost&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you have all the prerequisites installed for Satchmo&amp;hellip;&lt;br /&gt;
+Its time to install &lt;a href=&#34;http://www.satchmoproject.com/&#34;&gt;Satchmo&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install subversion&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# svn co svn://satchmoproject.com/satchmo/trunk&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd trunk&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Check it&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import django&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import satchmo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If they both import fine, then you are all set&amp;hellip; Enjoy&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;To finish configuring your store &lt;a href=&#34;http://www.satchmoproject.com/docs/svn/new_installation.html&#34;&gt;check this
+page&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I like to have a clean machine, so I remove all of the source files after
+installs&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf Python* MySQL-python* mod_python* Django* Imaging* pycrypto*
+ReportLab* trml2pdf* comment_utils* django-registration* libevent* memcached*
+python-memcached* PyYAML* docutils* trunk* django-threaded-multihost threaded-
+multihost*&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

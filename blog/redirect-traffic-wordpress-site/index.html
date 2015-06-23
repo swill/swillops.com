@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Redirect traffic from a wordpress site">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>Redirect traffic from a wordpress site - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="post">
+                <h2>Redirect traffic from a wordpress site<br> <small>Redirect traffic from a wordpress site</small></h2>
+                <hr>
+                
+
+<h3 id="the-problem:86f5f76d6fb0c1b6354f669cae720f5e">The Problem:</h3>
+
+<p>A wordpress site has depreciated and you want to redirect all of its traffic
+to a landing page on a new site. However, you want to explain why the site has
+been deprecated in the context of the old site.</p>
+
+<h3 id="the-solution:86f5f76d6fb0c1b6354f669cae720f5e">The Solution:</h3>
+
+<p>You should explain to the user why they are being redirected, so create a page
+on the old wordpress site at some url, say: <a href="http://www.oldsite.com/we-moved">www.oldsite.com/we-
+moved</a></p>
+
+<p>On that new page (/we-moved), we want it to have a countdown and then redirect
+to the new landing page at, say: <a href="http://www.newsite.com/welcome-oldsite">www.newsite.com/welcome-
+oldsite</a></p>
+
+<p>To do the redirect, put the following jQuery/javascript on the &lsquo;we-moved&rsquo;
+page:</p>
+
+<pre><code>&lt;div&gt;Redirecting in &lt;span class=&quot;redirect-in&quot;&gt;20&lt;/span&gt; seconds...&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+jQuery(document).ready(function($) {
+  var countdown = setInterval(function(){
+    sec=parseInt($(&quot;.redirect-in&quot;).html()); 
+    if (sec != 0) {
+      $(&quot;.redirect-in&quot;).html(sec-1);
+    } else { // countdown is finished...
+      clearInterval(countdown);
+      window.location=&quot;http://www.newsite.com/welcome-oldsite&quot;
+    }
+  },1000);
+});
+&lt;/script&gt;
+</code></pre>
+
+<p>You can adjust the number of seconds before redirect by changing the value of
+the &lsquo;.redirect-in&rsquo; span.</p>
+
+<p>Now the redirect to the new site is working.</p>
+
+<p>Now we need to redirect all the traffic to
+<a href="http://www.oldsite.com">www.oldsite.com</a> urls to the /we-moved page. With the
+exception of the login page (wp-login.php) and the admin area (wp-admin). In
+addition, we want to be be able to view the pages on the oldsite from the
+&lsquo;View Page&rsquo; link on the edit pages.</p>
+
+<p>To do this we modify the section of our <code>.htaccess</code> file that looks like:</p>
+
+<pre><code># BEGIN WordPress  
+&lt;IfModule mod_rewrite.c&gt;  
+RewriteEngine On  
+RewriteBase /  
+RewriteRule ^index\\.php$ - [L]  
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteRule . /index.php [L]  
+&lt;/IfModule&gt;  
+# END WordPress  
+</code></pre>
+
+<p>And change it to look like:</p>
+
+<pre><code># BEGIN WordPress  
+&lt;IfModule mod_rewrite.c&gt;  
+RewriteEngine On  
+RewriteBase /  
+RewriteRule ^index\\.php$ - [L]  
+RewriteCond %{HTTP_REFERER} !^(.*)oldsite.com/wp-admin(/.*)?  
+RewriteRule !^(wp-admin(/.*)?|wp-content(/.*)?|wp-includes(/.*)?|wp-
+login\\.php(.*)|we-moved(.*))$ we-moved/ [R,L]  
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteRule . /index.php [L]  
+&lt;/IfModule&gt;  
+# END WordPress  
+</code></pre>
+
+<p>Thats it. You should be good to go&hellip;</p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>July 11, 2012<br>
+                <small>307 words</small></h4>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://localhost:1313/swillops.com/tags/apache">Apache</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/jquery">jQuery</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/wordpress">Wordpress</a> 
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 2px 15px;">
+                    <h4>Similar Posts</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                    
+                    
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/">Secure push and pull with git-http-backend</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/">Apache, MySQL and PHP on Snow Leopard</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/">Installing Django with Satchmo on Debian Etch</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/">Debian Rails Stack - NginX and Mongrel</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/">Drupal Clean Urls on Debian LAMP Stack</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

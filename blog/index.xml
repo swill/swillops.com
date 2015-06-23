@@ -1,0 +1,1412 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/blog/</link>
+    <description>Recent content in Blogs on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugo on gh-pages</title>
+      <link>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</link>
+      <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</guid>
+      <description>&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
+
+&lt;p&gt;Your config.toml file will probably look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-toml&#34;&gt;baseurl = &amp;quot;http://&amp;lt;username&amp;gt;.github.io/&amp;lt;reponame&amp;gt;/&amp;quot;
+languageCode = &amp;quot;en-us&amp;quot;
+title = &amp;quot;Website Title&amp;quot;
+theme = &amp;quot;your-theme&amp;quot;
+canonifyurls = true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you are ready to start working with &lt;code&gt;gh-pages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# create the git repository to track your actual website on gh-pages
+$ cd public # or whatever your hugo &#39;publishdir&#39; is set to
+$ git init # to create a git repo
+$ git add .
+$ git commit -am &amp;quot;initial publication of content&amp;quot;
+$ git branch -m master gh-pages # rename master branch to gh-pages
+# create a new repository on GitHub and then set it up as the remote for this repo
+$ git remote add origin https://github.com/&amp;lt;username&amp;gt;/&amp;lt;reponame&amp;gt;.git
+$ git push origin gh-pages
+
+# now track the whole source in a different git repo
+$ cd ..
+$ git init
+$ git add .
+$ git commit -am &amp;quot;source of initial publication&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Git branches to manage third party app customization</title>
+      <link>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
+      <pubDate>Wed, 26 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
+      <description>
+
+&lt;h3 id=&#34;preface:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;Preface:&lt;/h3&gt;
+
+&lt;p&gt;I have been using this technique to customize different types of third party
+projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
+post&lt;/a&gt;
+regarding the management of customizations on top of the ever changing Drupal
+code base. That post is very long winded and overly technical for most people,
+this post will serve as an abridged version covering only the branching
+concept.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-problem:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;The Problem:&lt;/h3&gt;
+
+&lt;p&gt;A third party has developed some code you would like to leverage, however, you
+require customizations to their code for your implementation. The third party
+is actively developing their code base, so you need to be able to easily
+update their underlying code while keep your customizations intact.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-solution:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;The Solution:&lt;/h3&gt;
+
+&lt;p&gt;We will use Git to track both their changes and our changes. We will have two
+branches; &lt;code&gt;master&lt;/code&gt; will track their changes and &lt;code&gt;custom&lt;/code&gt; will track our
+changes. We will never make any changes to the &lt;code&gt;master&lt;/code&gt; branch other than to
+pull in updates from the third party. All of our modifications will be made in
+our &lt;code&gt;custom&lt;/code&gt; branch. When the third party makes a change we will pull it into
+our &lt;code&gt;master&lt;/code&gt; branch and then propagate it into our &lt;code&gt;custom&lt;/code&gt; branch. All
+deployments and builds will be done from the &lt;code&gt;custom&lt;/code&gt; branch.&lt;/p&gt;
+
+&lt;h3 id=&#34;an-example:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;An Example:&lt;/h3&gt;
+
+&lt;p&gt;Get the third party code (this will create the &lt;code&gt;master&lt;/code&gt; branch):&lt;br /&gt;
+&lt;code&gt;git clone https://github.com/third_party/project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Create the &lt;code&gt;custom&lt;/code&gt; branch for our modifications:&lt;br /&gt;
+&lt;code&gt;git checkout -b custom&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;... do your customizations ...&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial customizations&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you can create your first build/deployment from the &lt;code&gt;custom&lt;/code&gt;
+branch&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;When the third party updates their code and you want to incorporate their
+changes:&lt;br /&gt;
+&lt;code&gt;git checkout master&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull origin master&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout custom&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . master&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you have merged their changes into the &lt;code&gt;custom&lt;/code&gt; branch and you are ready
+to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Redirect traffic from a wordpress site</title>
+      <link>http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/</link>
+      <pubDate>Wed, 11 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/</guid>
+      <description>
+
+&lt;h3 id=&#34;the-problem:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Problem:&lt;/h3&gt;
+
+&lt;p&gt;A wordpress site has depreciated and you want to redirect all of its traffic
+to a landing page on a new site. However, you want to explain why the site has
+been deprecated in the context of the old site.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-solution:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Solution:&lt;/h3&gt;
+
+&lt;p&gt;You should explain to the user why they are being redirected, so create a page
+on the old wordpress site at some url, say: &lt;a href=&#34;http://www.oldsite.com/we-moved&#34;&gt;www.oldsite.com/we-
+moved&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On that new page (/we-moved), we want it to have a countdown and then redirect
+to the new landing page at, say: &lt;a href=&#34;http://www.newsite.com/welcome-oldsite&#34;&gt;www.newsite.com/welcome-
+oldsite&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To do the redirect, put the following jQuery/javascript on the &amp;lsquo;we-moved&amp;rsquo;
+page:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;Redirecting in &amp;lt;span class=&amp;quot;redirect-in&amp;quot;&amp;gt;20&amp;lt;/span&amp;gt; seconds...&amp;lt;/div&amp;gt;
+
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+jQuery(document).ready(function($) {
+  var countdown = setInterval(function(){
+    sec=parseInt($(&amp;quot;.redirect-in&amp;quot;).html()); 
+    if (sec != 0) {
+      $(&amp;quot;.redirect-in&amp;quot;).html(sec-1);
+    } else { // countdown is finished...
+      clearInterval(countdown);
+      window.location=&amp;quot;http://www.newsite.com/welcome-oldsite&amp;quot;
+    }
+  },1000);
+});
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can adjust the number of seconds before redirect by changing the value of
+the &amp;lsquo;.redirect-in&amp;rsquo; span.&lt;/p&gt;
+
+&lt;p&gt;Now the redirect to the new site is working.&lt;/p&gt;
+
+&lt;p&gt;Now we need to redirect all the traffic to
+&lt;a href=&#34;http://www.oldsite.com&#34;&gt;www.oldsite.com&lt;/a&gt; urls to the /we-moved page. With the
+exception of the login page (wp-login.php) and the admin area (wp-admin). In
+addition, we want to be be able to view the pages on the oldsite from the
+&amp;lsquo;View Page&amp;rsquo; link on the edit pages.&lt;/p&gt;
+
+&lt;p&gt;To do this we modify the section of our &lt;code&gt;.htaccess&lt;/code&gt; file that looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# BEGIN WordPress  
+&amp;lt;IfModule mod_rewrite.c&amp;gt;  
+RewriteEngine On  
+RewriteBase /  
+RewriteRule ^index\\.php$ - [L]  
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteRule . /index.php [L]  
+&amp;lt;/IfModule&amp;gt;  
+# END WordPress  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And change it to look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# BEGIN WordPress  
+&amp;lt;IfModule mod_rewrite.c&amp;gt;  
+RewriteEngine On  
+RewriteBase /  
+RewriteRule ^index\\.php$ - [L]  
+RewriteCond %{HTTP_REFERER} !^(.*)oldsite.com/wp-admin(/.*)?  
+RewriteRule !^(wp-admin(/.*)?|wp-content(/.*)?|wp-includes(/.*)?|wp-
+login\\.php(.*)|we-moved(.*))$ we-moved/ [R,L]  
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteRule . /index.php [L]  
+&amp;lt;/IfModule&amp;gt;  
+# END WordPress  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thats it. You should be good to go&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Deploy node.js on cloudfoundry.com</title>
+      <link>http://localhost:1313/swillops.com/blog/deploy-nodejs-on-cloudfoundry/</link>
+      <pubDate>Wed, 14 Dec 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/deploy-nodejs-on-cloudfoundry/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Instructions to create a simple node.js app called &lt;code&gt;node_app&lt;/code&gt; and then upload and run it on &lt;a href=&#34;http://cloudfoundry.com/&#34;&gt;cloudfoundry.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to use cloudfoundry.com, you need to &lt;a href=&#34;http://my.cloudfoundry.com/signup&#34;&gt;sign
+up&lt;/a&gt; and have your account approved. Do that
+now because approval does not happen immediately.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;\---&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We will first get our node.js app working locally.&lt;/p&gt;
+
+&lt;p&gt;Download and install the latest &lt;a href=&#34;http://nodejs.org/#download&#34;&gt;node.js&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Change directory to where your code lives and then do:&lt;br /&gt;
+&lt;code&gt;mkdir node_app&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd node_app&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install the &lt;code&gt;express&lt;/code&gt; package using the built in &lt;code&gt;npm&lt;/code&gt; (node package manager).&lt;br /&gt;
+&lt;code&gt;npm install express&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In your favorite editor, create a file called &lt;code&gt;app.js&lt;/code&gt; and put the following
+in it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var app = require(&#39;express&#39;).createServer();
+app.get(&#39;/&#39;, function(req, res){
+    res.send(&#39;The node.js app is working...&#39;);
+});
+app.listen(process.env.VCAP_APP_PORT || 8000);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can run the app locally with:&lt;br /&gt;
+&lt;code&gt;node app.js&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Test your app by going to: &lt;a href=&#34;http://localhost:8000&#34;&gt;http://localhost:8000&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;\---&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should now have a working local version of your app, lets get it working
+on cloudfoundry.com.&lt;/p&gt;
+
+&lt;p&gt;You will need to have ruby and rubygems installed. Then you want to install
+&lt;code&gt;vmc&lt;/code&gt;:&lt;br /&gt;
+&lt;code&gt;sudo gem install vmc&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets start using vmc.&lt;br /&gt;
+&lt;code&gt;vmc target api.cloudfoundry.com&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;vmc login&lt;/code&gt; (use the credentials from the approval email)&lt;br /&gt;
+&lt;code&gt;vmc passwd&lt;/code&gt; (optional: change password to something you will remember)&lt;/p&gt;
+
+&lt;p&gt;We need to add the details of our app before we push it, so in a file called
+&lt;code&gt;package.json&lt;/code&gt; add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;name&amp;quot;:&amp;quot;node_app&amp;quot;,
+  &amp;quot;version&amp;quot;:&amp;quot;0.0.1&amp;quot;,
+  &amp;quot;dependencies&amp;quot;:{
+    &amp;quot;express&amp;quot;:&amp;quot;&amp;quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://support.cloudfoundry.com/entries/20702402#post_20697113&#34;&gt;Due to a
+bug&lt;/a&gt;, you will
+need to remove the symlink in the express module in order for a push to vmc to
+work.&lt;br /&gt;
+&lt;code&gt;rm node_modules/.bin/express&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we need to push our app to cloudfoundry.com:&lt;br /&gt;
+&lt;code&gt;vmc push node_app&lt;/code&gt; (all the defaults are fine)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt;&lt;br /&gt;
+When doing &lt;code&gt;vmc push node_app&lt;/code&gt;, my machine had issues with a couple installed
+gems: &lt;code&gt;Invalid gemspec in [_gem_spec_]: invalid date format in specification:
+&amp;quot;2011-08-17 00:00:00.000000000Z&amp;quot;&lt;/code&gt;&lt;br /&gt;
+I had to update the date format in my gem files, &lt;a href=&#34;http://stackoverflow.com/a/8030586/977216&#34;&gt;described
+here&lt;/a&gt;, in order for the push to
+work.&lt;/p&gt;
+
+&lt;p&gt;There you go. You now have a node.js app running on cloudfoundry.com. Enjoy&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using a 1and1 git repository</title>
+      <link>http://localhost:1313/swillops.com/blog/using-1and1-git-repository/</link>
+      <pubDate>Mon, 03 Oct 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/using-1and1-git-repository/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;On the 1and1 business accounts you can now use Git via SSH. Here is how&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Setup your master FTP password (which will be used for SSH).&lt;/p&gt;
+
+&lt;p&gt;SSH into your 1and1 account with (assuming example.com is on this account):&lt;br /&gt;
+&lt;code&gt;ssh username@example.com&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mkdir repositories&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd repositories&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git init --bare my_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now on your local machine you can clone this repository with:&lt;br /&gt;
+&lt;code&gt;git clone ssh://username@example.com/~/repositories/my_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Or to add 1and1 as a remote location for an existing repository do:&lt;br /&gt;
+&lt;code&gt;git remote add origin ssh://username@example.com/~/repositories/my_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Enjoy&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Secure push and pull with git-http-backend</title>
+      <link>http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
+      <pubDate>Mon, 26 Sep 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
+      <description>&lt;p&gt;I am setting up a new repository machine for my code. I will be setting it up
+with Active Directory later on, but I figured my basic setup would be a good
+starting point for most people.&lt;/p&gt;
+
+&lt;p&gt;My new repo box is on CentOS. I installed Git on my server from the
+&lt;a href=&#34;http://fedoraproject.org/wiki/EPEL&#34;&gt;EPEL&lt;/a&gt; repository. All the commands in
+this tutorial will be done from &lt;code&gt;sudo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I created a simple password file on my server using this command.&lt;br /&gt;
+&lt;code&gt;htpasswd -c path/to/file/passwords user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To add a user to the existing password file do:&lt;br /&gt;
+&lt;code&gt;htpasswd path/to/file/passwords new-user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want to add repository level permissions to your repositories add a
+groups file:&lt;br /&gt;
+&lt;code&gt;vim path/to/file/groups&lt;/code&gt;&lt;br /&gt;
+then add:&lt;br /&gt;
+&lt;code&gt;new_repo: user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I setup my Apache config to include.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NameVirtualHost *:80
+
+&amp;lt;VirtualHost *:80&amp;gt;  
+  SetEnv GIT_PROJECT_ROOT /path/to/repos  
+  SetEnv GIT_HTTP_EXPORT_ALL  
+  SetEnv REMOTE_USER=$REDIRECT_REMOTE_USER  
+  ScriptAlias / /usr/bin/git-http-backend/
+
+  ServerName example.com  
+  ServerAlias www.example.com
+
+  DocumentRoot &amp;quot;/path/to/repos&amp;quot;
+
+  &amp;lt;Directory &amp;quot;/path/to/repos&amp;quot;&amp;gt;  
+  Options None  
+  AllowOverride None  
+  Order allow,deny  
+  Allow from all  
+  &amp;lt;/Directory&amp;gt;
+
+  &amp;lt;Location /&amp;gt;  
+  AuthType Basic  
+  AuthName &amp;quot;Git Access&amp;quot;  
+  AuthUserFile path/to/file/passwords  
+  Require valid-user  
+  &amp;lt;/Location&amp;gt;
+
+  # Only required if you are using repository level permissions  
+  &amp;lt;Location /new_repo.git&amp;gt;  
+  AuthType Basic  
+  AuthName &amp;quot;New Repo Access&amp;quot;  
+  AuthUserFile path/to/file/passwords  
+  AuthGroupFile path/to/file/groups  
+  Require group new_repo  
+  &amp;lt;/Location&amp;gt;
+
+  ErrorLog /path/to/log/httpd/repo/repo-error_log  
+  CustomLog /path/to/log/httpd/repo/repo-access_log combined  
+  ServerSignature Off
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now to add your code, do the following on the server in: &lt;code&gt;/path/to/repos&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git init --bare new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;chown -R apache:apache new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv new_repo.git/hooks/post-update.sample new_repo.git/hooks/post-update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git update-server-info&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you can access your repo with:&lt;br /&gt;
+&lt;code&gt;git clone http://user-name@example.com/new_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Or associate this new remote repository with an existing repository, do this
+to your existing repository:&lt;br /&gt;
+&lt;code&gt;git remote add origin http://user-name@example.com/new_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should be all set&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Delete a remote branch in Git</title>
+      <link>http://localhost:1313/swillops.com/blog/delete-remote-branch-git/</link>
+      <pubDate>Fri, 17 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/delete-remote-branch-git/</guid>
+      <description>&lt;p&gt;I run into this all the time. I am typing too fast when I push code to my
+remote repository and I make a typo that creates a new branch in my remote
+repository.&lt;/p&gt;
+
+&lt;p&gt;Correct: &lt;code&gt;git push origin production:refs/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Mistake: &lt;code&gt;git push origin production:ref/heads/production&lt;/code&gt;&lt;br /&gt;
+Result: &lt;code&gt;* [new branch]    production -&amp;gt; ref/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Obviously I do not want this new branch on my remote server, so I want to
+remove it. You can remove this newly created branch with.&lt;/p&gt;
+
+&lt;p&gt;The Fix: &lt;code&gt;git push origin :ref/heads/production&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Editing your hosts file on a Mac</title>
+      <link>http://localhost:1313/swillops.com/blog/editing-your-hosts-file-mac/</link>
+      <pubDate>Thu, 12 Aug 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/editing-your-hosts-file-mac/</guid>
+      <description>&lt;p&gt;This is a relatively common thing that I have to explain to clients.&lt;/p&gt;
+
+&lt;p&gt;It is often difficult to walk someone through changing their hosts file on a
+Mac, so I figured I would share the way I do it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Open the Terminal:&lt;/strong&gt;&lt;br /&gt;
+&lt;code&gt;Applications &amp;gt; Utilities &amp;gt; Terminial&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Type the following and hit Enter:&lt;/strong&gt;&lt;br /&gt;
+&lt;code&gt;sudo open -e /etc/hosts&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This will open the hosts file in TextEdit. Make your changes and save&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Apache, MySQL and PHP on Snow Leopard</title>
+      <link>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
+      <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
+Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
+downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup
+their AMP stack, so this is how I was able to get an acceptable one setup.&lt;/p&gt;
+
+&lt;p&gt;Note: This method uses MacPorts, so you will need to install that first.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo port clean php52&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port -f uninstall installed&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port installed&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install grep&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install apache2&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install mysql5-server&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install php52 +apache2 +mysql5&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Setting up a new UTF8 MySQL Database</title>
+      <link>http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/</link>
+      <pubDate>Wed, 20 Jan 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/</guid>
+      <description>&lt;p&gt;Create a UTF8 database:&lt;br /&gt;
+&lt;code&gt;&amp;gt; CREATE DATABASE db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Create a user for the database:&lt;br /&gt;
+&lt;code&gt;&amp;gt; CREATE USER &#39;user_name&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;user_pass&#39;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Grant all privileges to the user:&lt;br /&gt;
+&lt;code&gt;&amp;gt; GRANT ALL PRIVILEGES ON *.* TO &#39;user_name&#39;@&#39;localhost&#39; WITH GRANT OPTION;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt; FLUSH PRIVILEGES;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should probably not give him all privileges on all databases, but you can
+change that as needed.&lt;/p&gt;
+
+&lt;p&gt;If for some reason the IDENTIFIED BY clause did not work (you probably uses
+&amp;lsquo;%&amp;rsquo; instead of &amp;lsquo;localhost&amp;rsquo;), then do the following to fix that users password.&lt;br /&gt;
+&lt;code&gt;# mysql -u root -p&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt; use mysql;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt; UPDATE user SET Password = PASSWORD(&#39;new_pass&#39;) WHERE User = &#39;user_name&#39;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Thats it. Enjoy&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Manage and deploy Drupal code securely with Git, gitosis and Capistrano</title>
+      <link>http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
+      <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
+
+&lt;p&gt;I have quite a few sites set up with Drupal and it has been working
+beautifully for me. However, with the fast turn over of Drupal code, I was
+having trouble keeping all of the sites up to date with the most current code
+releases. I needed to figure out how to manage my Drupal code in a way that
+allowed me to upgrade easily without stressing about what I might break. After
+a lot of research and trial and error, I have finally settled on the following
+setup.&lt;/p&gt;
+
+&lt;p&gt;The main motivation for using Git is the painless branching and merging. I am
+using Capistrano cause it is easy to set up and work with.&lt;/p&gt;
+
+&lt;p&gt;This post is meant to be a tutorial of sorts, but is more likely to be uses as
+a reference when setting up or changing your sites.&lt;/p&gt;
+
+&lt;p&gt;What we will do (or need to do):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Git on your local machine&lt;/li&gt;
+&lt;li&gt;Install Git on your repository machine&lt;/li&gt;
+&lt;li&gt;Install Git on your staging machine (optional)&lt;/li&gt;
+&lt;li&gt;Install Git on your production machine&lt;/li&gt;
+&lt;li&gt;Install gitosis on your repository machine&lt;/li&gt;
+&lt;li&gt;Setup gitosis&lt;/li&gt;
+&lt;li&gt;Setup your sites in Git and push to the repository machine&lt;/li&gt;
+&lt;li&gt;Install and setup Capistrano&lt;/li&gt;
+&lt;li&gt;Deploy your site to a staging machine (optional)&lt;/li&gt;
+&lt;li&gt;Deploy your site to a production machine&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Get the machines ready to do some real work&amp;hellip;&lt;/strong&gt;&lt;br /&gt;
+Install &lt;a href=&#34;http://git-scm.com/&#34;&gt;Git&lt;/a&gt; on your local machine, repository machine
+and production machine (and the other machines as needed). This is easy
+enough, so I will not got into detail. If you have problems, you can checkout
+&lt;a href=&#34;http://www.forwardthinkingdesign.com/category/tags/git&#34;&gt;these articles&lt;/a&gt;
+because I have gone into installation details there.&lt;/p&gt;
+
+&lt;p&gt;Install gitosis on your Repository machine&lt;br /&gt;
+&lt;code&gt;cd ~/src&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git clone git://eagain.net/gitosis.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd gitosis&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you get errors on the above line of code, then you will need to install
+&lt;a href=&#34;http://pypi.python.org/pypi/setuptools&#34;&gt;python-setuptools&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now set up a user on your Repository machine that will be the one who owns the
+repositories. I use &amp;lsquo;git&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo adduser \  
+  -system \  
+  -shell /bin/sh \  
+  -gecos &#39;git version control&#39; \  
+  -group \  
+  -disabled-password \  
+  -home /home/git \  
+  git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you need to have an SSH Key set up on your local machine. If you don&amp;rsquo;t
+have one, do this (on your local machine)&amp;hellip;&lt;br /&gt;
+&lt;code&gt;ssh-keygen -t rsa&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Assuming that you created the file &lt;code&gt;id_rsa.pub&lt;/code&gt;, now you need to copy it to
+your Repository machine. I put mine in &lt;code&gt;/tmp/id_rsa.pub&lt;/code&gt; so it is easy to
+access.&lt;/p&gt;
+
+&lt;p&gt;Now initialize gitosis with that key (on the Repository machine).&lt;br /&gt;
+&lt;code&gt;sudo -H -u git gitosis-init &amp;lt; /tmp/id_rsa.pub&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure that &lt;code&gt;post-update&lt;/code&gt; is set to executable.&lt;br /&gt;
+&lt;code&gt;sudo chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To set up the gitosis admin on your local machine.&lt;br /&gt;
+&lt;em&gt;(Everything from here on is on your local machine&amp;hellip;)&lt;/em&gt;&lt;br /&gt;
+Note: &lt;code&gt;cd&lt;/code&gt; into the directory you want your code to live first.&lt;br /&gt;
+&lt;code&gt;git clone git@YOUR_REPOSITORY_MACHINE:gitosis-admin.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd gitosis-admin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Setup the admin for the repositories.&lt;br /&gt;
+Open the file &lt;code&gt;gitosis.conf&lt;/code&gt; and make sure it has the following for the admin
+setup.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[gitosis]  
+[group gitosis-admin]  
+writable = gitosis-admin  
+members = youruser@machine
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(youruser@machine is going to be taken from your &lt;code&gt;id_rsa.pub&lt;/code&gt; file. it will be
+the last piece of that file and will look something like: hzvu4nTtw3Q==
+youruser@machine)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I have had some problems with this method of specifying a user. What I do now, which seems to work, is make sure that my .pub files have unique names when I create them (eg: __ which could be something like, forwardthinkingdesign_prod_root) and I use the filename in the &amp;lsquo;members&amp;rsquo; section.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup and manage your repositories&amp;hellip;&lt;/strong&gt;&lt;br /&gt;
+Also in &lt;code&gt;gitosis.conf&lt;/code&gt; add your project (your_project in this example).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[group yourteam]  
+members = youruser@machine  
+writable = your_project
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Push this updated configuration to the server.&lt;br /&gt;
+(you will probably have to add the appropriate files to be committed with &amp;lsquo;git
+add&amp;rsquo;. when you have more than one project, you will have more files here that
+will be untracked.)&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Allow youruser@machine write access to your_project&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you are going to actually create &lt;code&gt;your_project&lt;/code&gt; and push it to the gitosis
+repository.&lt;br /&gt;
+&lt;code&gt;mkdir your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git init&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git remote add origin git@REPOSITORY_MACHINE:your_project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you need to setup the how you are going to manage your Drupal
+code. You can put it all in one branch with &lt;code&gt;git push origin
+master:refs/heads/master&lt;/code&gt;, but I would NOT recommend this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Git setup I recommend for managing Drupal projects.&lt;/strong&gt;&lt;br /&gt;
+Create a branch &lt;code&gt;drupal&lt;/code&gt; just for the Drupal code. You never make changes to
+this branch other than upgrading to newer versions of Drupal. Git created a
+&lt;code&gt;master&lt;/code&gt; branch when you did &lt;code&gt;git init&lt;/code&gt; and since Git does not like you trying
+to branch from it without doing any &amp;lsquo;real work&amp;rsquo;, we are going to add to the
+&lt;code&gt;master&lt;/code&gt; branch and then rename it to &lt;code&gt;drupal&lt;/code&gt; before we add it to the
+repository machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;tar xvzf drupal-6.x.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal-6.x.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv drupal-6.x drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also add a &lt;code&gt;.gitignore&lt;/code&gt; file to this base &lt;code&gt;drupal&lt;/code&gt; branch so I do not have
+to worry about stuff I do not want getting into my repository.&lt;/p&gt;
+
+&lt;p&gt;Create a &lt;code&gt;.gitignore&lt;/code&gt; file in the root of your repository and add the
+following lines to it.&lt;br /&gt;
+&lt;code&gt;.DS_Store&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;drupal/sites/default/files/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Capfile&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;config/deploy.rb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Explanation of ignores:&lt;br /&gt;
+&lt;em&gt;.DS_Store&lt;/em&gt; -&amp;gt; This is because I am on a Mac and it creates these files all
+over the place. They should not be in my repository.&lt;br /&gt;
+&lt;em&gt;drupal/sites/default/files/&lt;/em&gt; -&amp;gt; This is because I run a local server on my
+machine that needs the &amp;lsquo;files&amp;rsquo; directory, but I do not want to track the
+&amp;lsquo;files&amp;rsquo; directory in my repo. (this may also be &lt;em&gt;drupal/files/&lt;/em&gt; depending on
+what version of drupal you are on.)&lt;br /&gt;
+&lt;em&gt;Capfile&lt;/em&gt; -&amp;gt; We have not gotten this far, but this is for Capistrano.&lt;br /&gt;
+&lt;em&gt;config/deploy.rb&lt;/em&gt; -&amp;gt; Again, this is for Capistrano.&lt;/p&gt;
+
+&lt;p&gt;Now add and commit these changes.&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial Drupal commit&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Rename the &lt;code&gt;master&lt;/code&gt; branch to our &lt;code&gt;drupal&lt;/code&gt; branch.&lt;br /&gt;
+&lt;code&gt;git branch -m master drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We now have the &lt;code&gt;drupal&lt;/code&gt; branch up to date on our local machine. Lets push it
+to the repository server.&lt;br /&gt;
+&lt;code&gt;git push origin drupal:refs/heads/drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;From the &lt;code&gt;drupal&lt;/code&gt; branch we want to create a &lt;code&gt;modules&lt;/code&gt; branch that will be
+used to manage all of the unmodified contributed modules. This should only be
+the module code that you get from drupal.org. You do not modify any of the
+code in this branch, just upgrade the modules when needed.&lt;/p&gt;
+
+&lt;p&gt;You need to make sure you are on the &lt;code&gt;drupal&lt;/code&gt; branch and then you will create
+a &lt;code&gt;modules&lt;/code&gt; branch. Once there you will add all your modules to the &lt;code&gt;modules&lt;/code&gt;
+branch.&lt;br /&gt;
+&lt;code&gt;git checkout drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd drupal/sites/all&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mkdir modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;tar xzvf yourmodule.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf yourmodule.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;... (repeat for all your modules) ...&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial add of all of my sites modules&amp;quot;&lt;/code&gt;&lt;br /&gt;
+(i also track my themes that are not modified in this branch)&lt;/p&gt;
+
+&lt;p&gt;When you are done adding all of your modules then you will want to push the
+&lt;code&gt;modules&lt;/code&gt; branch to the repository machine.&lt;br /&gt;
+&lt;code&gt;git push origin modules:refs/heads/modules&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you should have all of the base modules (and themes) tracked in your
+repository. At this point you want a branch where you can do all your
+modifications that are custom to your site. I track all my custom site
+specific modules, custom site specific themes and all of my module and core
+hacks in this branch. I call this branch &lt;code&gt;production&lt;/code&gt; since it is what I push
+out to my staging and production machines.&lt;/p&gt;
+
+&lt;p&gt;Lets create the &lt;code&gt;production&lt;/code&gt; branch and add our site specific stuff (including
+drupal/sites/default/settings.php).&lt;br /&gt;
+&lt;code&gt;git checkout modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b production&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make all of your changes that are custom to the site.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial add of all of my site specific
+hacks/modules/themes/etc...&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets push this branch to the repository machine.&lt;br /&gt;
+&lt;code&gt;git push origin production:refs/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Updating to a new version of Drupal (or updating modules)&lt;/strong&gt;&lt;br /&gt;
+This is where the real power of Git comes in and this is why I use this
+method.&lt;/p&gt;
+
+&lt;p&gt;When upgrading the Drupal core, we only want to change the &lt;code&gt;drupal&lt;/code&gt; branch
+because that is where the Drupal core is stored.&lt;br /&gt;
+Checkout the &lt;code&gt;drupal&lt;/code&gt; branch and once there we are going to replace the
+current version of Drupal with a new version.&lt;br /&gt;
+&lt;code&gt;git checkout drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;tar xvzf drupal-6.xx.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal-6.xx.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv drupal-6.xx drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets update the local repository and then push it to the repository
+machine.&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Drupal 6.xx update&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin drupal:refs/heads/drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We have to propagate this change up through our other branches, so we will
+pull these changes into the &lt;code&gt;modules&lt;/code&gt; branch and then commit and push it to
+the repository machine.&lt;br /&gt;
+&lt;code&gt;git checkout modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin modules:refs/heads/modules&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And likewise for the &lt;code&gt;production&lt;/code&gt; branch.&lt;br /&gt;
+&lt;code&gt;git checkout production&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin production:refs/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now all of your code is up to date on your local machine as well as your
+repository machine. You can update the &lt;code&gt;modules&lt;/code&gt; branch just the same my
+downloading newer versions of the modules code and just update the &lt;code&gt;modules&lt;/code&gt;
+and then the &lt;code&gt;production&lt;/code&gt; branches.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Deploying your code to the staging and production machines&lt;/strong&gt;&lt;br /&gt;
+At this point some people may choose to just copy and paste the code from
+their repository to their staging/production machines. As a simple solution,
+that is not too bad, but I want a more elegant method for deploying. For this
+I use Capistrano. Capistrano is built on Ruby and is very popular with Ruby on
+Rails developers. In order for it to work nicely with PHP and Drupal, we need
+to create our own &lt;code&gt;config/deploy.rb&lt;/code&gt; file. Luckily for you, I have already
+done this and you can find it attached at the end of this article. Lets get
+started&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup your remote machines with permission to access your repository&lt;/strong&gt;&lt;br /&gt;
+In order for you staging and production machines to be allowed to access your
+repository machine to get the latest code, you need to setup an rsa key for
+each of them. Do the following on all the machines that need to access the
+repository (staging and production).&lt;br /&gt;
+&lt;code&gt;ssh YOUR_USER@REMOTE_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;ssh-keygen -t rsa&lt;/code&gt; -&amp;gt; Be sure to create it with a unique name (example:
+&amp;lsquo;staging&amp;rsquo;)&lt;/p&gt;
+
+&lt;p&gt;Copy the &lt;code&gt;staging.pub&lt;/code&gt; file from REMOTE_MACHINE to your local machine and
+place it in the &lt;code&gt;gitosis-admin/keydir&lt;/code&gt; folder. You need to edit the &lt;code&gt;gitosis-
+admin/gitosis.conf&lt;/code&gt; file and add the user from your REMOTE_MACHINE in the
+appropriate section as we did before.&lt;/p&gt;
+
+&lt;p&gt;Example (added the bold):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[group yourteam]  
+members = youruser@machine **remoteuser@remotemachine**  
+writable = your_project
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now add, commit and push the changes to the repository machine (needs to be
+done from inside the &lt;code&gt;gitosis-admin&lt;/code&gt; directory).&lt;br /&gt;
+&lt;code&gt;git add gitosis.conf keydir/staging.pub&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Gave the staging machine the ability to access the
+repository&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;(Repeat for all the machines that need access to the repository)&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Giving additional users access to your repository&lt;/strong&gt;&lt;br /&gt;
+If you need to add someone to the project, set them up with access the same
+way you just did above for the &amp;lsquo;staging&amp;rsquo; machine. Once they are setup with
+permissions, they will need to clone the project to have access.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git clone git@REPOSITORY_MACHINE:your_project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt; (start)&lt;br /&gt;
+&lt;strong&gt;If you are on Mac OS X Snow Leopard&lt;/strong&gt;, it may ask you for a password. This is because Snow Leopard ships with key forwarding disabled by default and you will have to modify the file &lt;code&gt;/etc/ssh_config&lt;/code&gt; to get it working.&lt;/p&gt;
+
+&lt;p&gt;Change the lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Host * 
+# ForwardAgent no
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Host *
+ForwardAgent yes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If it still asks you for a password on Snow Leopard, you may need to add your
+passphrases to the Apple keychain. Type the following in a terminal.&lt;br /&gt;
+&lt;code&gt;ssh-add -K ~/.ssh/name_of_your_key&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you still have problems, you may want to add &lt;code&gt;loglevel = DEBUG&lt;/code&gt; under the
+&lt;code&gt;[gitosis]&lt;/code&gt; section of your &lt;code&gt;gitosis.conf&lt;/code&gt; file to get more information about
+what is happening.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Permission Denied&lt;/strong&gt;&lt;br /&gt;
+This often happens and is a PITA to figure out. One thing that I have found is
+that once you add a user to the remote repository, they have problems
+connection to the remote machine to clone the repository. This may resolve the
+issue (this has always been on a Mac).&lt;/p&gt;
+
+&lt;p&gt;Add the following to the file: &lt;code&gt;~/.ssh/config&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Host REPOSITORY_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;User git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Hostname REPOSITORY_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;PreferredAuthentications publickey&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;IdentityFile /path/to/.ssh/filename&lt;/code&gt;&lt;br /&gt;
+(filename is the same as the filename.pub file, but without the .pub at the
+end)&lt;br /&gt;
+&lt;strong&gt;Notes&lt;/strong&gt; (end)&lt;/p&gt;
+
+&lt;p&gt;Once it clones the project, you will probably get the following error:&lt;br /&gt;
+&lt;code&gt;Warning: Remote HEAD refers to nonexistent ref, unable to checkout.&lt;/code&gt;&lt;br /&gt;
+This is basically saying &amp;ldquo;I don&amp;rsquo;t know what branch to checkout&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Check and see what branches you have available:&lt;br /&gt;
+&lt;code&gt;cd your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git branch -a&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This should show you:&lt;br /&gt;
+&lt;code&gt;origin/drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;origin/modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;origin/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You will not want to check those branches out directly because they are remote
+branches and you will detach the head if you do. Basically you want to create
+local branches that you can change that will be linked to the remote branches.&lt;br /&gt;
+&lt;code&gt;git checkout -b drupal origin/drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b modules origin/modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b production origin/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now they will have a working local copy of the repository and they will be
+able to make commits to the remote repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup Capistrano and server configuration&lt;/strong&gt;&lt;br /&gt;
+You need to &lt;a href=&#34;http://www.capify.org/getting-started/&#34;&gt;install Capistrano&lt;/a&gt; on
+your local machine. They have great documentation at the Capistrano website
+which I reference every time I do this, so I will leave that as an exercise
+for you to do.&lt;/p&gt;
+
+&lt;p&gt;At this point I am assuming that you have Capistrano installed on your local
+machine. We now need to setup our project to deploy with Capistrano.&lt;/p&gt;
+
+&lt;p&gt;In the root of your repository directory (eg: &lt;code&gt;your_project&lt;/code&gt;) on your local
+machine, do this.&lt;br /&gt;
+&lt;code&gt;mkdir config&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;capify .&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Download the file (&lt;code&gt;deploy.rb&lt;/code&gt;) that is attached and replace the &lt;code&gt;deploy.rb&lt;/code&gt;
+file in the &lt;code&gt;config&lt;/code&gt; directory. You will have to go through the file and
+change all the sections that are IN_CAPS to the correct information. I will
+try to make this painless, but it may take some playing to get it setup for
+your environment. A lot of this depends on how you want to setup your server,
+so you may have to change the configuration as needed&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Now that your configuration is correct we are going to do the setup.&lt;br /&gt;
+&lt;strong&gt;Note:&lt;/strong&gt; You need to setup your staging and production machines the same as you setup in the deploy.rb file. So you need to create the directory that you want to deploy to (in my example it is: &lt;code&gt;/var/www/&lt;/code&gt;, and make sure it is owned by the user that you specified in your deploy.rb file).&lt;/p&gt;
+
+&lt;p&gt;Now we need to create the skeleton of your deploy file structure.&lt;br /&gt;
+&lt;code&gt;cap deploy:setup&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure that you have everything in place to do the deploy.&lt;br /&gt;
+&lt;code&gt;cap deploy:check&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;(If you already have &amp;lsquo;files&amp;rsquo; for your project, you may want to copy them into
+the &lt;code&gt;/var/www/your_project/shared/files/&lt;/code&gt; directory at this point so the
+actual deploy command can change the permissions correctly.)&lt;/p&gt;
+
+&lt;p&gt;Lets do the deployment&amp;hellip;&lt;br /&gt;
+&lt;code&gt;cap deploy&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You have just deployed your code from your repository machine to you staging
+or production machine. You will have to make sure that your apache
+configuration is setup correctly to serve the site that is currently deployed.
+To do that I have attached a sample vhosts file (&lt;code&gt;sample_site.conf&lt;/code&gt;) that may
+get you moving in the right direction.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Congratulations!!!&lt;/strong&gt; Now you can hack the core to your hearts content and you will still have a clean upgrade path (just do it in your &lt;code&gt;production&lt;/code&gt; branch). ;)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way&#34;&gt;Hosting Git repositories, The Easy (and Secure) Way&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.ruzee.com/blog/2008/10/drupal-development-and-deployment-using-git&#34;&gt;Drupal Development and Deployment using Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.simplicidade.org/notes/archives/2008/09/installing_gito.html&#34;&gt;Installing gitosis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tempe.st/tag/capistrano/&#34;&gt;A Tempest of Thoughts - Capistrano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.schmidp.com/2009/06/23/enable-ssh-agent-key-forwarding-on-snow-leopard/comment-page-1/&#34;&gt;Enable SSH Agent (Key) Forwarding on Snow Leopard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Attachments:&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;http://www.swillops.com/files/deploy.rb&#34;&gt;deploy.rb&lt;/a&gt; 3.16 KB&lt;br /&gt;
+&lt;a href=&#34;http://www.swillops.com/files/sample_site.conf&#34;&gt;sample_site.conf&lt;/a&gt; 864 bytes&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Eurotrip launches a new Trip Planning feature</title>
+      <link>http://localhost:1313/swillops.com/blog/eurotrip-launches-new-trip-planning-feature/</link>
+      <pubDate>Thu, 18 Dec 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/eurotrip-launches-new-trip-planning-feature/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://www.eurotrip.com/&#34;&gt;Eurotrip.com&lt;/a&gt; has released its new and innovative
+&lt;a href=&#34;http://www.eurotrip.com/trips&#34;&gt;Trip Planning&lt;/a&gt; tool today. This European
+travel website is jumping into the ring with companies like
+&lt;a href=&#34;http://www.dopplr.com/&#34;&gt;Dopplr&lt;/a&gt; and &lt;a href=&#34;http://www.tripit.com/&#34;&gt;TripIt&lt;/a&gt; by
+releasing a planning application that allows users to better navigate the
+complicated travel planning process. Eurotrip already has a leg up on its
+competition with its flourishing community, all of whom are totally dedicated
+to budget backpacking. With the ability for savvy members to comment on
+travelers plans while they are still in the planning process, helping them
+avoid common pitfalls as well as giving great advice, Eurotrip has carved out
+a very exciting niche in the market.&lt;/p&gt;
+
+&lt;p&gt;Eurotrip&amp;rsquo;s Planning tool has a lot of exciting features that are designed to
+facilitate the planning process for the end user. It is obvious that the tool
+was designed with usability and simplicity in mind.&lt;/p&gt;
+
+&lt;p&gt;Here is a quick breakdown of some of the ways this planning tool is setting
+itself apart:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a very simple interface which features only the necessary inputs&lt;/li&gt;
+&lt;li&gt;autocomplete city fields and pop-up calendars to simplify input&lt;/li&gt;
+&lt;li&gt;the ability to drag-and-drop cities to change the order&lt;/li&gt;
+&lt;li&gt;the ability in inplace-edit the number of days in a city&lt;/li&gt;
+&lt;li&gt;an automagical map and calendar that gives you a great visual of your trip&lt;/li&gt;
+&lt;li&gt;member comment form to allow others to comment on your plans&lt;/li&gt;
+&lt;li&gt;budget calculator so you know what your daily budget is&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It will be interesting how the site evolves with such an innovative approach
+to solving travelers problems&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Virtualized Development Environment</title>
+      <link>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</link>
+      <pubDate>Mon, 08 Dec 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</guid>
+      <description>&lt;p&gt;Recently, while developing, I have had people looking over my shoulder and
+asking questions like; &amp;ldquo;How are you able to code and test so quickly?&amp;rdquo; and
+&amp;ldquo;You just wrote that, how is the person you are talking to on Skype able to
+view and test it already?&amp;ldquo;. When I explain to them how my development
+environment is set up, they usually replay, &amp;ldquo;you should really blog about
+that&amp;rdquo;. So here it is&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;First, here is a little bit of background. I have been developing web
+applications for quite a few years now and I always ran into the same issues;
+browser compatibility, showing clients a work in progress, managing
+development and production environments. A couple years ago I started working
+for a new &lt;a href=&#34;http://www.syntenic.com/&#34;&gt;company&lt;/a&gt; and they asked me to brush up on
+my knowledge of virtualization techniques. While researching what was
+available in this space, my virtualized development environment was born.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of tools I use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://store.apple.com/us/browse/home/shop_mac/family/macbook_pro&#34;&gt;A Mac Laptop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.parallels.com/products/virtuozzo/&#34;&gt;Parallels Virtuozzo Containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.parallels.com/products/desktop/&#34;&gt;Parallels Desktop 4.0 for Mac&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://macromates.com/&#34;&gt;Textmate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://cyberduck.ch/&#34;&gt;Cyberduck&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tredosoft.com/Multiple_IE&#34;&gt;Multiple IEs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For pretty much every site, I have a production (prod) environment and a
+development (dev) environment. I want my dev environment to be an exact copy
+of my prod environment so that when I make changes to it I know exactly how
+the prod system is going to deal with the changes. Managing this was a PITA
+until I found Parallels Virtuozzo Containers. I was then able to have one
+machine that had both a prod and dev environment on it in different virtual
+containers. There are quite a few cool features in Virtuozzo, but the main one
+that is relevant to this post is the &amp;lsquo;Clone&amp;rsquo; feature. If you have a prod
+machine up and running and you want to make changes, but you don&amp;rsquo;t want to
+mess with the live machine, you can clone it to a new container and then
+develop on that new dev container. This means that if I want to test some
+changes to the site, I can just take 30 seconds to clone the live site, do the
+changes and test&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I am very comfortable with ssh and working in a terminal, but if you are
+developing a lot, you do not want to have to deal with working only in VI or
+VIM. Because of this, I use Cyberduck over SFTP to edit my code. Cyberduck is
+an open source FTP client that is relatively simple and lightweight, but has
+enough features that you will never feel handcuffed. I set my preferred editor
+in Cyberduck to Textmate and my development environment is set up on my Mac. I
+never have to copy files from the server to my machine and back because I just
+edit them directly on my cloned dev machine. It really is as easy as clone,
+edit, test&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;One of the biggest annoyances in web development is having to deal with cross
+browser compatibility for your web apps. Developing for Internet Explorer is a
+nightmare and because of this some developers neglect it. Unfortunately I do
+not have that luxury and have to make sure that my sites work in all browsers.
+Since I am working on a Mac, testing IE for Windows poses a small problem. I
+use Parallels Desktop for Mac to solve that problem. Parallels Desktop is a
+virtualization platform that allows you to install Windows on your Mac in a
+way that allows you to run Windows programs without having to reboot your
+machine. Basically, you just load the Windows machine and you have access to
+all of your Mac and Windows applications at the same time. Since Windows does
+not allow you to install both IE6 and IE7 on the same machine, I use Multiple
+IEs as a little hack so that I can have both IE6 and IE7 on my Windows install
+for testing purposes.&lt;/p&gt;
+
+&lt;p&gt;That is basically it&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Pros:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Very fast to get development environments set up.&lt;/li&gt;
+&lt;li&gt;Your code is not on your laptop, so if it gets stolen, you are still fine.&lt;/li&gt;
+&lt;li&gt;You can make changes to code with the client on the phone so they can view the changes in real time (your dev machine is public).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Your code is not actually in a code repository (I am working on setting up a version of this that is backed by Git).&lt;/li&gt;
+&lt;li&gt;If you do not have a network connection, you can not work on the site.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Thoughtful Design: Relational Scaling</title>
+      <link>http://localhost:1313/swillops.com/blog/thoughtful-design-relational-scaling/</link>
+      <pubDate>Tue, 07 Oct 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/thoughtful-design-relational-scaling/</guid>
+      <description>&lt;p&gt;This has become one of my signatures, so it is about time I write something
+about it. The basic motivation is the rapid improvements in resolutions and
+screen sizes. This has made it difficult for developers to know what size
+resolution they should be developing for. In the old days a lot of developers
+would develop for an 800x600 screen. Later that switched to 1024x768, but the
+underlying problem is still present. How do you develop a site that will
+evolve with the technology.&lt;/p&gt;
+
+&lt;p&gt;I hate developing projects that I know are going to be obsolete in 3-5 years,
+so I started too look at my options. I was looking for a way to abstract out
+the sizing of the site to one or two variables at the top of a css file. This
+got me on the path of developing with
+&amp;lsquo;&lt;a href=&#34;http://en.wikipedia.org/wiki/Em_(typography)&#34;&gt;em&lt;/a&gt;&amp;rsquo; for just about
+everything instead of &amp;lsquo;&lt;a href=&#34;http://en.wikipedia.org/wiki/Pixels&#34;&gt;px&lt;/a&gt;&amp;rsquo;. This
+allowed me to set the font size at the top of the css file and then build all
+the sizing of the site in relation to that font size. Now when you change the
+size of the font, the entire site scales consistently with the size change.&lt;/p&gt;
+
+&lt;p&gt;There are a few challenges with this approach that I will highlight in another
+post, but in general I feel this is a better way to approach web development.
+Since touching is learning, I have added a few examples below.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.syntenic.com&#34;&gt;www.syntenic.com&lt;/a&gt;&lt;br /&gt;
+Not only does this site have relational scaling built in, it also has a user
+cue. If you check in the top right of the page, you will see a slider. As the
+slider moves, the entire site scales.&lt;br /&gt;
+If you are really technical you will realize that there is a scaling image map
+on the front page. Many believe this is impossible, but as you can tell I have
+developed a cross browser compatible solution to a scaling image map. This
+will be discussed in another post.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.siftllc.com/&#34;&gt;www.siftllc.com&lt;/a&gt;&lt;br /&gt;
+This site also has relational scaling, but does not have the slider as a
+visual cue. To change the size of this site, you will need to change the font
+size (Ctrl + if you are using firefox).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Installing Django with Satchmo on Debian Etch</title>
+      <link>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</link>
+      <pubDate>Thu, 11 Sep 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
+      <description>&lt;p&gt;This is how I got Django and Satchmo set up on my Debian Etch box with
+Apache2, MySQL, mod_python and Memcached.&lt;/p&gt;
+
+&lt;p&gt;The machine I started with had Debian Etch installed as well as Apache2 and
+MySQL.&lt;/p&gt;
+
+&lt;p&gt;Note: I am assuming you are working as root on your machine. If not you will
+have to do &lt;code&gt;sudo&lt;/code&gt; in front of all of the following commands.&lt;/p&gt;
+
+&lt;p&gt;Make sure that your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; is up to date and then update your
+repositories and installed packages. I usually get my &lt;a href=&#34;http://www.linuxquestions.org/questions/debian-26/post-your-
+source.list-330913/&#34;&gt;sources from
+here&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get upgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Since it is a new server and my &lt;code&gt;locales&lt;/code&gt; are not right, I reconfigure them.&lt;br /&gt;
+&lt;code&gt;# dpkg-reconfigure locales&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install GCC, G++ and Make so you can compile code&lt;br /&gt;
+&lt;code&gt;# apt-get install gcc g++ make&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install the newest version of
+&lt;a href=&#34;http://www.python.org/download/releases/&#34;&gt;Python&lt;/a&gt;
+(&lt;a href=&#34;http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz&#34;&gt;2.5.2&lt;/a&gt; as of this
+writing).&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure --enable-shared&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up a config file for python.&lt;br /&gt;
+&lt;code&gt;# vi /etc/ld.so.conf.d/python2.5.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Put the following in it (path to the libpython2.5.so.1.0):&lt;br /&gt;
+&lt;code&gt;/usr/local/lib&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make the settings take effect.&lt;br /&gt;
+&lt;code&gt;# ldconfig&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make this version of python the default version.&lt;br /&gt;
+&lt;code&gt;# vi /usr/share/python/debian_defaults&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Change the contents of this file to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;[DEFAULT]
+# the default python version  
+default-version = python2.5
+
+# all supported python versions  
+supported-versions = python2.4, python2.5
+
+# formerly supported python versions  
+old-versions = python2.3
+
+# unsupported versions, including older versions  
+unsupported-versions = python2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a symlink to point to the new version of python.&lt;br /&gt;
+&lt;code&gt;# rm /usr/bin/python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/local/bin/python2.5 /usr/bin/python&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up MySQL (&lt;a href=&#34;http://sourceforge.net/projects/mysql-python&#34;&gt;MySQL-python&lt;/a&gt;) to
+work with Python.&lt;br /&gt;
+&lt;code&gt;# apt-get install libmysqlclient15-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://voxel.dl.sourceforge.net/sourceforge/mysql-python/MySQL-
+python-1.2.2.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf MySQL-python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd MySQL-python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py build&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Installing &lt;code&gt;mod_python&lt;/code&gt; for Apache2 in Debian Etch is a total PITA. Here are
+the steps I took to get it installed&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install apache2-prefork-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://ftp.wayne.edu/apache/httpd/modpython/mod_python-3.3.1.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf mod_python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd mod_python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure --with-apxs=/usr/bin/apxs2 --with-
+python=/usr/local/bin/python2.5&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install the newest version of &lt;a href=&#34;http://www.djangoproject.com/&#34;&gt;Django&lt;/a&gt; (1.0 as
+of this writing).&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.djangoproject.com/download/1.0/tarball/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Django*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Django*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;On my machine, this installed Django into &lt;code&gt;/usr/local/lib/python2.5/site-
+packages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Set up your Django project.&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# django-admin.py startproject mysite&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up your MySQL database. Since my machine is a fresh install I need to set
+up a password first.&lt;br /&gt;
+&lt;code&gt;# mysqladmin -u root password PASSWORD&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mysql -u root -p&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mysql&amp;gt; CREATE DATABASE mysite CHARACTER SET utf8;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up your project settings in &lt;code&gt;settings.py&lt;/code&gt;.&lt;br /&gt;
+* Enter up your admin information.&lt;br /&gt;
+* Enter up your &lt;a href=&#34;http://docs.djangoproject.com/en/dev/ref/databases/#ref-databases&#34;&gt;database connection info&lt;/a&gt;.&lt;br /&gt;
+* Change your timezone and language settings if needed.&lt;/p&gt;
+
+&lt;p&gt;Sync your installed apps and your database.&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python manage.py syncdb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Check this &lt;a href=&#34;http://docs.djangoproject.com/en/dev/howto/deployment/modpython
+/#howto-deployment-modpython&#34;&gt;Django
+documentation&lt;/a&gt; page for how to set up &lt;code&gt;mod_python&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You need to set up a directory where mod_python can extract eggs and you need
+to set up the permissions so it can write to it (don&amp;rsquo;t use 777 as in my
+example in production).&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mkdir cache_directory&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# chmod 777 cache_directory&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# chown www-data cache_directory&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now set up a config file to import those settings.&lt;br /&gt;
+&lt;code&gt;# vi cache_file.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Put the following lines in that file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import os
+os.environ[&#39;PYTHON_EGG_CACHE&#39;] = &#39;/absolute/path/to/cache_directory&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Configure &lt;code&gt;mod_python&lt;/code&gt; to work with Apache2.&lt;br /&gt;
+&lt;code&gt;# vi /etc/apache2/httpd.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Add the following lines to that file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LoadModule python_module /usr/lib/apache2/modules/mod_python.so
+PythonInterpreter mysite
+PythonImport /absolute/path/to/cache_file.py mysite
+&amp;lt;Location &amp;quot;/&amp;quot;&amp;gt;
+  SetHandler python-program
+  PythonHandler django.core.handlers.modpython
+  SetEnv DJANGO_SETTINGS_MODULE mysite.settings
+  PythonOption django.root /mysite
+  PythonDebug On
+  PythonPath &amp;quot;[&#39;/path/to/project&#39;] + sys.path&amp;quot;
+&amp;lt;/Location&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart Apache.&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/apache2 restart&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you should have a working Django install and you should be able
+to start adding apps&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Now lets get our install ready for Satchmo. We will need to install a bunch of
+things, as laid out &lt;a href=&#34;http://www.satchmoproject.com/docs/rel/0.7/requirements.html&#34;&gt;on this
+page&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.pythonware.com/products/pil/&#34;&gt;Python Imaging Library&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Imaging*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Imaging*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.amk.ca/python/code/crypto&#34;&gt;Python cryptography&lt;/a&gt; toolkit&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.amk.ca/files/python/crypto/pycrypto-2.0.1.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf pycrypto*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd pycrypto*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.reportlab.org/&#34;&gt;ReportLab&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install libfreetype6 libfreetype6-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.reportlab.org/ftp/ReportLab_2_2.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf ReportLab*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ReportLab*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz&#34;&gt;Tiny
+RML2PDF&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf trml2pdf*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd trml2pdf*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mv trml2pdf /usr/local/lib/python2.5/site-packages&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import trml2pdf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://code.google.com/p/django-comment-
+utils/&#34;&gt;django-comment-utils&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://django-comment-
+utils.googlecode.com/files/comment_utils-0.3p1.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf comment_utils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd comment_utils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://code.google.com/p/django-
+registration/&#34;&gt;Django Registration&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://django-registration.googlecode.com/files/django-
+registration-0.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf django-registration*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd django-registration*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.danga.com/memcached/&#34;&gt;Memcached&lt;/a&gt; for
+&lt;a href=&#34;http://docs.djangoproject.com/en/dev/topics/cache/&#34;&gt;caching&lt;/a&gt; (including its
+dependencies and python bindings)&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.monkey.org/~provos/libevent-1.4.8-stable.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf libevent*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd libevent*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;br /&gt;
+Create a link so the memcached knows where to find the library&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/local/lib/libevent-1.4.so.2 /lib/libevent-1.4.so.2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://danga.com/memcached/dist/memcached-1.2.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget ftp://ftp.tummy.com/pub/python-memcached/python-memcached-
+latest.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf python-memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd python-memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Start the memcached daemon&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# memcached -d -u www-data -m 32 127.0.0.1 -p 11211&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Configure your django project to use memcached&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# vi settings.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In that file add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CACHE_BACKEND = &#39;memcached://127.0.0.1:11211/&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://pyyaml.org/&#34;&gt;PyYaml&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://pyyaml.org/download/pyyaml/PyYAML-3.05.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf PyYAML*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd PyYAML*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://docutils.sourceforge.net/&#34;&gt;Docutils&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://docutils.sf.net/docutils-snapshot.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf docutils-snapshot*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd docutils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://gosatchmo.com/apps/django-threaded-
+multihost/&#34;&gt;Django Threaded Multihost&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://gosatchmo.com/static/files/threaded-multihost-1.1-source.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf threaded-multihost*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd django-threaded-multihost&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you have all the prerequisites installed for Satchmo&amp;hellip;&lt;br /&gt;
+Its time to install &lt;a href=&#34;http://www.satchmoproject.com/&#34;&gt;Satchmo&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install subversion&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# svn co svn://satchmoproject.com/satchmo/trunk&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd trunk&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Check it&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import django&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import satchmo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If they both import fine, then you are all set&amp;hellip; Enjoy&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;To finish configuring your store &lt;a href=&#34;http://www.satchmoproject.com/docs/svn/new_installation.html&#34;&gt;check this
+page&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I like to have a clean machine, so I remove all of the source files after
+installs&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf Python* MySQL-python* mod_python* Django* Imaging* pycrypto*
+ReportLab* trml2pdf* comment_utils* django-registration* libevent* memcached*
+python-memcached* PyYAML* docutils* trunk* django-threaded-multihost threaded-
+multihost*&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

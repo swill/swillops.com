@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code Management on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/code-management/</link>
+    <description>Recent content in Code Management on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Dec 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/code-management/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Git branches to manage third party app customization</title>
+      <link>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
+      <pubDate>Wed, 26 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
+      <description>
+
+&lt;h3 id=&#34;preface:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;Preface:&lt;/h3&gt;
+
+&lt;p&gt;I have been using this technique to customize different types of third party
+projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
+post&lt;/a&gt;
+regarding the management of customizations on top of the ever changing Drupal
+code base. That post is very long winded and overly technical for most people,
+this post will serve as an abridged version covering only the branching
+concept.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-problem:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;The Problem:&lt;/h3&gt;
+
+&lt;p&gt;A third party has developed some code you would like to leverage, however, you
+require customizations to their code for your implementation. The third party
+is actively developing their code base, so you need to be able to easily
+update their underlying code while keep your customizations intact.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-solution:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;The Solution:&lt;/h3&gt;
+
+&lt;p&gt;We will use Git to track both their changes and our changes. We will have two
+branches; &lt;code&gt;master&lt;/code&gt; will track their changes and &lt;code&gt;custom&lt;/code&gt; will track our
+changes. We will never make any changes to the &lt;code&gt;master&lt;/code&gt; branch other than to
+pull in updates from the third party. All of our modifications will be made in
+our &lt;code&gt;custom&lt;/code&gt; branch. When the third party makes a change we will pull it into
+our &lt;code&gt;master&lt;/code&gt; branch and then propagate it into our &lt;code&gt;custom&lt;/code&gt; branch. All
+deployments and builds will be done from the &lt;code&gt;custom&lt;/code&gt; branch.&lt;/p&gt;
+
+&lt;h3 id=&#34;an-example:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;An Example:&lt;/h3&gt;
+
+&lt;p&gt;Get the third party code (this will create the &lt;code&gt;master&lt;/code&gt; branch):&lt;br /&gt;
+&lt;code&gt;git clone https://github.com/third_party/project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Create the &lt;code&gt;custom&lt;/code&gt; branch for our modifications:&lt;br /&gt;
+&lt;code&gt;git checkout -b custom&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;... do your customizations ...&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial customizations&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you can create your first build/deployment from the &lt;code&gt;custom&lt;/code&gt;
+branch&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;When the third party updates their code and you want to incorporate their
+changes:&lt;br /&gt;
+&lt;code&gt;git checkout master&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull origin master&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout custom&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . master&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you have merged their changes into the &lt;code&gt;custom&lt;/code&gt; branch and you are ready
+to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

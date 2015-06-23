@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Relational Scaling on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/relational-scaling/</link>
+    <description>Recent content in Relational Scaling on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Oct 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/relational-scaling/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Thoughtful Design: Relational Scaling</title>
+      <link>http://localhost:1313/swillops.com/blog/thoughtful-design-relational-scaling/</link>
+      <pubDate>Tue, 07 Oct 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/thoughtful-design-relational-scaling/</guid>
+      <description>&lt;p&gt;This has become one of my signatures, so it is about time I write something
+about it. The basic motivation is the rapid improvements in resolutions and
+screen sizes. This has made it difficult for developers to know what size
+resolution they should be developing for. In the old days a lot of developers
+would develop for an 800x600 screen. Later that switched to 1024x768, but the
+underlying problem is still present. How do you develop a site that will
+evolve with the technology.&lt;/p&gt;
+
+&lt;p&gt;I hate developing projects that I know are going to be obsolete in 3-5 years,
+so I started too look at my options. I was looking for a way to abstract out
+the sizing of the site to one or two variables at the top of a css file. This
+got me on the path of developing with
+&amp;lsquo;&lt;a href=&#34;http://en.wikipedia.org/wiki/Em_(typography)&#34;&gt;em&lt;/a&gt;&amp;rsquo; for just about
+everything instead of &amp;lsquo;&lt;a href=&#34;http://en.wikipedia.org/wiki/Pixels&#34;&gt;px&lt;/a&gt;&amp;rsquo;. This
+allowed me to set the font size at the top of the css file and then build all
+the sizing of the site in relation to that font size. Now when you change the
+size of the font, the entire site scales consistently with the size change.&lt;/p&gt;
+
+&lt;p&gt;There are a few challenges with this approach that I will highlight in another
+post, but in general I feel this is a better way to approach web development.
+Since touching is learning, I have added a few examples below.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.syntenic.com&#34;&gt;www.syntenic.com&lt;/a&gt;&lt;br /&gt;
+Not only does this site have relational scaling built in, it also has a user
+cue. If you check in the top right of the page, you will see a slider. As the
+slider moves, the entire site scales.&lt;br /&gt;
+If you are really technical you will realize that there is a scaling image map
+on the front page. Many believe this is impossible, but as you can tell I have
+developed a cross browser compatible solution to a scaling image map. This
+will be discussed in another post.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.siftllc.com/&#34;&gt;www.siftllc.com&lt;/a&gt;&lt;br /&gt;
+This site also has relational scaling, but does not have the slider as a
+visual cue. To change the size of this site, you will need to change the font
+size (Ctrl + if you are using firefox).&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

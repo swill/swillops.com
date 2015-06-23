@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Community on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/community/</link>
+    <description>Recent content in Community on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 May 2007 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/community/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Enabling Communities: What are we learning???</title>
+      <link>http://localhost:1313/swillops.com/blog/enabling-communities-what-are-we-learning/</link>
+      <pubDate>Wed, 30 May 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/enabling-communities-what-are-we-learning/</guid>
+      <description>&lt;p&gt;I recently attended the &lt;a href=&#34;http://www.meshconference.com/&#34;&gt;Mesh 2007 Conference&lt;/a&gt;
+in Toronto with many notable keynotes and guests. One of the more interesting
+presentations I attended was &amp;lsquo;The Web and Philanthropy&amp;rsquo;. It was a conversation
+led by Rob Hyndman with Tom Williams and Austin Hill, two people who are doing
+a lot to facilitate philanthropy online.&lt;/p&gt;
+
+&lt;p&gt;Tom Williams is the founder of &lt;a href=&#34;http://www.givemeaning.com/&#34;&gt;GiveMeaning&lt;/a&gt;, an
+online application that allows people to search for and support an almost
+endless number of worthwhile causes world wide. One of the (many) things that
+sets GiveMeaning apart is that they do not take a cut from the donations given
+through the site, so 100% of your contribution will be used for your specified
+cause. They have set up an environment (really a community) that highlights
+causes around the world and facilitates contributing to those causes.&lt;/p&gt;
+
+&lt;p&gt;Austin Hill is one of the founders of ZeroKnowledge, now
+&lt;a href=&#34;http://www.radialpoint.com/&#34;&gt;RadialPoint&lt;/a&gt;, a company that focuses on privacy
+issues online. He has recently been working on a number of projects to make a
+worldwide difference online. A few of his projects include;
+&lt;a href=&#34;http://www.akoha.org/&#34;&gt;Akoha&lt;/a&gt;, for gift giving (this is not public yet, so
+all information about it is speculation); &lt;a href=&#34;http://www.gifter.org/&#34;&gt;Gifter&lt;/a&gt;,
+for charitable donations (to some extent);
+&lt;a href=&#34;http://www.zerofootprint.net/&#34;&gt;Zerofootprint&lt;/a&gt;, a project to help reduce our
+environmental footprint. These are only a few of his projects, but it goes
+without saying that he has an in depth understanding of the web and the
+communities built on it.&lt;/p&gt;
+
+&lt;p&gt;One of the main topics that was discusses was the ability to enable and
+empower a community of people to make a difference. Obviously, from the links
+above, both of these men have dedicated a large amount of time and energy into
+understanding and working with communities, with the vision of making a
+difference on a global scale. The success of these projects is a testament to
+their ability to understand the many dynamics of web based communities and the
+mobilizing power of their approach. So how do they see their communities and
+what do they do to create this effect?&lt;/p&gt;
+
+&lt;p&gt;In many communities, the creators and moderators feel that they own the
+community. It is theirs and the people who join are participating in an
+environment which they control. This is not the case with the community that
+Tom has created at GiveMeaning. He does not consider himself the owner of the
+community, but an acting participant who is working to enable a group of like
+minded people. He is mainly trying to build an environment that facilitates
+the communities ability to act while centralizing the members views and
+values. He is setting up a way for people to realize a return on their
+generosity through a social network and differentiate them by their
+conscientious choices. He is trying to create a way for people to generate
+credibility in the community and then empower them through the founding
+technology.&lt;/p&gt;
+
+&lt;p&gt;This is a new approach to community building and I feel that the application
+of this approach is very valuable. In a world where we are surrounded by so
+much negative content and influences, I feel that their positive and
+empowering perspective fosters the underlying values of most people and gives
+them an outlet that is not only constructive but influential to the rest
+population.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu: backed by a great community</title>
+      <link>http://localhost:1313/swillops.com/blog/ubuntu-backed-great-community/</link>
+      <pubDate>Fri, 20 Apr 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/ubuntu-backed-great-community/</guid>
+      <description>&lt;p&gt;I promised to come back and visit the community aspect of Ubuntu because I
+feel that it is an underrated feature of this OS. I&amp;rsquo;m sure most of you have
+had an experience where you are trying to do something with Windows and you
+just cant seem to figure it out. I have been in that situation many times and
+I have always been kind of discouraged with the amount of support that I can
+get. Its not that the answers are not out there, because for the most part
+they are, but you can only really rely on google to find them.&lt;/p&gt;
+
+&lt;p&gt;When I switched to Ubuntu I had a reasonable foundation in Linux, but I was
+still pretty green. There were a lot of basic things that I had to go looking
+for because I didn&amp;rsquo;t understand how everything worked with this OS. I was
+pleasantly surprised with the wealth of information and the willingness of
+other people to help when I was searching for answers. Because Linux is open
+source (for the most part), there is a huge community of people who know it
+very well, and since a lot of the same questions get asked, many of them
+already have guides written to solve most of your problems. Ubuntu has
+centralized its community a bit by offering forums, wikis and technical
+support. I cant remember a question that I have not been able to find the
+answer to, either on the forums or with a quick google search.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

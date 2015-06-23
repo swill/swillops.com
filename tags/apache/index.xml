@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/apache/</link>
+    <description>Recent content in Apache on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Jul 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Redirect traffic from a wordpress site</title>
+      <link>http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/</link>
+      <pubDate>Wed, 11 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/</guid>
+      <description>
+
+&lt;h3 id=&#34;the-problem:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Problem:&lt;/h3&gt;
+
+&lt;p&gt;A wordpress site has depreciated and you want to redirect all of its traffic
+to a landing page on a new site. However, you want to explain why the site has
+been deprecated in the context of the old site.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-solution:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Solution:&lt;/h3&gt;
+
+&lt;p&gt;You should explain to the user why they are being redirected, so create a page
+on the old wordpress site at some url, say: &lt;a href=&#34;http://www.oldsite.com/we-moved&#34;&gt;www.oldsite.com/we-
+moved&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;On that new page (/we-moved), we want it to have a countdown and then redirect
+to the new landing page at, say: &lt;a href=&#34;http://www.newsite.com/welcome-oldsite&#34;&gt;www.newsite.com/welcome-
+oldsite&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To do the redirect, put the following jQuery/javascript on the &amp;lsquo;we-moved&amp;rsquo;
+page:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;Redirecting in &amp;lt;span class=&amp;quot;redirect-in&amp;quot;&amp;gt;20&amp;lt;/span&amp;gt; seconds...&amp;lt;/div&amp;gt;
+
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+jQuery(document).ready(function($) {
+  var countdown = setInterval(function(){
+    sec=parseInt($(&amp;quot;.redirect-in&amp;quot;).html()); 
+    if (sec != 0) {
+      $(&amp;quot;.redirect-in&amp;quot;).html(sec-1);
+    } else { // countdown is finished...
+      clearInterval(countdown);
+      window.location=&amp;quot;http://www.newsite.com/welcome-oldsite&amp;quot;
+    }
+  },1000);
+});
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can adjust the number of seconds before redirect by changing the value of
+the &amp;lsquo;.redirect-in&amp;rsquo; span.&lt;/p&gt;
+
+&lt;p&gt;Now the redirect to the new site is working.&lt;/p&gt;
+
+&lt;p&gt;Now we need to redirect all the traffic to
+&lt;a href=&#34;http://www.oldsite.com&#34;&gt;www.oldsite.com&lt;/a&gt; urls to the /we-moved page. With the
+exception of the login page (wp-login.php) and the admin area (wp-admin). In
+addition, we want to be be able to view the pages on the oldsite from the
+&amp;lsquo;View Page&amp;rsquo; link on the edit pages.&lt;/p&gt;
+
+&lt;p&gt;To do this we modify the section of our &lt;code&gt;.htaccess&lt;/code&gt; file that looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# BEGIN WordPress  
+&amp;lt;IfModule mod_rewrite.c&amp;gt;  
+RewriteEngine On  
+RewriteBase /  
+RewriteRule ^index\\.php$ - [L]  
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteRule . /index.php [L]  
+&amp;lt;/IfModule&amp;gt;  
+# END WordPress  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And change it to look like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# BEGIN WordPress  
+&amp;lt;IfModule mod_rewrite.c&amp;gt;  
+RewriteEngine On  
+RewriteBase /  
+RewriteRule ^index\\.php$ - [L]  
+RewriteCond %{HTTP_REFERER} !^(.*)oldsite.com/wp-admin(/.*)?  
+RewriteRule !^(wp-admin(/.*)?|wp-content(/.*)?|wp-includes(/.*)?|wp-
+login\\.php(.*)|we-moved(.*))$ we-moved/ [R,L]  
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d  
+RewriteRule . /index.php [L]  
+&amp;lt;/IfModule&amp;gt;  
+# END WordPress  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thats it. You should be good to go&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Secure push and pull with git-http-backend</title>
+      <link>http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
+      <pubDate>Mon, 26 Sep 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
+      <description>&lt;p&gt;I am setting up a new repository machine for my code. I will be setting it up
+with Active Directory later on, but I figured my basic setup would be a good
+starting point for most people.&lt;/p&gt;
+
+&lt;p&gt;My new repo box is on CentOS. I installed Git on my server from the
+&lt;a href=&#34;http://fedoraproject.org/wiki/EPEL&#34;&gt;EPEL&lt;/a&gt; repository. All the commands in
+this tutorial will be done from &lt;code&gt;sudo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I created a simple password file on my server using this command.&lt;br /&gt;
+&lt;code&gt;htpasswd -c path/to/file/passwords user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To add a user to the existing password file do:&lt;br /&gt;
+&lt;code&gt;htpasswd path/to/file/passwords new-user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want to add repository level permissions to your repositories add a
+groups file:&lt;br /&gt;
+&lt;code&gt;vim path/to/file/groups&lt;/code&gt;&lt;br /&gt;
+then add:&lt;br /&gt;
+&lt;code&gt;new_repo: user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I setup my Apache config to include.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NameVirtualHost *:80
+
+&amp;lt;VirtualHost *:80&amp;gt;  
+  SetEnv GIT_PROJECT_ROOT /path/to/repos  
+  SetEnv GIT_HTTP_EXPORT_ALL  
+  SetEnv REMOTE_USER=$REDIRECT_REMOTE_USER  
+  ScriptAlias / /usr/bin/git-http-backend/
+
+  ServerName example.com  
+  ServerAlias www.example.com
+
+  DocumentRoot &amp;quot;/path/to/repos&amp;quot;
+
+  &amp;lt;Directory &amp;quot;/path/to/repos&amp;quot;&amp;gt;  
+  Options None  
+  AllowOverride None  
+  Order allow,deny  
+  Allow from all  
+  &amp;lt;/Directory&amp;gt;
+
+  &amp;lt;Location /&amp;gt;  
+  AuthType Basic  
+  AuthName &amp;quot;Git Access&amp;quot;  
+  AuthUserFile path/to/file/passwords  
+  Require valid-user  
+  &amp;lt;/Location&amp;gt;
+
+  # Only required if you are using repository level permissions  
+  &amp;lt;Location /new_repo.git&amp;gt;  
+  AuthType Basic  
+  AuthName &amp;quot;New Repo Access&amp;quot;  
+  AuthUserFile path/to/file/passwords  
+  AuthGroupFile path/to/file/groups  
+  Require group new_repo  
+  &amp;lt;/Location&amp;gt;
+
+  ErrorLog /path/to/log/httpd/repo/repo-error_log  
+  CustomLog /path/to/log/httpd/repo/repo-access_log combined  
+  ServerSignature Off
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now to add your code, do the following on the server in: &lt;code&gt;/path/to/repos&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git init --bare new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;chown -R apache:apache new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv new_repo.git/hooks/post-update.sample new_repo.git/hooks/post-update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git update-server-info&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you can access your repo with:&lt;br /&gt;
+&lt;code&gt;git clone http://user-name@example.com/new_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Or associate this new remote repository with an existing repository, do this
+to your existing repository:&lt;br /&gt;
+&lt;code&gt;git remote add origin http://user-name@example.com/new_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should be all set&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Apache, MySQL and PHP on Snow Leopard</title>
+      <link>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
+      <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
+Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
+downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup
+their AMP stack, so this is how I was able to get an acceptable one setup.&lt;/p&gt;
+
+&lt;p&gt;Note: This method uses MacPorts, so you will need to install that first.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo port clean php52&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port -f uninstall installed&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port installed&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install grep&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install apache2&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install mysql5-server&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;sudo port install php52 +apache2 +mysql5&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Installing Django with Satchmo on Debian Etch</title>
+      <link>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</link>
+      <pubDate>Thu, 11 Sep 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
+      <description>&lt;p&gt;This is how I got Django and Satchmo set up on my Debian Etch box with
+Apache2, MySQL, mod_python and Memcached.&lt;/p&gt;
+
+&lt;p&gt;The machine I started with had Debian Etch installed as well as Apache2 and
+MySQL.&lt;/p&gt;
+
+&lt;p&gt;Note: I am assuming you are working as root on your machine. If not you will
+have to do &lt;code&gt;sudo&lt;/code&gt; in front of all of the following commands.&lt;/p&gt;
+
+&lt;p&gt;Make sure that your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; is up to date and then update your
+repositories and installed packages. I usually get my &lt;a href=&#34;http://www.linuxquestions.org/questions/debian-26/post-your-
+source.list-330913/&#34;&gt;sources from
+here&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get upgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Since it is a new server and my &lt;code&gt;locales&lt;/code&gt; are not right, I reconfigure them.&lt;br /&gt;
+&lt;code&gt;# dpkg-reconfigure locales&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install GCC, G++ and Make so you can compile code&lt;br /&gt;
+&lt;code&gt;# apt-get install gcc g++ make&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install the newest version of
+&lt;a href=&#34;http://www.python.org/download/releases/&#34;&gt;Python&lt;/a&gt;
+(&lt;a href=&#34;http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz&#34;&gt;2.5.2&lt;/a&gt; as of this
+writing).&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure --enable-shared&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up a config file for python.&lt;br /&gt;
+&lt;code&gt;# vi /etc/ld.so.conf.d/python2.5.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Put the following in it (path to the libpython2.5.so.1.0):&lt;br /&gt;
+&lt;code&gt;/usr/local/lib&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make the settings take effect.&lt;br /&gt;
+&lt;code&gt;# ldconfig&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make this version of python the default version.&lt;br /&gt;
+&lt;code&gt;# vi /usr/share/python/debian_defaults&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Change the contents of this file to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;[DEFAULT]
+# the default python version  
+default-version = python2.5
+
+# all supported python versions  
+supported-versions = python2.4, python2.5
+
+# formerly supported python versions  
+old-versions = python2.3
+
+# unsupported versions, including older versions  
+unsupported-versions = python2.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a symlink to point to the new version of python.&lt;br /&gt;
+&lt;code&gt;# rm /usr/bin/python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/local/bin/python2.5 /usr/bin/python&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up MySQL (&lt;a href=&#34;http://sourceforge.net/projects/mysql-python&#34;&gt;MySQL-python&lt;/a&gt;) to
+work with Python.&lt;br /&gt;
+&lt;code&gt;# apt-get install libmysqlclient15-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://voxel.dl.sourceforge.net/sourceforge/mysql-python/MySQL-
+python-1.2.2.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf MySQL-python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd MySQL-python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py build&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Installing &lt;code&gt;mod_python&lt;/code&gt; for Apache2 in Debian Etch is a total PITA. Here are
+the steps I took to get it installed&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install apache2-prefork-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://ftp.wayne.edu/apache/httpd/modpython/mod_python-3.3.1.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf mod_python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd mod_python*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure --with-apxs=/usr/bin/apxs2 --with-
+python=/usr/local/bin/python2.5&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install the newest version of &lt;a href=&#34;http://www.djangoproject.com/&#34;&gt;Django&lt;/a&gt; (1.0 as
+of this writing).&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.djangoproject.com/download/1.0/tarball/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Django*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Django*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;On my machine, this installed Django into &lt;code&gt;/usr/local/lib/python2.5/site-
+packages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Set up your Django project.&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# django-admin.py startproject mysite&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up your MySQL database. Since my machine is a fresh install I need to set
+up a password first.&lt;br /&gt;
+&lt;code&gt;# mysqladmin -u root password PASSWORD&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mysql -u root -p&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mysql&amp;gt; CREATE DATABASE mysite CHARACTER SET utf8;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up your project settings in &lt;code&gt;settings.py&lt;/code&gt;.&lt;br /&gt;
+* Enter up your admin information.&lt;br /&gt;
+* Enter up your &lt;a href=&#34;http://docs.djangoproject.com/en/dev/ref/databases/#ref-databases&#34;&gt;database connection info&lt;/a&gt;.&lt;br /&gt;
+* Change your timezone and language settings if needed.&lt;/p&gt;
+
+&lt;p&gt;Sync your installed apps and your database.&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python manage.py syncdb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Check this &lt;a href=&#34;http://docs.djangoproject.com/en/dev/howto/deployment/modpython
+/#howto-deployment-modpython&#34;&gt;Django
+documentation&lt;/a&gt; page for how to set up &lt;code&gt;mod_python&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You need to set up a directory where mod_python can extract eggs and you need
+to set up the permissions so it can write to it (don&amp;rsquo;t use 777 as in my
+example in production).&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mkdir cache_directory&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# chmod 777 cache_directory&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# chown www-data cache_directory&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now set up a config file to import those settings.&lt;br /&gt;
+&lt;code&gt;# vi cache_file.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Put the following lines in that file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import os
+os.environ[&#39;PYTHON_EGG_CACHE&#39;] = &#39;/absolute/path/to/cache_directory&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Configure &lt;code&gt;mod_python&lt;/code&gt; to work with Apache2.&lt;br /&gt;
+&lt;code&gt;# vi /etc/apache2/httpd.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Add the following lines to that file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;LoadModule python_module /usr/lib/apache2/modules/mod_python.so
+PythonInterpreter mysite
+PythonImport /absolute/path/to/cache_file.py mysite
+&amp;lt;Location &amp;quot;/&amp;quot;&amp;gt;
+  SetHandler python-program
+  PythonHandler django.core.handlers.modpython
+  SetEnv DJANGO_SETTINGS_MODULE mysite.settings
+  PythonOption django.root /mysite
+  PythonDebug On
+  PythonPath &amp;quot;[&#39;/path/to/project&#39;] + sys.path&amp;quot;
+&amp;lt;/Location&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart Apache.&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/apache2 restart&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you should have a working Django install and you should be able
+to start adding apps&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Now lets get our install ready for Satchmo. We will need to install a bunch of
+things, as laid out &lt;a href=&#34;http://www.satchmoproject.com/docs/rel/0.7/requirements.html&#34;&gt;on this
+page&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.pythonware.com/products/pil/&#34;&gt;Python Imaging Library&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf Imaging*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd Imaging*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.amk.ca/python/code/crypto&#34;&gt;Python cryptography&lt;/a&gt; toolkit&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.amk.ca/files/python/crypto/pycrypto-2.0.1.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf pycrypto*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd pycrypto*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.reportlab.org/&#34;&gt;ReportLab&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install libfreetype6 libfreetype6-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.reportlab.org/ftp/ReportLab_2_2.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf ReportLab*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ReportLab*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz&#34;&gt;Tiny
+RML2PDF&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf trml2pdf*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd trml2pdf*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# mv trml2pdf /usr/local/lib/python2.5/site-packages&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import trml2pdf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://code.google.com/p/django-comment-
+utils/&#34;&gt;django-comment-utils&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://django-comment-
+utils.googlecode.com/files/comment_utils-0.3p1.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf comment_utils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd comment_utils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://code.google.com/p/django-
+registration/&#34;&gt;Django Registration&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://django-registration.googlecode.com/files/django-
+registration-0.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf django-registration*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd django-registration*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://www.danga.com/memcached/&#34;&gt;Memcached&lt;/a&gt; for
+&lt;a href=&#34;http://docs.djangoproject.com/en/dev/topics/cache/&#34;&gt;caching&lt;/a&gt; (including its
+dependencies and python bindings)&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://www.monkey.org/~provos/libevent-1.4.8-stable.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf libevent*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd libevent*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;br /&gt;
+Create a link so the memcached knows where to find the library&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/local/lib/libevent-1.4.so.2 /lib/libevent-1.4.so.2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://danga.com/memcached/dist/memcached-1.2.6.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget ftp://ftp.tummy.com/pub/python-memcached/python-memcached-
+latest.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf python-memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd python-memcached*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Start the memcached daemon&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# memcached -d -u www-data -m 32 127.0.0.1 -p 11211&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Configure your django project to use memcached&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# vi settings.py&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In that file add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CACHE_BACKEND = &#39;memcached://127.0.0.1:11211/&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://pyyaml.org/&#34;&gt;PyYaml&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://pyyaml.org/download/pyyaml/PyYAML-3.05.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf PyYAML*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd PyYAML*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://docutils.sourceforge.net/&#34;&gt;Docutils&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://docutils.sf.net/docutils-snapshot.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf docutils-snapshot*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd docutils*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install &lt;a href=&#34;http://gosatchmo.com/apps/django-threaded-
+multihost/&#34;&gt;Django Threaded Multihost&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://gosatchmo.com/static/files/threaded-multihost-1.1-source.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar -zxvf threaded-multihost*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd django-threaded-multihost&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you have all the prerequisites installed for Satchmo&amp;hellip;&lt;br /&gt;
+Its time to install &lt;a href=&#34;http://www.satchmoproject.com/&#34;&gt;Satchmo&lt;/a&gt;&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# apt-get install subversion&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# svn co svn://satchmoproject.com/satchmo/trunk&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd trunk&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Check it&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# python&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import django&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import satchmo&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If they both import fine, then you are all set&amp;hellip; Enjoy&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;To finish configuring your store &lt;a href=&#34;http://www.satchmoproject.com/docs/svn/new_installation.html&#34;&gt;check this
+page&lt;/a&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I like to have a clean machine, so I remove all of the source files after
+installs&amp;hellip;&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf Python* MySQL-python* mod_python* Django* Imaging* pycrypto*
+ReportLab* trml2pdf* comment_utils* django-registration* libevent* memcached*
+python-memcached* PyYAML* docutils* trunk* django-threaded-multihost threaded-
+multihost*&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Debian Rails Stack - NginX and Mongrel</title>
+      <link>http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</link>
+      <pubDate>Wed, 09 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</guid>
+      <description>&lt;p&gt;If you are reading this it is because you already know that you want a Rails
+setup on a Debian server with &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt; in
+front of a &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel
+Cluster&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;These are the steps I used to completely set up my server&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;The machine I started with had an existing Debian install and also had Apache2
+and MySQL installed.&lt;/p&gt;
+
+&lt;p&gt;Note: I am assuming you are working as root on your machine. If not you will
+have to do &lt;code&gt;sudo&lt;/code&gt; in front of all of the following commands.&lt;/p&gt;
+
+&lt;p&gt;Make sure that your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; is up to date and then update your
+repositories and installed packages.&lt;br /&gt;
+&lt;code&gt;# apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get upgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Remove all Apache instances&lt;br /&gt;
+&lt;code&gt;# dpkg --purge apache apache2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install Ruby and its friends&lt;br /&gt;
+&lt;code&gt;# apt-get install ruby1.8-dev ruby1.8 ri1.8 rdoc1.8 irb1.8 libreadline-
+ruby1.8 libruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I am also using SSL, so I need to install the ruby ssl libraries.&lt;br /&gt;
+&lt;code&gt;# apt-get install libopenssl-ruby libopenssl-ruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Setup symlinks for Ruby and its friends&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/ruby1.8 /usr/local/bin/ruby&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/ri1.8 /usr/local/bin/ri&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/rdoc1.8 /usr/local/bin/rdoc&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/irb1.8 /usr/local/bin/irb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install GCC, G++ and Make so you can compile code&lt;br /&gt;
+&lt;code&gt;# apt-get install gcc g++ make&lt;/code&gt;``&lt;/p&gt;
+
+&lt;p&gt;Get the most recent version of RubyGems (&lt;a href=&#34;http://rubyforge.org/frs/?group_id=126&#34;&gt;check for current
+version&lt;/a&gt;)&lt;br /&gt;
+&lt;code&gt;# wget http://rubyforge.org/frs/download.php/38646/rubygems-1.2.0.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar xvzf rubygems*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd rubygems*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ruby setup.rb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I cleaned up the install files after the install&lt;br /&gt;
+&lt;code&gt;# cd ..&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf rubygems-1.2.0 rubygems-1.2.0.tgz&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up a symlink for the Gem command&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/gem1.8 /usr/local/bin/gem&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we need to install &lt;a href=&#34;http://www.rubyonrails.org/&#34;&gt;Rails&lt;/a&gt; in all its glory&lt;br /&gt;
+&lt;code&gt;# gem install rails --include-dependencies&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I use &lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; for source code management, so I need to
+install it. I also use submodules and the code in Debian&amp;rsquo;s repository does not
+support it, so I need to install it from source.&lt;/p&gt;
+
+&lt;p&gt;In order to make sure that Git will actually make, we have to do a little
+setup work.&lt;br /&gt;
+&lt;code&gt;# apt-get install tcl8.4 tk8.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets get the &lt;a href=&#34;http://git.or.cz/&#34;&gt;latest version&lt;/a&gt; of Git and install it&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://kernel.org/pub/software/scm/git/git-1.5.6.2.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar xzf git*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd git*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I cleaned up the install files after the install&lt;br /&gt;
+&lt;code&gt;# cd ..&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf git-1.5.6.2 git-1.5.6.2.tar.gz&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also want to make sure that I have all of the dependencies&lt;br /&gt;
+&lt;code&gt;# apt-get build-dep git-core&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also wanted to have image libraries at my finger tips when I wanted them, so
+I installed &lt;a href=&#34;http://www.imagemagick.org/script/index.php&#34;&gt;ImageMagick&lt;/a&gt; and
+&lt;a href=&#34;http://rmagick.rubyforge.org/&#34;&gt;RMagick&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get install imagemagick librmagick-ruby1.8 librmagick-ruby-doc
+libfreetype6-dev xml-core&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Next we are going to install &lt;a href=&#34;http://mongrel.rubyforge.org/&#34;&gt;Mongrel&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mongrel&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And then &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel Cluster&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mongrel_cluster&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Get the machine ready for the &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt;
+install&lt;br /&gt;
+&lt;code&gt;# apt-get install zlib1g-dev libgcrypt11-dev libpcre3-dev libssl-dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install NginX and friends&lt;br /&gt;
+&lt;code&gt;# apt-get install libpcre3 nginx libfcgi-dev libfcgi-ruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It is worth noting here that I am using
+&lt;a href=&#34;http://www.parallels.com/en/virtuozzo/&#34;&gt;Virtuozzo&lt;/a&gt;. At this point I cloned my
+machine and will be doing the Mongrel and Rails specific configuration on my
+cloned machine for easy Rails deployment.&lt;/p&gt;
+
+&lt;p&gt;I now need to get my Rails source code on my machine. Since I am using
+&lt;a href=&#34;https://github.com/&#34;&gt;github&lt;/a&gt;, I need to set up my server and github so they
+can talk to each other. This is done through an ssh key. The ssh keys reside
+in &lt;code&gt;~/.ssh/&lt;/code&gt;. If you do not have that directory, simply ssh from that machine
+into another machine and when it asks, add the machine as a &lt;code&gt;know_hosts&lt;/code&gt; and
+it will create the directory for you.&lt;br /&gt;
+&lt;code&gt;# cd ~/.ssh/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ls&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you already have &lt;code&gt;id_rsa.pub&lt;/code&gt; and &lt;code&gt;id_rsa&lt;/code&gt; in that directory, skip this
+step, otherwise create that key.&lt;br /&gt;
+&lt;code&gt;# ssh-keygen -t rsa&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Follow the instructions on screen (&lt;code&gt;,&lt;/code&gt;, ``).&lt;/p&gt;
+
+&lt;p&gt;Now log into github and under &amp;lsquo;account&amp;rsquo;, copy in the result of the following
+command into the Public Keys section (make sure not to have any new line
+characters when you copy and paste).&lt;br /&gt;
+&lt;code&gt;# cat id_rsa.pub&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that my server and github can talk to each other, I am going to create a
+directory for my &lt;code&gt;projects&lt;/code&gt; and move into it.&lt;br /&gt;
+&lt;code&gt;# mkdir ~/projects&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/projects/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that I have github setup with my machine I need to grab my code.&lt;br /&gt;
+&lt;code&gt;# git clone git@github.com:my_username/myproject.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Configure your Rails app now. Stuff like setting up your database and
+configuring Rails to work with them&amp;hellip; (&lt;code&gt;config/database.yml&lt;/code&gt;, etc&amp;hellip;)&lt;br /&gt;
+Note: Since you are using Debian, you may have to specify the socket in
+config/database.yml to be: &lt;code&gt;socket: /var/run/mysqld/mysqld.sock&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that my Rails app is configured, I need to configure the server
+environment. First I am going to configure Mongrel Cluster.&lt;br /&gt;
+&lt;code&gt;# cp
+/usr/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/resources/mongrel_cluster
+/etc/init.d/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# vi /etc/init.d/mongrel_cluster&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Add the following just above the CONF_DIR variable.&lt;br /&gt;
+&lt;code&gt;PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local:/usr/local/sbin:/usr/local/bin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also changed the user to:&lt;br /&gt;
+&lt;code&gt;USER=www-data&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up Mongrel Cluster to start at startup.&lt;br /&gt;
+&lt;code&gt;# chmod +x /etc/init.d/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# update-rc.d mongrel_cluster defaults&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I need to set up the Mongrel Cluster correctly.&lt;br /&gt;
+&lt;code&gt;# mongrel_rails cluster::configure -e production -p 8000 -N 3 -c
+~/projects/myproject -a 127.0.0.1 --user www-data --group www-data&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It should create a config file that looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;\--- 
+cwd: /root/projects/myproject
+port: 8000
+environment: production
+group: www-data
+user: www-data
+address: 127.0.0.1
+pid_file: log/mongrel.pid
+servers: 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Putting the config for Mongrel Cluster in /etc like the rest of the config
+files.&lt;br /&gt;
+&lt;code&gt;# mkdir /etc/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd /etc/mongrel_cluster/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s ~/projects/myproject/config/mongrel_cluster.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the last thing we need to do is configure NginX. I have attached a sample
+config file that handles one rails app and phpmyadmin. Back up your current
+config (&lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt;) file before you mess with it.&lt;/p&gt;
+
+&lt;p&gt;Make sure that you change the ownership of your Rails app to www-data so it
+will run.&lt;br /&gt;
+&lt;code&gt;# chown -R www-data:www-data ~/projects/myproject&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;As a final set to make sure that everything is working, you need to restart
+everything.&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/mongrel_cluster stop&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/mongrel_cluster start&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/nginx stop&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/nginx start&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;1.&lt;/strong&gt;&lt;br /&gt;
+On my machine I was having problems with locales being wrong. Basically I was
+getting this problem every time I did &amp;lsquo;apt-get install&amp;rsquo;.&lt;br /&gt;
+&lt;code&gt;perl: warning: Setting locale failed.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;perl: warning: Please check that your locale settings:&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LANGUAGE = (unset),&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LC_ALL = (unset),&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LANG = &amp;quot;en_CA.UTF-8&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;are supported and installed on your system.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;perl: warning: Falling back to the standard locale (&amp;quot;C&amp;quot;).&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to solve this on my machine I did the following and then followed the
+on screen instructions.&lt;br /&gt;
+&lt;code&gt;# dpkg-reconfigure locales&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt;&lt;br /&gt;
+My system already had MySQL installed, but in my production.log file I was
+getting warnings that I was using the built in Rails MySQL something-or-other
+and that it was not safe to be used in production. They wanted you to install
+the MySQL C Ruby Bindings. This is how I was able to do it (ignore the NginX
+error it gives at the end and just restart NginX after).&lt;br /&gt;
+&lt;code&gt;# apt-get install libmysqlclient15-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mysql -- --with-mysql-config=/usr/bin/mysql_config&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://www.rubynaut.net/articles/2007/09/23/nginx-and-mongrel-cluster-on-debian&#34;&gt;Nginx and Mongrel cluster on debian&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://rubyjudo.com/2006/8/27/nginx-yet-another-rails-deployment-option&#34;&gt;nginx, Yet Another Rails Deployment Option&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://brainspl.at/rails_stack.html&#34;&gt;The Perfect Rails/Debian/Lighttpd Stack&amp;hellip;&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://blog.7thcross.com/?p=20&#34;&gt;Git repo failing on submodule in debian&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://www.urbanpuddle.com/articles/2008/04/28/install-ruby-on-rails-hardy-heron&#34;&gt;Install Ruby on Rails on Ubuntu Hardy Heron 8.04&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Attachement: &lt;a href=&#34;http://www.swillops.com/files/nginx.conf&#34;&gt;nginx.conf&lt;/a&gt; 2.69 KB&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Drupal Clean Urls on Debian LAMP Stack</title>
+      <link>http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</link>
+      <pubDate>Wed, 18 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</guid>
+      <description>&lt;p&gt;Clean Urls did not work out of the box for me when I installed
+&lt;a href=&#34;http://drupal.org/&#34;&gt;Drupal&lt;/a&gt; on a fresh install of
+&lt;a href=&#34;http://www.debian.org/&#34;&gt;Debian&lt;/a&gt;. These are the easy steps for setting them
+up.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Enable mod_rewrite:&lt;/strong&gt;&lt;br /&gt;
+You need to enable the rewrite module so Apache can do the rewrite. On Debian
+you can issue the following command to do this.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ a2enmod rewrite&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Note: If you are on a different Linux operating system you can basically do
+the same thing with the following code (the path might be slightly different).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ cd /etc/apache2/mods-enabled&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;$ sudo ln -s ../mods-available/rewrite.load rewrite.load&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Allow Apache to rewrite:&lt;/strong&gt;&lt;br /&gt;
+Now that rewrite is enabled, you need to allow Apache to rewrite the urls in
+the web root (my web root is &amp;lsquo;/var/www/&amp;rsquo;). Use your favorite editor and edit
+the following file (I use vi). You want to change the &lt;strong&gt;AllowOverride&lt;/strong&gt; of
+your Apache web root from &lt;strong&gt;None&lt;/strong&gt; to &lt;strong&gt;All&lt;/strong&gt; (I am assuming you are
+installing Drupal in the web root).&lt;/p&gt;
+
+&lt;p&gt;Edit the file: &lt;code&gt;$ vi /etc/apache2/sites-available/default&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Change the AllowOverride to All:&lt;br /&gt;
+&lt;code&gt;... stuff here ...&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;AllowOverride All&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;... stuff here ...&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now just restart the Apache server and you are good to go&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;$ /etc/init.d/apache2 force-reload&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

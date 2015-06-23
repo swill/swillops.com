@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ror on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/ror/</link>
+    <description>Recent content in Ror on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 May 2007 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/ror/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Build it or just put it together???</title>
+      <link>http://localhost:1313/swillops.com/blog/build-it-or-just-put-it-together/</link>
+      <pubDate>Sat, 26 May 2007 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/build-it-or-just-put-it-together/</guid>
+      <description>&lt;p&gt;If your company is looking to update your online feature set, but don&amp;rsquo;t have
+the technical expertise to do it your self, there are a lot of new options
+that are tailored just for you. The price tag associated with getting a
+professional looking and feature complete website online has always been a
+major deterrent. If your company does not have a technical department up for
+the challenge, it can be difficult to put together a manageable solution that
+suits your needs and does not cost a fortune.&lt;/p&gt;
+
+&lt;p&gt;There have been a couple things of late that are changing this situation a
+bit. Content management systems (CMS) such as Drupal are becoming very viable
+solutions without a lot of technical overhead or financial investment. Another
+major player in this context is the relatively new Ruby on Rails framework
+which has been making waves due to its reduced development commitment, which
+in turn can reduce the cost of a very finely tuned solution. Both of these
+options can easily be considered if you are in the process of researching how
+to upgrade your online presence. In this article I am going to quickly discuss
+some of the pros and cons that come with both of these options, but it is also
+important to point out that these two are not your only options and you should
+still do a lot of research when making a big decision like this. Drupal is
+currently my favorite CMS system, but to name a few more there is Joomla,
+SimpleCMS, Typo3 and Expression Engine. Also, for fast and effective
+development, Ruby on Rails is not without competition either. CodeIgniter is a
+PHP development environment that has some very similar blood in its veins.&lt;/p&gt;
+
+&lt;p&gt;So what solution is right for you? If I could just write an article that
+answered that for everyone I would be a very rich man. Unfortunately I am not
+an oracle, so this answer has to be sought after through research and sound
+technical advice. The long and the short of it really comes down to your
+business. How do you operate? What is your budget? How often does your site
+change? Who adds or updates content?&lt;/p&gt;
+
+&lt;p&gt;Ruby on Rails (RoR) is a framework build on the powerful dynamic language of
+Ruby. It caters to a small code base that complies very well with many best
+practices in the industry. It is very good for fast agile development due to
+its great separation of code along with many built in generators. RoR has also
+integrated an Object-Relational Mapping (ORM) which completely removes SQL
+queries from the code. What this does is create a mapping between the objects
+and the relational database. This removes a lot of your database worries
+because it means you can just write information to your objects and the
+framework will automagically build and maintain the associated database. This
+also makes implementing, moving, migrating or scaling your applications very
+easy. RoR also has a built in test environment and automatically generates an
+API for your application.&lt;/p&gt;
+
+&lt;p&gt;Since this is not meant to be a technical review, it suffices to say that Ruby
+on Rails is a great development environment and can reduce development time by
+30 to 50 percent. This allows companies to build solutions with this framework
+for a much more realistic price tag. You are also laying a solid foundation
+for your web application with features such as an API, a test environment,
+seamless integration of web services and much more. This type of solution
+caters to technical companies who have some internal resources to throw at the
+project, a company that has the budget to hire a developer on a contract basis
+or a company that will be integrating a lot of web services and needs a basis
+for a mashup.&lt;/p&gt;
+
+&lt;p&gt;Obviously RoR has a lot going for it and it can be the perfect solution for a
+large number of companies, but the truth of the matter is that you are still
+building everything. The developers have to have solid foresight to build
+everything in the ideal way for the company and must also be available when
+you want to extend your application as your company grows or you want to chart
+new territory on the web. This brings me to what I was actually sitting down
+to write this article about; Drupal&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Drupal is a freely available open source CMS that has recently started to
+generate a bit of a buzz. Drupal is built on PHP with the intent of being
+totally modular and is expected to be extended through pluggable modules.
+Since I know I am going to be writing more about the inner workings of Drupal
+over the next little while, I will approach this one from a higher level at
+this point.&lt;/p&gt;
+
+&lt;p&gt;CMS systems have gotten a bit of a bad wrap because many of them try to
+implement everything you could ever want, but have problems giving you control
+over it through an understandable interface. Drupal is a bit different because
+it&amp;rsquo;s base install is relatively minimal and you then add what you need from a
+long list of official or community made modules. You are able to get a working
+version of your site up in a few minutes with user access control, the ability
+to create and manage content as well as many other features such as a blog,
+forum and internal messaging. You can completely customize the look and feel
+of the site using templates that are easy to create or can be downloaded for
+free from the drupal.org site. Because Drupal is free and open source there is
+a large community of people who actively contribute modules, themes, ideas and
+feedback if you are having problems.&lt;/p&gt;
+
+&lt;p&gt;So is a Drupal solution right for you? It is very possible that it could be.
+With the startup cost being the price of a domain, hosting and a couple days
+with a consultant you could be on your way to a successful online venture.
+Drupal allows you to update and maintain your entire site your self without
+having to work with a developer every time you want to make a change. This
+allows you more flexibility at the start of the project and does not force you
+to make expensive decisions now when you don&amp;rsquo;t have all the information you
+need. Drupal allows your web presence to evolve as your company does without
+forcing you to sink money into it, which is the case with many custom built
+applications. Drupal is ideal for companies who know they need an online
+presence but may not fully understand what to expect from an online venture.
+It is also very good if you have content that is contributed by many people or
+if you have content that changes on a regular basis. Drupal is great for
+startups because of its low cost overhead and flexibility.&lt;/p&gt;
+
+&lt;p&gt;When making a decision like this you will need to do a lot of research. You
+may want to contact consultants for a few different options and play them
+against each other to get a feel for what they all have to offer and how their
+solution will align with your business. If you are going to hire a consultant
+or contract out development work, make sure that you are working with someone
+who understands your business and future goals. Remember that this person is
+going to be implementing your vision, so if they can&amp;rsquo;t see things the same way
+as you then you are guaranteed to be disappointed with their result. Take your
+time in the planning process and don&amp;rsquo;t force it. There is an ideal solution to
+your problems, you just need to find the right people to help you realize it.
+A bad solution is only slightly better than no solution.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

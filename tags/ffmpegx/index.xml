@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ffmpegx on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/ffmpegx/</link>
+    <description>Recent content in Ffmpegx on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 19 Jun 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/ffmpegx/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>HowTo: Rip audio from a YouTube video</title>
+      <link>http://localhost:1313/swillops.com/blog/howto-rip-audio-youtube-video/</link>
+      <pubDate>Thu, 19 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/howto-rip-audio-youtube-video/</guid>
+      <description>&lt;p&gt;I was asked recently if there was a way to extract the audio from a
+&lt;a href=&#34;http://www.youtube.com/&#34;&gt;YouTube&lt;/a&gt; video to an mp3 on a Mac. This is an
+explanation of how I ripped the attached mp3 from this video&amp;hellip;&lt;/p&gt;
+
+&lt;iframe src=&#34;http://www.youtube.com/embed/uyneyH3bA14?rel=1&amp;amp;autoplay=0&#34; width=&#34;400&#34; height=&#34;250&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;  
+
+&lt;p&gt;In order to do any sort of ripping or extraction, you need a source file. This
+means that we need a way to get the YouTube video on our computer. To do this
+we are going to go to &lt;a href=&#34;http://www.techcrunch.com/get-youtube-
+movie/&#34;&gt;this page&lt;/a&gt; and enter the URL for the video
+(&lt;a href=&#34;http://www.youtube.com/watch?v=Mlsiw5lmEzw&#34;&gt;http://www.youtube.com/watch?v=Mlsiw5lmEzw&lt;/a&gt;). When you click &amp;ldquo;Get Video&amp;rdquo; it
+will begin the download of the video to the file &lt;code&gt;get_video&lt;/code&gt;. This file is an
+flv file, but it downloaded without an extension. If you want to watch it, you
+will have to rename it to &lt;code&gt;get_video.flv&lt;/code&gt; and open it with your favorite media
+player (mine is &lt;a href=&#34;http://www.videolan.org/&#34;&gt;VLC&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Now that you have the source video, you need to extract the audio to an mp3.
+This process is called
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Transcoding&#34;&gt;transcoding&lt;/a&gt;, and there are lots of
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Mencoder&#34;&gt;tools&lt;/a&gt; &lt;a href=&#34;http://en.wikipedia.org/wiki/Ffmpeg&#34;&gt;for
+this&lt;/a&gt;. The simplest and easiest to use on
+a Mac is &lt;a href=&#34;http://www.ffmpegx.com/&#34;&gt;ffmpegx&lt;/a&gt;. &lt;a href=&#34;http://www.ffmpegx.com/download.html&#34;&gt;Download and
+install&lt;/a&gt; following the instructions on
+screen.&lt;br /&gt;
+Note: I put the files in &amp;lsquo;/Users/will/Library/Application Support/ffmpegx&amp;rsquo;. I
+created the ffmpegx directory and put them in it and then located them
+there&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Once ffmpegx is installed, drop the &lt;code&gt;get_video&lt;/code&gt; file on the window where it
+says &amp;ldquo;Drop file here&amp;rdquo;. Now on the right where it says &amp;ldquo;To&amp;rdquo; select &amp;ldquo;Audio file
+to mp3&amp;rdquo;. Click on &amp;ldquo;Encode&amp;rdquo;&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;It will then output the mp3 file &lt;code&gt;get_video.ff.mp3&lt;/code&gt; and you are now the proud
+owner of the soundtrack to the YouTube video&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Attachment: &lt;a href=&#34;http://www.swillops.com/files/get_video.ff.mp3&#34;&gt;get_video.ff.mp3&lt;/a&gt; 2.69 MB&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

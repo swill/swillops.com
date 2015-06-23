@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/nginx/</link>
+    <description>Recent content in Nginx on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Jul 2008 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Debian Rails Stack - NginX and Mongrel</title>
+      <link>http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</link>
+      <pubDate>Wed, 09 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</guid>
+      <description>&lt;p&gt;If you are reading this it is because you already know that you want a Rails
+setup on a Debian server with &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt; in
+front of a &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel
+Cluster&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;These are the steps I used to completely set up my server&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;The machine I started with had an existing Debian install and also had Apache2
+and MySQL installed.&lt;/p&gt;
+
+&lt;p&gt;Note: I am assuming you are working as root on your machine. If not you will
+have to do &lt;code&gt;sudo&lt;/code&gt; in front of all of the following commands.&lt;/p&gt;
+
+&lt;p&gt;Make sure that your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; is up to date and then update your
+repositories and installed packages.&lt;br /&gt;
+&lt;code&gt;# apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get upgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Remove all Apache instances&lt;br /&gt;
+&lt;code&gt;# dpkg --purge apache apache2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install Ruby and its friends&lt;br /&gt;
+&lt;code&gt;# apt-get install ruby1.8-dev ruby1.8 ri1.8 rdoc1.8 irb1.8 libreadline-
+ruby1.8 libruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I am also using SSL, so I need to install the ruby ssl libraries.&lt;br /&gt;
+&lt;code&gt;# apt-get install libopenssl-ruby libopenssl-ruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Setup symlinks for Ruby and its friends&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/ruby1.8 /usr/local/bin/ruby&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/ri1.8 /usr/local/bin/ri&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/rdoc1.8 /usr/local/bin/rdoc&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/irb1.8 /usr/local/bin/irb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install GCC, G++ and Make so you can compile code&lt;br /&gt;
+&lt;code&gt;# apt-get install gcc g++ make&lt;/code&gt;``&lt;/p&gt;
+
+&lt;p&gt;Get the most recent version of RubyGems (&lt;a href=&#34;http://rubyforge.org/frs/?group_id=126&#34;&gt;check for current
+version&lt;/a&gt;)&lt;br /&gt;
+&lt;code&gt;# wget http://rubyforge.org/frs/download.php/38646/rubygems-1.2.0.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar xvzf rubygems*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd rubygems*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ruby setup.rb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I cleaned up the install files after the install&lt;br /&gt;
+&lt;code&gt;# cd ..&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf rubygems-1.2.0 rubygems-1.2.0.tgz&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up a symlink for the Gem command&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/gem1.8 /usr/local/bin/gem&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we need to install &lt;a href=&#34;http://www.rubyonrails.org/&#34;&gt;Rails&lt;/a&gt; in all its glory&lt;br /&gt;
+&lt;code&gt;# gem install rails --include-dependencies&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I use &lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; for source code management, so I need to
+install it. I also use submodules and the code in Debian&amp;rsquo;s repository does not
+support it, so I need to install it from source.&lt;/p&gt;
+
+&lt;p&gt;In order to make sure that Git will actually make, we have to do a little
+setup work.&lt;br /&gt;
+&lt;code&gt;# apt-get install tcl8.4 tk8.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets get the &lt;a href=&#34;http://git.or.cz/&#34;&gt;latest version&lt;/a&gt; of Git and install it&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://kernel.org/pub/software/scm/git/git-1.5.6.2.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar xzf git*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd git*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I cleaned up the install files after the install&lt;br /&gt;
+&lt;code&gt;# cd ..&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf git-1.5.6.2 git-1.5.6.2.tar.gz&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also want to make sure that I have all of the dependencies&lt;br /&gt;
+&lt;code&gt;# apt-get build-dep git-core&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also wanted to have image libraries at my finger tips when I wanted them, so
+I installed &lt;a href=&#34;http://www.imagemagick.org/script/index.php&#34;&gt;ImageMagick&lt;/a&gt; and
+&lt;a href=&#34;http://rmagick.rubyforge.org/&#34;&gt;RMagick&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get install imagemagick librmagick-ruby1.8 librmagick-ruby-doc
+libfreetype6-dev xml-core&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Next we are going to install &lt;a href=&#34;http://mongrel.rubyforge.org/&#34;&gt;Mongrel&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mongrel&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And then &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel Cluster&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mongrel_cluster&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Get the machine ready for the &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt;
+install&lt;br /&gt;
+&lt;code&gt;# apt-get install zlib1g-dev libgcrypt11-dev libpcre3-dev libssl-dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install NginX and friends&lt;br /&gt;
+&lt;code&gt;# apt-get install libpcre3 nginx libfcgi-dev libfcgi-ruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It is worth noting here that I am using
+&lt;a href=&#34;http://www.parallels.com/en/virtuozzo/&#34;&gt;Virtuozzo&lt;/a&gt;. At this point I cloned my
+machine and will be doing the Mongrel and Rails specific configuration on my
+cloned machine for easy Rails deployment.&lt;/p&gt;
+
+&lt;p&gt;I now need to get my Rails source code on my machine. Since I am using
+&lt;a href=&#34;https://github.com/&#34;&gt;github&lt;/a&gt;, I need to set up my server and github so they
+can talk to each other. This is done through an ssh key. The ssh keys reside
+in &lt;code&gt;~/.ssh/&lt;/code&gt;. If you do not have that directory, simply ssh from that machine
+into another machine and when it asks, add the machine as a &lt;code&gt;know_hosts&lt;/code&gt; and
+it will create the directory for you.&lt;br /&gt;
+&lt;code&gt;# cd ~/.ssh/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ls&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you already have &lt;code&gt;id_rsa.pub&lt;/code&gt; and &lt;code&gt;id_rsa&lt;/code&gt; in that directory, skip this
+step, otherwise create that key.&lt;br /&gt;
+&lt;code&gt;# ssh-keygen -t rsa&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Follow the instructions on screen (&lt;code&gt;,&lt;/code&gt;, ``).&lt;/p&gt;
+
+&lt;p&gt;Now log into github and under &amp;lsquo;account&amp;rsquo;, copy in the result of the following
+command into the Public Keys section (make sure not to have any new line
+characters when you copy and paste).&lt;br /&gt;
+&lt;code&gt;# cat id_rsa.pub&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that my server and github can talk to each other, I am going to create a
+directory for my &lt;code&gt;projects&lt;/code&gt; and move into it.&lt;br /&gt;
+&lt;code&gt;# mkdir ~/projects&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/projects/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that I have github setup with my machine I need to grab my code.&lt;br /&gt;
+&lt;code&gt;# git clone git@github.com:my_username/myproject.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Configure your Rails app now. Stuff like setting up your database and
+configuring Rails to work with them&amp;hellip; (&lt;code&gt;config/database.yml&lt;/code&gt;, etc&amp;hellip;)&lt;br /&gt;
+Note: Since you are using Debian, you may have to specify the socket in
+config/database.yml to be: &lt;code&gt;socket: /var/run/mysqld/mysqld.sock&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that my Rails app is configured, I need to configure the server
+environment. First I am going to configure Mongrel Cluster.&lt;br /&gt;
+&lt;code&gt;# cp
+/usr/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/resources/mongrel_cluster
+/etc/init.d/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# vi /etc/init.d/mongrel_cluster&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Add the following just above the CONF_DIR variable.&lt;br /&gt;
+&lt;code&gt;PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local:/usr/local/sbin:/usr/local/bin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also changed the user to:&lt;br /&gt;
+&lt;code&gt;USER=www-data&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up Mongrel Cluster to start at startup.&lt;br /&gt;
+&lt;code&gt;# chmod +x /etc/init.d/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# update-rc.d mongrel_cluster defaults&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I need to set up the Mongrel Cluster correctly.&lt;br /&gt;
+&lt;code&gt;# mongrel_rails cluster::configure -e production -p 8000 -N 3 -c
+~/projects/myproject -a 127.0.0.1 --user www-data --group www-data&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It should create a config file that looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;\--- 
+cwd: /root/projects/myproject
+port: 8000
+environment: production
+group: www-data
+user: www-data
+address: 127.0.0.1
+pid_file: log/mongrel.pid
+servers: 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Putting the config for Mongrel Cluster in /etc like the rest of the config
+files.&lt;br /&gt;
+&lt;code&gt;# mkdir /etc/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd /etc/mongrel_cluster/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s ~/projects/myproject/config/mongrel_cluster.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the last thing we need to do is configure NginX. I have attached a sample
+config file that handles one rails app and phpmyadmin. Back up your current
+config (&lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt;) file before you mess with it.&lt;/p&gt;
+
+&lt;p&gt;Make sure that you change the ownership of your Rails app to www-data so it
+will run.&lt;br /&gt;
+&lt;code&gt;# chown -R www-data:www-data ~/projects/myproject&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;As a final set to make sure that everything is working, you need to restart
+everything.&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/mongrel_cluster stop&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/mongrel_cluster start&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/nginx stop&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/nginx start&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;1.&lt;/strong&gt;&lt;br /&gt;
+On my machine I was having problems with locales being wrong. Basically I was
+getting this problem every time I did &amp;lsquo;apt-get install&amp;rsquo;.&lt;br /&gt;
+&lt;code&gt;perl: warning: Setting locale failed.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;perl: warning: Please check that your locale settings:&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LANGUAGE = (unset),&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LC_ALL = (unset),&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LANG = &amp;quot;en_CA.UTF-8&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;are supported and installed on your system.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;perl: warning: Falling back to the standard locale (&amp;quot;C&amp;quot;).&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to solve this on my machine I did the following and then followed the
+on screen instructions.&lt;br /&gt;
+&lt;code&gt;# dpkg-reconfigure locales&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt;&lt;br /&gt;
+My system already had MySQL installed, but in my production.log file I was
+getting warnings that I was using the built in Rails MySQL something-or-other
+and that it was not safe to be used in production. They wanted you to install
+the MySQL C Ruby Bindings. This is how I was able to do it (ignore the NginX
+error it gives at the end and just restart NginX after).&lt;br /&gt;
+&lt;code&gt;# apt-get install libmysqlclient15-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mysql -- --with-mysql-config=/usr/bin/mysql_config&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://www.rubynaut.net/articles/2007/09/23/nginx-and-mongrel-cluster-on-debian&#34;&gt;Nginx and Mongrel cluster on debian&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://rubyjudo.com/2006/8/27/nginx-yet-another-rails-deployment-option&#34;&gt;nginx, Yet Another Rails Deployment Option&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://brainspl.at/rails_stack.html&#34;&gt;The Perfect Rails/Debian/Lighttpd Stack&amp;hellip;&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://blog.7thcross.com/?p=20&#34;&gt;Git repo failing on submodule in debian&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://www.urbanpuddle.com/articles/2008/04/28/install-ruby-on-rails-hardy-heron&#34;&gt;Install Ruby on Rails on Ubuntu Hardy Heron 8.04&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Attachement: &lt;a href=&#34;http://www.swillops.com/files/nginx.conf&#34;&gt;nginx.conf&lt;/a&gt; 2.69 KB&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>SwillOps - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/index.xml" rel="alternate" type="application/rss+xml" title="SwillOps" />
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/">Hugo on gh-pages</a> <small class="pull-right">Posted on Jun 22, 2015</small><br>
+        <small>All the power of hugo.  All the convenience of gh-pages</small>
+    </h3>
+    <hr>
+    <p>This is not a hugo tutorial, so I will assume you have built something in hugo and you have run hugo server -w and can view the website locally. Your config.toml file will probably look something like this: baseurl = &quot;http://&lt;username&gt;.github.io/&lt;reponame&gt;/&quot; languageCode = &quot;en-us&quot; title = &quot;Website Title&quot; theme = &quot;your-theme&quot; canonifyurls = true Now you are ready to start working with gh-pages. # create the git repository to track your actual website on gh-pages $ cd public # or whatever your hugo 'publishdir' is set to $ git init # to create a git repo $ git add .</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/">Git branches to manage third party app customization</a> <small class="pull-right">Posted on Dec 26, 2012</small><br>
+        <small>Git branches to manage third party app customization</small>
+    </h3>
+    <hr>
+    <p>Preface: I have been using this technique to customize different types of third party projects for years. I originally wrote about it back in 2009 in this popular post regarding the management of customizations on top of the ever changing Drupal code base. That post is very long winded and overly technical for most people, this post will serve as an abridged version covering only the branching concept. The Problem: A third party has developed some code you would like to leverage, however, you require customizations to their code for your implementation.</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/">Redirect traffic from a wordpress site</a> <small class="pull-right">Posted on Jul 11, 2012</small><br>
+        <small>Redirect traffic from a wordpress site</small>
+    </h3>
+    <hr>
+    <p>The Problem: A wordpress site has depreciated and you want to redirect all of its traffic to a landing page on a new site. However, you want to explain why the site has been deprecated in the context of the old site. The Solution: You should explain to the user why they are being redirected, so create a page on the old wordpress site at some url, say: www.oldsite.com/we- moved On that new page (/we-moved), we want it to have a countdown and then redirect to the new landing page at, say: www.newsite.com/welcome- oldsite To do the redirect, put the following jQuery/javascript on the &lsquo;we-moved&rsquo; page: &lt;div&gt;Redirecting in &lt;span class=&quot;redirect-in&quot;&gt;20&lt;/span&gt; seconds...&lt;/div&gt; &lt;script type=&quot;text/javascript&quot;&gt; jQuery(document).ready(function($) { var countdown = setInterval(function(){ sec=parseInt($(&quot;.redirect-in&quot;).html()); if (sec != 0) { $(&quot;.redirect-in&quot;).html(sec-1); } else { // countdown is finished...</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/deploy-nodejs-on-cloudfoundry/">Deploy node.js on cloudfoundry.com</a> <small class="pull-right">Posted on Dec 14, 2011</small><br>
+        <small>Deploy node.js on cloudfoundry.com</small>
+    </h3>
+    <hr>
+    <p>Instructions to create a simple node.js app called node_app and then upload and run it on cloudfoundry.com. In order to use cloudfoundry.com, you need to sign up and have your account approved. Do that now because approval does not happen immediately. \--- We will first get our node.js app working locally. Download and install the latest node.js. Change directory to where your code lives and then do: mkdir node_app cd node_app Install the express package using the built in npm (node package manager).</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/deploy-nodejs-on-cloudfoundry/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/using-1and1-git-repository/">Using a 1and1 git repository</a> <small class="pull-right">Posted on Oct 3, 2011</small><br>
+        <small>Using a 1and1 git repository</small>
+    </h3>
+    <hr>
+    <p>On the 1and1 business accounts you can now use Git via SSH. Here is how&hellip; Setup your master FTP password (which will be used for SSH). SSH into your 1and1 account with (assuming example.com is on this account): ssh username@example.com mkdir repositories cd repositories git init --bare my_repo.git Now on your local machine you can clone this repository with: git clone ssh://username@example.com/~/repositories/my_repo.git Or to add 1and1 as a remote location</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/using-1and1-git-repository/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/">Secure push and pull with git-http-backend</a> <small class="pull-right">Posted on Sep 26, 2011</small><br>
+        <small>Secure push and pull with git-http-backend</small>
+    </h3>
+    <hr>
+    <p>I am setting up a new repository machine for my code. I will be setting it up with Active Directory later on, but I figured my basic setup would be a good starting point for most people. My new repo box is on CentOS. I installed Git on my server from the EPEL repository. All the commands in this tutorial will be done from sudo. I created a simple password file on my server using this command.</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/delete-remote-branch-git/">Delete a remote branch in Git</a> <small class="pull-right">Posted on Dec 17, 2010</small><br>
+        <small>Delete a remote branch in Git</small>
+    </h3>
+    <hr>
+    <p>I run into this all the time. I am typing too fast when I push code to my remote repository and I make a typo that creates a new branch in my remote repository. Correct: git push origin production:refs/heads/production Mistake: git push origin production:ref/heads/production Result: * [new branch] production -&gt; ref/heads/production Obviously I do not want this new branch on my remote server, so I want to remove it. You can remove this newly created branch with.</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/delete-remote-branch-git/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/editing-your-hosts-file-mac/">Editing your hosts file on a Mac</a> <small class="pull-right">Posted on Aug 12, 2010</small><br>
+        <small>Editing your hosts file on a Mac</small>
+    </h3>
+    <hr>
+    <p>This is a relatively common thing that I have to explain to clients. It is often difficult to walk someone through changing their hosts file on a Mac, so I figured I would share the way I do it. Open the Terminal: Applications &gt; Utilities &gt; Terminial Type the following and hit Enter: sudo open -e /etc/hosts This will open the hosts file in TextEdit. Make your changes and save&hellip;</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/editing-your-hosts-file-mac/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/">Apache, MySQL and PHP on Snow Leopard</a> <small class="pull-right">Posted on May 19, 2010</small><br>
+        <small>Apache, MySQL and PHP on Snow Leopard</small>
+    </h3>
+    <hr>
+    <p>Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of Drupal development, I can&rsquo;t actually use that version of PHP and I needed to downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup their AMP stack, so this is how I was able to get an acceptable one setup. Note: This method uses MacPorts, so you will need to install that first.</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+            <div class="well well-sm">
+    <h3>
+        <a href="http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/">Setting up a new UTF8 MySQL Database</a> <small class="pull-right">Posted on Jan 20, 2010</small><br>
+        <small>Setting up a new UTF8 MySQL Database</small>
+    </h3>
+    <hr>
+    <p>Create a UTF8 database: &gt; CREATE DATABASE db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci; Create a user for the database: &gt; CREATE USER 'user_name'@'localhost' IDENTIFIED BY 'user_pass'; Grant all privileges to the user: &gt; GRANT ALL PRIVILEGES ON *.* TO 'user_name'@'localhost' WITH GRANT OPTION; &gt; FLUSH PRIVILEGES; You should probably not give him all privileges on all databases, but you can change that as needed. If for some reason the IDENTIFIED BY clause did not work (you probably uses &lsquo;%&rsquo; instead of &lsquo;localhost&rsquo;), then do the following to fix that users password.</p>
+    <a class="btn btn-primary btn-xs" href="http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/">Read More <span class="fa fa-angle-double-right"></span></a>
+</div>
+        
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

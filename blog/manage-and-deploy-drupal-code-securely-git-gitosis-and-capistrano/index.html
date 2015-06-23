@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage and deploy Drupal code securely with Git, gitosis and Capistrano">
+    <meta name="author" content="Will Stevens"> 
+
+    <title>Manage and deploy Drupal code securely with Git, gitosis and Capistrano - http://localhost:1313/swillops.com/</title>
+    <link rel="canonical" href="http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/">
+    <link href="http://localhost:1313/swillops.com/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/highlight.css" rel="stylesheet">
+    <link href="http://localhost:1313/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
+    
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:1313/swillops.com/"><img src="http://localhost:1313/swillops.com/imgs/logo.png" /></a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="http://localhost:1313/swillops.com/blog/">Blog</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="post">
+                <h2>Manage and deploy Drupal code securely with Git, gitosis and Capistrano<br> <small>Manage and deploy Drupal code securely with Git, gitosis and Capistrano</small></h2>
+                <hr>
+                <p><strong>UPDATE 2:</strong> I have written a <a href="http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization">follow-up article</a> which simply covers the branching technique described in this post.</p>
+
+<p><strong>UPDATE:</strong> I am now using <a href="http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend">git-http-backend</a> instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.</p>
+
+<p>I have quite a few sites set up with Drupal and it has been working
+beautifully for me. However, with the fast turn over of Drupal code, I was
+having trouble keeping all of the sites up to date with the most current code
+releases. I needed to figure out how to manage my Drupal code in a way that
+allowed me to upgrade easily without stressing about what I might break. After
+a lot of research and trial and error, I have finally settled on the following
+setup.</p>
+
+<p>The main motivation for using Git is the painless branching and merging. I am
+using Capistrano cause it is easy to set up and work with.</p>
+
+<p>This post is meant to be a tutorial of sorts, but is more likely to be uses as
+a reference when setting up or changing your sites.</p>
+
+<p>What we will do (or need to do):</p>
+
+<ul>
+<li>Install Git on your local machine</li>
+<li>Install Git on your repository machine</li>
+<li>Install Git on your staging machine (optional)</li>
+<li>Install Git on your production machine</li>
+<li>Install gitosis on your repository machine</li>
+<li>Setup gitosis</li>
+<li>Setup your sites in Git and push to the repository machine</li>
+<li>Install and setup Capistrano</li>
+<li>Deploy your site to a staging machine (optional)</li>
+<li>Deploy your site to a production machine</li>
+</ul>
+
+<p><strong>Get the machines ready to do some real work&hellip;</strong><br />
+Install <a href="http://git-scm.com/">Git</a> on your local machine, repository machine
+and production machine (and the other machines as needed). This is easy
+enough, so I will not got into detail. If you have problems, you can checkout
+<a href="http://www.forwardthinkingdesign.com/category/tags/git">these articles</a>
+because I have gone into installation details there.</p>
+
+<p>Install gitosis on your Repository machine<br />
+<code>cd ~/src</code><br />
+<code>git clone git://eagain.net/gitosis.git</code><br />
+<code>cd gitosis</code><br />
+<code>python setup.py install</code></p>
+
+<p>If you get errors on the above line of code, then you will need to install
+<a href="http://pypi.python.org/pypi/setuptools">python-setuptools</a>.</p>
+
+<p>Now set up a user on your Repository machine that will be the one who owns the
+repositories. I use &lsquo;git&rsquo;.</p>
+
+<pre><code>sudo adduser \  
+  -system \  
+  -shell /bin/sh \  
+  -gecos 'git version control' \  
+  -group \  
+  -disabled-password \  
+  -home /home/git \  
+  git
+</code></pre>
+
+<p>Now you need to have an SSH Key set up on your local machine. If you don&rsquo;t
+have one, do this (on your local machine)&hellip;<br />
+<code>ssh-keygen -t rsa</code></p>
+
+<p>Assuming that you created the file <code>id_rsa.pub</code>, now you need to copy it to
+your Repository machine. I put mine in <code>/tmp/id_rsa.pub</code> so it is easy to
+access.</p>
+
+<p>Now initialize gitosis with that key (on the Repository machine).<br />
+<code>sudo -H -u git gitosis-init &lt; /tmp/id_rsa.pub</code></p>
+
+<p>Make sure that <code>post-update</code> is set to executable.<br />
+<code>sudo chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update</code></p>
+
+<p>To set up the gitosis admin on your local machine.<br />
+<em>(Everything from here on is on your local machine&hellip;)</em><br />
+Note: <code>cd</code> into the directory you want your code to live first.<br />
+<code>git clone git@YOUR_REPOSITORY_MACHINE:gitosis-admin.git</code><br />
+<code>cd gitosis-admin</code></p>
+
+<p>Setup the admin for the repositories.<br />
+Open the file <code>gitosis.conf</code> and make sure it has the following for the admin
+setup.</p>
+
+<pre><code>[gitosis]  
+[group gitosis-admin]  
+writable = gitosis-admin  
+members = youruser@machine
+</code></pre>
+
+<p>(youruser@machine is going to be taken from your <code>id_rsa.pub</code> file. it will be
+the last piece of that file and will look something like: hzvu4nTtw3Q==
+youruser@machine)</p>
+
+<p><strong>UPDATE:</strong> I have had some problems with this method of specifying a user. What I do now, which seems to work, is make sure that my .pub files have unique names when I create them (eg: __ which could be something like, forwardthinkingdesign_prod_root) and I use the filename in the &lsquo;members&rsquo; section.</p>
+
+<p><strong>Setup and manage your repositories&hellip;</strong><br />
+Also in <code>gitosis.conf</code> add your project (your_project in this example).</p>
+
+<pre><code>[group yourteam]  
+members = youruser@machine  
+writable = your_project
+</code></pre>
+
+<p>Push this updated configuration to the server.<br />
+(you will probably have to add the appropriate files to be committed with &lsquo;git
+add&rsquo;. when you have more than one project, you will have more files here that
+will be untracked.)<br />
+<code>git commit -a -m &quot;Allow youruser@machine write access to your_project&quot;</code><br />
+<code>git push</code></p>
+
+<p>Now you are going to actually create <code>your_project</code> and push it to the gitosis
+repository.<br />
+<code>mkdir your_project</code><br />
+<code>cd your_project</code><br />
+<code>git init</code><br />
+<code>git remote add origin git@REPOSITORY_MACHINE:your_project.git</code></p>
+
+<p>At this point you need to setup the how you are going to manage your Drupal
+code. You can put it all in one branch with <code>git push origin
+master:refs/heads/master</code>, but I would NOT recommend this.</p>
+
+<p><strong>The Git setup I recommend for managing Drupal projects.</strong><br />
+Create a branch <code>drupal</code> just for the Drupal code. You never make changes to
+this branch other than upgrading to newer versions of Drupal. Git created a
+<code>master</code> branch when you did <code>git init</code> and since Git does not like you trying
+to branch from it without doing any &lsquo;real work&rsquo;, we are going to add to the
+<code>master</code> branch and then rename it to <code>drupal</code> before we add it to the
+repository machine.</p>
+
+<p><code>tar xvzf drupal-6.x.tar.gz</code><br />
+<code>rm -rf drupal-6.x.tar.gz</code><br />
+<code>mv drupal-6.x drupal</code></p>
+
+<p>I also add a <code>.gitignore</code> file to this base <code>drupal</code> branch so I do not have
+to worry about stuff I do not want getting into my repository.</p>
+
+<p>Create a <code>.gitignore</code> file in the root of your repository and add the
+following lines to it.<br />
+<code>.DS_Store</code><br />
+<code>drupal/sites/default/files/</code><br />
+<code>Capfile</code><br />
+<code>config/deploy.rb</code></p>
+
+<p>Explanation of ignores:<br />
+<em>.DS_Store</em> -&gt; This is because I am on a Mac and it creates these files all
+over the place. They should not be in my repository.<br />
+<em>drupal/sites/default/files/</em> -&gt; This is because I run a local server on my
+machine that needs the &lsquo;files&rsquo; directory, but I do not want to track the
+&lsquo;files&rsquo; directory in my repo. (this may also be <em>drupal/files/</em> depending on
+what version of drupal you are on.)<br />
+<em>Capfile</em> -&gt; We have not gotten this far, but this is for Capistrano.<br />
+<em>config/deploy.rb</em> -&gt; Again, this is for Capistrano.</p>
+
+<p>Now add and commit these changes.<br />
+<code>git add .</code><br />
+<code>git commit -a -m &quot;Initial Drupal commit&quot;</code></p>
+
+<p>Rename the <code>master</code> branch to our <code>drupal</code> branch.<br />
+<code>git branch -m master drupal</code></p>
+
+<p>We now have the <code>drupal</code> branch up to date on our local machine. Lets push it
+to the repository server.<br />
+<code>git push origin drupal:refs/heads/drupal</code></p>
+
+<p>From the <code>drupal</code> branch we want to create a <code>modules</code> branch that will be
+used to manage all of the unmodified contributed modules. This should only be
+the module code that you get from drupal.org. You do not modify any of the
+code in this branch, just upgrade the modules when needed.</p>
+
+<p>You need to make sure you are on the <code>drupal</code> branch and then you will create
+a <code>modules</code> branch. Once there you will add all your modules to the <code>modules</code>
+branch.<br />
+<code>git checkout drupal</code><br />
+<code>git checkout -b modules</code><br />
+<code>cd drupal/sites/all</code><br />
+<code>mkdir modules</code><br />
+<code>cd modules</code><br />
+<code>tar xzvf yourmodule.tar.gz</code><br />
+<code>rm -rf yourmodule.tar.gz</code><br />
+<code>... (repeat for all your modules) ...</code><br />
+<code>git add .</code><br />
+<code>git commit -a -m &quot;Initial add of all of my sites modules&quot;</code><br />
+(i also track my themes that are not modified in this branch)</p>
+
+<p>When you are done adding all of your modules then you will want to push the
+<code>modules</code> branch to the repository machine.<br />
+<code>git push origin modules:refs/heads/modules</code></p>
+
+<p>Now you should have all of the base modules (and themes) tracked in your
+repository. At this point you want a branch where you can do all your
+modifications that are custom to your site. I track all my custom site
+specific modules, custom site specific themes and all of my module and core
+hacks in this branch. I call this branch <code>production</code> since it is what I push
+out to my staging and production machines.</p>
+
+<p>Lets create the <code>production</code> branch and add our site specific stuff (including
+drupal/sites/default/settings.php).<br />
+<code>git checkout modules</code><br />
+<code>git checkout -b production</code><br />
+<code># make all of your changes that are custom to the site.</code><br />
+<code>git add .</code><br />
+<code>git commit -a -m &quot;Initial add of all of my site specific
+hacks/modules/themes/etc...&quot;</code></p>
+
+<p>Now lets push this branch to the repository machine.<br />
+<code>git push origin production:refs/heads/production</code></p>
+
+<p><strong>Updating to a new version of Drupal (or updating modules)</strong><br />
+This is where the real power of Git comes in and this is why I use this
+method.</p>
+
+<p>When upgrading the Drupal core, we only want to change the <code>drupal</code> branch
+because that is where the Drupal core is stored.<br />
+Checkout the <code>drupal</code> branch and once there we are going to replace the
+current version of Drupal with a new version.<br />
+<code>git checkout drupal</code><br />
+<code>rm -rf drupal</code><br />
+<code>tar xvzf drupal-6.xx.tar.gz</code><br />
+<code>rm -rf drupal-6.xx.tar.gz</code><br />
+<code>mv drupal-6.xx drupal</code></p>
+
+<p>Now lets update the local repository and then push it to the repository
+machine.<br />
+<code>git add .</code><br />
+<code>git commit -a -m &quot;Drupal 6.xx update&quot;</code><br />
+<code>git push origin drupal:refs/heads/drupal</code></p>
+
+<p>We have to propagate this change up through our other branches, so we will
+pull these changes into the <code>modules</code> branch and then commit and push it to
+the repository machine.<br />
+<code>git checkout modules</code><br />
+<code>git pull . drupal</code><br />
+<code>git push origin modules:refs/heads/modules</code></p>
+
+<p>And likewise for the <code>production</code> branch.<br />
+<code>git checkout production</code><br />
+<code>git pull . modules</code><br />
+<code>git push origin production:refs/heads/production</code></p>
+
+<p>Now all of your code is up to date on your local machine as well as your
+repository machine. You can update the <code>modules</code> branch just the same my
+downloading newer versions of the modules code and just update the <code>modules</code>
+and then the <code>production</code> branches.</p>
+
+<p><strong>Deploying your code to the staging and production machines</strong><br />
+At this point some people may choose to just copy and paste the code from
+their repository to their staging/production machines. As a simple solution,
+that is not too bad, but I want a more elegant method for deploying. For this
+I use Capistrano. Capistrano is built on Ruby and is very popular with Ruby on
+Rails developers. In order for it to work nicely with PHP and Drupal, we need
+to create our own <code>config/deploy.rb</code> file. Luckily for you, I have already
+done this and you can find it attached at the end of this article. Lets get
+started&hellip;</p>
+
+<p><strong>Setup your remote machines with permission to access your repository</strong><br />
+In order for you staging and production machines to be allowed to access your
+repository machine to get the latest code, you need to setup an rsa key for
+each of them. Do the following on all the machines that need to access the
+repository (staging and production).<br />
+<code>ssh YOUR_USER@REMOTE_MACHINE</code><br />
+<code>ssh-keygen -t rsa</code> -&gt; Be sure to create it with a unique name (example:
+&lsquo;staging&rsquo;)</p>
+
+<p>Copy the <code>staging.pub</code> file from REMOTE_MACHINE to your local machine and
+place it in the <code>gitosis-admin/keydir</code> folder. You need to edit the <code>gitosis-
+admin/gitosis.conf</code> file and add the user from your REMOTE_MACHINE in the
+appropriate section as we did before.</p>
+
+<p>Example (added the bold):</p>
+
+<pre><code>[group yourteam]  
+members = youruser@machine **remoteuser@remotemachine**  
+writable = your_project
+</code></pre>
+
+<p>Now add, commit and push the changes to the repository machine (needs to be
+done from inside the <code>gitosis-admin</code> directory).<br />
+<code>git add gitosis.conf keydir/staging.pub</code><br />
+<code>git commit -a -m &quot;Gave the staging machine the ability to access the
+repository&quot;</code><br />
+<code>git push</code></p>
+
+<p>(Repeat for all the machines that need access to the repository)&hellip;</p>
+
+<p><strong>Giving additional users access to your repository</strong><br />
+If you need to add someone to the project, set them up with access the same
+way you just did above for the &lsquo;staging&rsquo; machine. Once they are setup with
+permissions, they will need to clone the project to have access.</p>
+
+<p><code>git clone git@REPOSITORY_MACHINE:your_project.git</code></p>
+
+<p><strong>Notes</strong> (start)<br />
+<strong>If you are on Mac OS X Snow Leopard</strong>, it may ask you for a password. This is because Snow Leopard ships with key forwarding disabled by default and you will have to modify the file <code>/etc/ssh_config</code> to get it working.</p>
+
+<p>Change the lines:</p>
+
+<pre><code># Host * 
+# ForwardAgent no
+</code></pre>
+
+<p>To:</p>
+
+<pre><code>Host *
+ForwardAgent yes
+</code></pre>
+
+<p>If it still asks you for a password on Snow Leopard, you may need to add your
+passphrases to the Apple keychain. Type the following in a terminal.<br />
+<code>ssh-add -K ~/.ssh/name_of_your_key</code></p>
+
+<p>If you still have problems, you may want to add <code>loglevel = DEBUG</code> under the
+<code>[gitosis]</code> section of your <code>gitosis.conf</code> file to get more information about
+what is happening.</p>
+
+<p><strong>Permission Denied</strong><br />
+This often happens and is a PITA to figure out. One thing that I have found is
+that once you add a user to the remote repository, they have problems
+connection to the remote machine to clone the repository. This may resolve the
+issue (this has always been on a Mac).</p>
+
+<p>Add the following to the file: <code>~/.ssh/config</code><br />
+<code>Host REPOSITORY_MACHINE</code><br />
+<code>User git</code><br />
+<code>Hostname REPOSITORY_MACHINE</code><br />
+<code>PreferredAuthentications publickey</code><br />
+<code>IdentityFile /path/to/.ssh/filename</code><br />
+(filename is the same as the filename.pub file, but without the .pub at the
+end)<br />
+<strong>Notes</strong> (end)</p>
+
+<p>Once it clones the project, you will probably get the following error:<br />
+<code>Warning: Remote HEAD refers to nonexistent ref, unable to checkout.</code><br />
+This is basically saying &ldquo;I don&rsquo;t know what branch to checkout&rdquo;.</p>
+
+<p>Check and see what branches you have available:<br />
+<code>cd your_project</code><br />
+<code>git branch -a</code></p>
+
+<p>This should show you:<br />
+<code>origin/drupal</code><br />
+<code>origin/modules</code><br />
+<code>origin/production</code></p>
+
+<p>You will not want to check those branches out directly because they are remote
+branches and you will detach the head if you do. Basically you want to create
+local branches that you can change that will be linked to the remote branches.<br />
+<code>git checkout -b drupal origin/drupal</code><br />
+<code>git checkout -b modules origin/modules</code><br />
+<code>git checkout -b production origin/production</code></p>
+
+<p>Now they will have a working local copy of the repository and they will be
+able to make commits to the remote repository.</p>
+
+<p><strong>Setup Capistrano and server configuration</strong><br />
+You need to <a href="http://www.capify.org/getting-started/">install Capistrano</a> on
+your local machine. They have great documentation at the Capistrano website
+which I reference every time I do this, so I will leave that as an exercise
+for you to do.</p>
+
+<p>At this point I am assuming that you have Capistrano installed on your local
+machine. We now need to setup our project to deploy with Capistrano.</p>
+
+<p>In the root of your repository directory (eg: <code>your_project</code>) on your local
+machine, do this.<br />
+<code>mkdir config</code><br />
+<code>capify .</code></p>
+
+<p>Download the file (<code>deploy.rb</code>) that is attached and replace the <code>deploy.rb</code>
+file in the <code>config</code> directory. You will have to go through the file and
+change all the sections that are IN_CAPS to the correct information. I will
+try to make this painless, but it may take some playing to get it setup for
+your environment. A lot of this depends on how you want to setup your server,
+so you may have to change the configuration as needed&hellip;</p>
+
+<p>Now that your configuration is correct we are going to do the setup.<br />
+<strong>Note:</strong> You need to setup your staging and production machines the same as you setup in the deploy.rb file. So you need to create the directory that you want to deploy to (in my example it is: <code>/var/www/</code>, and make sure it is owned by the user that you specified in your deploy.rb file).</p>
+
+<p>Now we need to create the skeleton of your deploy file structure.<br />
+<code>cap deploy:setup</code></p>
+
+<p>Make sure that you have everything in place to do the deploy.<br />
+<code>cap deploy:check</code></p>
+
+<p>(If you already have &lsquo;files&rsquo; for your project, you may want to copy them into
+the <code>/var/www/your_project/shared/files/</code> directory at this point so the
+actual deploy command can change the permissions correctly.)</p>
+
+<p>Lets do the deployment&hellip;<br />
+<code>cap deploy</code></p>
+
+<p>You have just deployed your code from your repository machine to you staging
+or production machine. You will have to make sure that your apache
+configuration is setup correctly to serve the site that is currently deployed.
+To do that I have attached a sample vhosts file (<code>sample_site.conf</code>) that may
+get you moving in the right direction.</p>
+
+<p><strong>Congratulations!!!</strong> Now you can hack the core to your hearts content and you will still have a clean upgrade path (just do it in your <code>production</code> branch). ;)</p>
+
+<p><strong>References:</strong></p>
+
+<ul>
+<li><a href="http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way">Hosting Git repositories, The Easy (and Secure) Way</a></li>
+<li><a href="http://www.ruzee.com/blog/2008/10/drupal-development-and-deployment-using-git">Drupal Development and Deployment using Git</a></li>
+<li><a href="http://www.simplicidade.org/notes/archives/2008/09/installing_gito.html">Installing gitosis</a></li>
+<li><a href="http://tempe.st/tag/capistrano/">A Tempest of Thoughts - Capistrano</a></li>
+<li><a href="http://www.schmidp.com/2009/06/23/enable-ssh-agent-key-forwarding-on-snow-leopard/comment-page-1/">Enable SSH Agent (Key) Forwarding on Snow Leopard</a></li>
+</ul>
+
+<p><strong>Attachments:</strong><br />
+<a href="http://www.swillops.com/files/deploy.rb">deploy.rb</a> 3.16 KB<br />
+<a href="http://www.swillops.com/files/sample_site.conf">sample_site.conf</a> 864 bytes</p>
+
+            </div>
+        </div>
+
+        
+        <div class="col-md-3">
+            <div class="well well-sm"> 
+                <h4>February 23, 2009<br>
+                <small>2674 words</small></h4>
+                <strong>Tags</strong><br>
+                <a class="label label-default" href="http://localhost:1313/swillops.com/tags/capistrano">Capistrano</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/drupal">Drupal</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/git">Git</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/gitosis">gitosis</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/security">Security</a> <a class="label label-default" href="http://localhost:1313/swillops.com/tags/ssh-key">SSH Key</a> 
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="padding: 2px 15px;">
+                    <h4>Similar Posts</h4>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                    
+                    
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/">Git branches to manage third party app customization</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/using-1and1-git-repository/">Using a 1and1 git repository</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/">Secure push and pull with git-http-backend</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/delete-remote-branch-git/">Delete a remote branch in Git</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/">Debian Rails Stack - NginX and Mongrel</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/">Drupal Clean Urls on Debian LAMP Stack</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/">Dead simple GIT install on Mac</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://localhost:1313/swillops.com/blog/build-it-or-just-put-it-together/">Build it or just put it together???</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                    </ul>
+                </div>
+            </div>
+                <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Will Stevens (swill)</h4>
+        </div>
+        <div class="panel-body">
+            <img src="http://localhost:1313/swillops.com/imgs/author.png" style="width:100%" />
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 2px 15px;">
+            <h4>Find me online...</h4>
+        </div>
+        <div class="panel-body">
+            <a href="https://github.com/swill/" target="_blank" class="btn btn-social-icon btn-github"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://bitbucket.org/swill" target="_blank" class="btn btn-social-icon btn-bitbucket btn-space"><i class="fa fa-bitbucket fa-2x"></i></a>
+            <a href="https://twitter.com/swillops" target="_blank" class="btn btn-social-icon btn-twitter btn-space"><i class="fa fa-twitter fa-2x"></i></a>
+            <a href="https://www.linkedin.com/in/swill" target="_blank" class="btn btn-social-icon btn-linkedin btn-space"><i class="fa fa-linkedin fa-2x"></i></a>
+        </div>
+    </div>
+        </div>
+    </div>
+            <footer>
+            <div class="row">
+                <hr>
+                <div class="col-sm-12">
+                    <p>Personal opinions of Will Stevens</p>
+                </div>
+            </div>
+        </footer>
+</div>
+
+    <script src="http://localhost:1313/swillops.com/js/jquery.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/bootstrap.min.js"></script>
+    <script src="http://localhost:1313/swillops.com/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>

@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on SwillOps</title>
+    <link>http://localhost:1313/swillops.com/tags/git/</link>
+    <description>Recent content in Git on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/swillops.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugo on gh-pages</title>
+      <link>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</link>
+      <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</guid>
+      <description>&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
+
+&lt;p&gt;Your config.toml file will probably look something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-toml&#34;&gt;baseurl = &amp;quot;http://&amp;lt;username&amp;gt;.github.io/&amp;lt;reponame&amp;gt;/&amp;quot;
+languageCode = &amp;quot;en-us&amp;quot;
+title = &amp;quot;Website Title&amp;quot;
+theme = &amp;quot;your-theme&amp;quot;
+canonifyurls = true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you are ready to start working with &lt;code&gt;gh-pages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# create the git repository to track your actual website on gh-pages
+$ cd public # or whatever your hugo &#39;publishdir&#39; is set to
+$ git init # to create a git repo
+$ git add .
+$ git commit -am &amp;quot;initial publication of content&amp;quot;
+$ git branch -m master gh-pages # rename master branch to gh-pages
+# create a new repository on GitHub and then set it up as the remote for this repo
+$ git remote add origin https://github.com/&amp;lt;username&amp;gt;/&amp;lt;reponame&amp;gt;.git
+$ git push origin gh-pages
+
+# now track the whole source in a different git repo
+$ cd ..
+$ git init
+$ git add .
+$ git commit -am &amp;quot;source of initial publication&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Git branches to manage third party app customization</title>
+      <link>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
+      <pubDate>Wed, 26 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
+      <description>
+
+&lt;h3 id=&#34;preface:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;Preface:&lt;/h3&gt;
+
+&lt;p&gt;I have been using this technique to customize different types of third party
+projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
+post&lt;/a&gt;
+regarding the management of customizations on top of the ever changing Drupal
+code base. That post is very long winded and overly technical for most people,
+this post will serve as an abridged version covering only the branching
+concept.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-problem:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;The Problem:&lt;/h3&gt;
+
+&lt;p&gt;A third party has developed some code you would like to leverage, however, you
+require customizations to their code for your implementation. The third party
+is actively developing their code base, so you need to be able to easily
+update their underlying code while keep your customizations intact.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-solution:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;The Solution:&lt;/h3&gt;
+
+&lt;p&gt;We will use Git to track both their changes and our changes. We will have two
+branches; &lt;code&gt;master&lt;/code&gt; will track their changes and &lt;code&gt;custom&lt;/code&gt; will track our
+changes. We will never make any changes to the &lt;code&gt;master&lt;/code&gt; branch other than to
+pull in updates from the third party. All of our modifications will be made in
+our &lt;code&gt;custom&lt;/code&gt; branch. When the third party makes a change we will pull it into
+our &lt;code&gt;master&lt;/code&gt; branch and then propagate it into our &lt;code&gt;custom&lt;/code&gt; branch. All
+deployments and builds will be done from the &lt;code&gt;custom&lt;/code&gt; branch.&lt;/p&gt;
+
+&lt;h3 id=&#34;an-example:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;An Example:&lt;/h3&gt;
+
+&lt;p&gt;Get the third party code (this will create the &lt;code&gt;master&lt;/code&gt; branch):&lt;br /&gt;
+&lt;code&gt;git clone https://github.com/third_party/project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Create the &lt;code&gt;custom&lt;/code&gt; branch for our modifications:&lt;br /&gt;
+&lt;code&gt;git checkout -b custom&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;... do your customizations ...&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial customizations&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you can create your first build/deployment from the &lt;code&gt;custom&lt;/code&gt;
+branch&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;When the third party updates their code and you want to incorporate their
+changes:&lt;br /&gt;
+&lt;code&gt;git checkout master&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull origin master&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout custom&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . master&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you have merged their changes into the &lt;code&gt;custom&lt;/code&gt; branch and you are ready
+to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using a 1and1 git repository</title>
+      <link>http://localhost:1313/swillops.com/blog/using-1and1-git-repository/</link>
+      <pubDate>Mon, 03 Oct 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/using-1and1-git-repository/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;On the 1and1 business accounts you can now use Git via SSH. Here is how&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Setup your master FTP password (which will be used for SSH).&lt;/p&gt;
+
+&lt;p&gt;SSH into your 1and1 account with (assuming example.com is on this account):&lt;br /&gt;
+&lt;code&gt;ssh username@example.com&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mkdir repositories&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd repositories&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git init --bare my_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now on your local machine you can clone this repository with:&lt;br /&gt;
+&lt;code&gt;git clone ssh://username@example.com/~/repositories/my_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Or to add 1and1 as a remote location for an existing repository do:&lt;br /&gt;
+&lt;code&gt;git remote add origin ssh://username@example.com/~/repositories/my_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Enjoy&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Secure push and pull with git-http-backend</title>
+      <link>http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
+      <pubDate>Mon, 26 Sep 2011 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
+      <description>&lt;p&gt;I am setting up a new repository machine for my code. I will be setting it up
+with Active Directory later on, but I figured my basic setup would be a good
+starting point for most people.&lt;/p&gt;
+
+&lt;p&gt;My new repo box is on CentOS. I installed Git on my server from the
+&lt;a href=&#34;http://fedoraproject.org/wiki/EPEL&#34;&gt;EPEL&lt;/a&gt; repository. All the commands in
+this tutorial will be done from &lt;code&gt;sudo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;I created a simple password file on my server using this command.&lt;br /&gt;
+&lt;code&gt;htpasswd -c path/to/file/passwords user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To add a user to the existing password file do:&lt;br /&gt;
+&lt;code&gt;htpasswd path/to/file/passwords new-user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want to add repository level permissions to your repositories add a
+groups file:&lt;br /&gt;
+&lt;code&gt;vim path/to/file/groups&lt;/code&gt;&lt;br /&gt;
+then add:&lt;br /&gt;
+&lt;code&gt;new_repo: user-name&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Then I setup my Apache config to include.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;NameVirtualHost *:80
+
+&amp;lt;VirtualHost *:80&amp;gt;  
+  SetEnv GIT_PROJECT_ROOT /path/to/repos  
+  SetEnv GIT_HTTP_EXPORT_ALL  
+  SetEnv REMOTE_USER=$REDIRECT_REMOTE_USER  
+  ScriptAlias / /usr/bin/git-http-backend/
+
+  ServerName example.com  
+  ServerAlias www.example.com
+
+  DocumentRoot &amp;quot;/path/to/repos&amp;quot;
+
+  &amp;lt;Directory &amp;quot;/path/to/repos&amp;quot;&amp;gt;  
+  Options None  
+  AllowOverride None  
+  Order allow,deny  
+  Allow from all  
+  &amp;lt;/Directory&amp;gt;
+
+  &amp;lt;Location /&amp;gt;  
+  AuthType Basic  
+  AuthName &amp;quot;Git Access&amp;quot;  
+  AuthUserFile path/to/file/passwords  
+  Require valid-user  
+  &amp;lt;/Location&amp;gt;
+
+  # Only required if you are using repository level permissions  
+  &amp;lt;Location /new_repo.git&amp;gt;  
+  AuthType Basic  
+  AuthName &amp;quot;New Repo Access&amp;quot;  
+  AuthUserFile path/to/file/passwords  
+  AuthGroupFile path/to/file/groups  
+  Require group new_repo  
+  &amp;lt;/Location&amp;gt;
+
+  ErrorLog /path/to/log/httpd/repo/repo-error_log  
+  CustomLog /path/to/log/httpd/repo/repo-access_log combined  
+  ServerSignature Off
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now to add your code, do the following on the server in: &lt;code&gt;/path/to/repos&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git init --bare new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;chown -R apache:apache new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv new_repo.git/hooks/post-update.sample new_repo.git/hooks/post-update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd new_repo.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git update-server-info&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you can access your repo with:&lt;br /&gt;
+&lt;code&gt;git clone http://user-name@example.com/new_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Or associate this new remote repository with an existing repository, do this
+to your existing repository:&lt;br /&gt;
+&lt;code&gt;git remote add origin http://user-name@example.com/new_repo.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should be all set&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Delete a remote branch in Git</title>
+      <link>http://localhost:1313/swillops.com/blog/delete-remote-branch-git/</link>
+      <pubDate>Fri, 17 Dec 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/delete-remote-branch-git/</guid>
+      <description>&lt;p&gt;I run into this all the time. I am typing too fast when I push code to my
+remote repository and I make a typo that creates a new branch in my remote
+repository.&lt;/p&gt;
+
+&lt;p&gt;Correct: &lt;code&gt;git push origin production:refs/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Mistake: &lt;code&gt;git push origin production:ref/heads/production&lt;/code&gt;&lt;br /&gt;
+Result: &lt;code&gt;* [new branch]    production -&amp;gt; ref/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Obviously I do not want this new branch on my remote server, so I want to
+remove it. You can remove this newly created branch with.&lt;/p&gt;
+
+&lt;p&gt;The Fix: &lt;code&gt;git push origin :ref/heads/production&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Manage and deploy Drupal code securely with Git, gitosis and Capistrano</title>
+      <link>http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
+      <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
+
+&lt;p&gt;I have quite a few sites set up with Drupal and it has been working
+beautifully for me. However, with the fast turn over of Drupal code, I was
+having trouble keeping all of the sites up to date with the most current code
+releases. I needed to figure out how to manage my Drupal code in a way that
+allowed me to upgrade easily without stressing about what I might break. After
+a lot of research and trial and error, I have finally settled on the following
+setup.&lt;/p&gt;
+
+&lt;p&gt;The main motivation for using Git is the painless branching and merging. I am
+using Capistrano cause it is easy to set up and work with.&lt;/p&gt;
+
+&lt;p&gt;This post is meant to be a tutorial of sorts, but is more likely to be uses as
+a reference when setting up or changing your sites.&lt;/p&gt;
+
+&lt;p&gt;What we will do (or need to do):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Git on your local machine&lt;/li&gt;
+&lt;li&gt;Install Git on your repository machine&lt;/li&gt;
+&lt;li&gt;Install Git on your staging machine (optional)&lt;/li&gt;
+&lt;li&gt;Install Git on your production machine&lt;/li&gt;
+&lt;li&gt;Install gitosis on your repository machine&lt;/li&gt;
+&lt;li&gt;Setup gitosis&lt;/li&gt;
+&lt;li&gt;Setup your sites in Git and push to the repository machine&lt;/li&gt;
+&lt;li&gt;Install and setup Capistrano&lt;/li&gt;
+&lt;li&gt;Deploy your site to a staging machine (optional)&lt;/li&gt;
+&lt;li&gt;Deploy your site to a production machine&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Get the machines ready to do some real work&amp;hellip;&lt;/strong&gt;&lt;br /&gt;
+Install &lt;a href=&#34;http://git-scm.com/&#34;&gt;Git&lt;/a&gt; on your local machine, repository machine
+and production machine (and the other machines as needed). This is easy
+enough, so I will not got into detail. If you have problems, you can checkout
+&lt;a href=&#34;http://www.forwardthinkingdesign.com/category/tags/git&#34;&gt;these articles&lt;/a&gt;
+because I have gone into installation details there.&lt;/p&gt;
+
+&lt;p&gt;Install gitosis on your Repository machine&lt;br /&gt;
+&lt;code&gt;cd ~/src&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git clone git://eagain.net/gitosis.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd gitosis&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;python setup.py install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you get errors on the above line of code, then you will need to install
+&lt;a href=&#34;http://pypi.python.org/pypi/setuptools&#34;&gt;python-setuptools&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now set up a user on your Repository machine that will be the one who owns the
+repositories. I use &amp;lsquo;git&amp;rsquo;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo adduser \  
+  -system \  
+  -shell /bin/sh \  
+  -gecos &#39;git version control&#39; \  
+  -group \  
+  -disabled-password \  
+  -home /home/git \  
+  git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you need to have an SSH Key set up on your local machine. If you don&amp;rsquo;t
+have one, do this (on your local machine)&amp;hellip;&lt;br /&gt;
+&lt;code&gt;ssh-keygen -t rsa&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Assuming that you created the file &lt;code&gt;id_rsa.pub&lt;/code&gt;, now you need to copy it to
+your Repository machine. I put mine in &lt;code&gt;/tmp/id_rsa.pub&lt;/code&gt; so it is easy to
+access.&lt;/p&gt;
+
+&lt;p&gt;Now initialize gitosis with that key (on the Repository machine).&lt;br /&gt;
+&lt;code&gt;sudo -H -u git gitosis-init &amp;lt; /tmp/id_rsa.pub&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure that &lt;code&gt;post-update&lt;/code&gt; is set to executable.&lt;br /&gt;
+&lt;code&gt;sudo chmod 755 /home/git/repositories/gitosis-admin.git/hooks/post-update&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To set up the gitosis admin on your local machine.&lt;br /&gt;
+&lt;em&gt;(Everything from here on is on your local machine&amp;hellip;)&lt;/em&gt;&lt;br /&gt;
+Note: &lt;code&gt;cd&lt;/code&gt; into the directory you want your code to live first.&lt;br /&gt;
+&lt;code&gt;git clone git@YOUR_REPOSITORY_MACHINE:gitosis-admin.git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd gitosis-admin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Setup the admin for the repositories.&lt;br /&gt;
+Open the file &lt;code&gt;gitosis.conf&lt;/code&gt; and make sure it has the following for the admin
+setup.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[gitosis]  
+[group gitosis-admin]  
+writable = gitosis-admin  
+members = youruser@machine
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(youruser@machine is going to be taken from your &lt;code&gt;id_rsa.pub&lt;/code&gt; file. it will be
+the last piece of that file and will look something like: hzvu4nTtw3Q==
+youruser@machine)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I have had some problems with this method of specifying a user. What I do now, which seems to work, is make sure that my .pub files have unique names when I create them (eg: __ which could be something like, forwardthinkingdesign_prod_root) and I use the filename in the &amp;lsquo;members&amp;rsquo; section.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup and manage your repositories&amp;hellip;&lt;/strong&gt;&lt;br /&gt;
+Also in &lt;code&gt;gitosis.conf&lt;/code&gt; add your project (your_project in this example).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[group yourteam]  
+members = youruser@machine  
+writable = your_project
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Push this updated configuration to the server.&lt;br /&gt;
+(you will probably have to add the appropriate files to be committed with &amp;lsquo;git
+add&amp;rsquo;. when you have more than one project, you will have more files here that
+will be untracked.)&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Allow youruser@machine write access to your_project&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you are going to actually create &lt;code&gt;your_project&lt;/code&gt; and push it to the gitosis
+repository.&lt;br /&gt;
+&lt;code&gt;mkdir your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git init&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git remote add origin git@REPOSITORY_MACHINE:your_project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;At this point you need to setup the how you are going to manage your Drupal
+code. You can put it all in one branch with &lt;code&gt;git push origin
+master:refs/heads/master&lt;/code&gt;, but I would NOT recommend this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The Git setup I recommend for managing Drupal projects.&lt;/strong&gt;&lt;br /&gt;
+Create a branch &lt;code&gt;drupal&lt;/code&gt; just for the Drupal code. You never make changes to
+this branch other than upgrading to newer versions of Drupal. Git created a
+&lt;code&gt;master&lt;/code&gt; branch when you did &lt;code&gt;git init&lt;/code&gt; and since Git does not like you trying
+to branch from it without doing any &amp;lsquo;real work&amp;rsquo;, we are going to add to the
+&lt;code&gt;master&lt;/code&gt; branch and then rename it to &lt;code&gt;drupal&lt;/code&gt; before we add it to the
+repository machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;tar xvzf drupal-6.x.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal-6.x.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv drupal-6.x drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also add a &lt;code&gt;.gitignore&lt;/code&gt; file to this base &lt;code&gt;drupal&lt;/code&gt; branch so I do not have
+to worry about stuff I do not want getting into my repository.&lt;/p&gt;
+
+&lt;p&gt;Create a &lt;code&gt;.gitignore&lt;/code&gt; file in the root of your repository and add the
+following lines to it.&lt;br /&gt;
+&lt;code&gt;.DS_Store&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;drupal/sites/default/files/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Capfile&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;config/deploy.rb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Explanation of ignores:&lt;br /&gt;
+&lt;em&gt;.DS_Store&lt;/em&gt; -&amp;gt; This is because I am on a Mac and it creates these files all
+over the place. They should not be in my repository.&lt;br /&gt;
+&lt;em&gt;drupal/sites/default/files/&lt;/em&gt; -&amp;gt; This is because I run a local server on my
+machine that needs the &amp;lsquo;files&amp;rsquo; directory, but I do not want to track the
+&amp;lsquo;files&amp;rsquo; directory in my repo. (this may also be &lt;em&gt;drupal/files/&lt;/em&gt; depending on
+what version of drupal you are on.)&lt;br /&gt;
+&lt;em&gt;Capfile&lt;/em&gt; -&amp;gt; We have not gotten this far, but this is for Capistrano.&lt;br /&gt;
+&lt;em&gt;config/deploy.rb&lt;/em&gt; -&amp;gt; Again, this is for Capistrano.&lt;/p&gt;
+
+&lt;p&gt;Now add and commit these changes.&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial Drupal commit&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Rename the &lt;code&gt;master&lt;/code&gt; branch to our &lt;code&gt;drupal&lt;/code&gt; branch.&lt;br /&gt;
+&lt;code&gt;git branch -m master drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We now have the &lt;code&gt;drupal&lt;/code&gt; branch up to date on our local machine. Lets push it
+to the repository server.&lt;br /&gt;
+&lt;code&gt;git push origin drupal:refs/heads/drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;From the &lt;code&gt;drupal&lt;/code&gt; branch we want to create a &lt;code&gt;modules&lt;/code&gt; branch that will be
+used to manage all of the unmodified contributed modules. This should only be
+the module code that you get from drupal.org. You do not modify any of the
+code in this branch, just upgrade the modules when needed.&lt;/p&gt;
+
+&lt;p&gt;You need to make sure you are on the &lt;code&gt;drupal&lt;/code&gt; branch and then you will create
+a &lt;code&gt;modules&lt;/code&gt; branch. Once there you will add all your modules to the &lt;code&gt;modules&lt;/code&gt;
+branch.&lt;br /&gt;
+&lt;code&gt;git checkout drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd drupal/sites/all&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mkdir modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;cd modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;tar xzvf yourmodule.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf yourmodule.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;... (repeat for all your modules) ...&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial add of all of my sites modules&amp;quot;&lt;/code&gt;&lt;br /&gt;
+(i also track my themes that are not modified in this branch)&lt;/p&gt;
+
+&lt;p&gt;When you are done adding all of your modules then you will want to push the
+&lt;code&gt;modules&lt;/code&gt; branch to the repository machine.&lt;br /&gt;
+&lt;code&gt;git push origin modules:refs/heads/modules&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you should have all of the base modules (and themes) tracked in your
+repository. At this point you want a branch where you can do all your
+modifications that are custom to your site. I track all my custom site
+specific modules, custom site specific themes and all of my module and core
+hacks in this branch. I call this branch &lt;code&gt;production&lt;/code&gt; since it is what I push
+out to my staging and production machines.&lt;/p&gt;
+
+&lt;p&gt;Lets create the &lt;code&gt;production&lt;/code&gt; branch and add our site specific stuff (including
+drupal/sites/default/settings.php).&lt;br /&gt;
+&lt;code&gt;git checkout modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b production&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make all of your changes that are custom to the site.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Initial add of all of my site specific
+hacks/modules/themes/etc...&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets push this branch to the repository machine.&lt;br /&gt;
+&lt;code&gt;git push origin production:refs/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Updating to a new version of Drupal (or updating modules)&lt;/strong&gt;&lt;br /&gt;
+This is where the real power of Git comes in and this is why I use this
+method.&lt;/p&gt;
+
+&lt;p&gt;When upgrading the Drupal core, we only want to change the &lt;code&gt;drupal&lt;/code&gt; branch
+because that is where the Drupal core is stored.&lt;br /&gt;
+Checkout the &lt;code&gt;drupal&lt;/code&gt; branch and once there we are going to replace the
+current version of Drupal with a new version.&lt;br /&gt;
+&lt;code&gt;git checkout drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;tar xvzf drupal-6.xx.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;rm -rf drupal-6.xx.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;mv drupal-6.xx drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets update the local repository and then push it to the repository
+machine.&lt;br /&gt;
+&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Drupal 6.xx update&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin drupal:refs/heads/drupal&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We have to propagate this change up through our other branches, so we will
+pull these changes into the &lt;code&gt;modules&lt;/code&gt; branch and then commit and push it to
+the repository machine.&lt;br /&gt;
+&lt;code&gt;git checkout modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin modules:refs/heads/modules&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And likewise for the &lt;code&gt;production&lt;/code&gt; branch.&lt;br /&gt;
+&lt;code&gt;git checkout production&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git pull . modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push origin production:refs/heads/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now all of your code is up to date on your local machine as well as your
+repository machine. You can update the &lt;code&gt;modules&lt;/code&gt; branch just the same my
+downloading newer versions of the modules code and just update the &lt;code&gt;modules&lt;/code&gt;
+and then the &lt;code&gt;production&lt;/code&gt; branches.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Deploying your code to the staging and production machines&lt;/strong&gt;&lt;br /&gt;
+At this point some people may choose to just copy and paste the code from
+their repository to their staging/production machines. As a simple solution,
+that is not too bad, but I want a more elegant method for deploying. For this
+I use Capistrano. Capistrano is built on Ruby and is very popular with Ruby on
+Rails developers. In order for it to work nicely with PHP and Drupal, we need
+to create our own &lt;code&gt;config/deploy.rb&lt;/code&gt; file. Luckily for you, I have already
+done this and you can find it attached at the end of this article. Lets get
+started&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup your remote machines with permission to access your repository&lt;/strong&gt;&lt;br /&gt;
+In order for you staging and production machines to be allowed to access your
+repository machine to get the latest code, you need to setup an rsa key for
+each of them. Do the following on all the machines that need to access the
+repository (staging and production).&lt;br /&gt;
+&lt;code&gt;ssh YOUR_USER@REMOTE_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;ssh-keygen -t rsa&lt;/code&gt; -&amp;gt; Be sure to create it with a unique name (example:
+&amp;lsquo;staging&amp;rsquo;)&lt;/p&gt;
+
+&lt;p&gt;Copy the &lt;code&gt;staging.pub&lt;/code&gt; file from REMOTE_MACHINE to your local machine and
+place it in the &lt;code&gt;gitosis-admin/keydir&lt;/code&gt; folder. You need to edit the &lt;code&gt;gitosis-
+admin/gitosis.conf&lt;/code&gt; file and add the user from your REMOTE_MACHINE in the
+appropriate section as we did before.&lt;/p&gt;
+
+&lt;p&gt;Example (added the bold):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[group yourteam]  
+members = youruser@machine **remoteuser@remotemachine**  
+writable = your_project
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now add, commit and push the changes to the repository machine (needs to be
+done from inside the &lt;code&gt;gitosis-admin&lt;/code&gt; directory).&lt;br /&gt;
+&lt;code&gt;git add gitosis.conf keydir/staging.pub&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git commit -a -m &amp;quot;Gave the staging machine the ability to access the
+repository&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git push&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;(Repeat for all the machines that need access to the repository)&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Giving additional users access to your repository&lt;/strong&gt;&lt;br /&gt;
+If you need to add someone to the project, set them up with access the same
+way you just did above for the &amp;lsquo;staging&amp;rsquo; machine. Once they are setup with
+permissions, they will need to clone the project to have access.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git clone git@REPOSITORY_MACHINE:your_project.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes&lt;/strong&gt; (start)&lt;br /&gt;
+&lt;strong&gt;If you are on Mac OS X Snow Leopard&lt;/strong&gt;, it may ask you for a password. This is because Snow Leopard ships with key forwarding disabled by default and you will have to modify the file &lt;code&gt;/etc/ssh_config&lt;/code&gt; to get it working.&lt;/p&gt;
+
+&lt;p&gt;Change the lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Host * 
+# ForwardAgent no
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Host *
+ForwardAgent yes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If it still asks you for a password on Snow Leopard, you may need to add your
+passphrases to the Apple keychain. Type the following in a terminal.&lt;br /&gt;
+&lt;code&gt;ssh-add -K ~/.ssh/name_of_your_key&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you still have problems, you may want to add &lt;code&gt;loglevel = DEBUG&lt;/code&gt; under the
+&lt;code&gt;[gitosis]&lt;/code&gt; section of your &lt;code&gt;gitosis.conf&lt;/code&gt; file to get more information about
+what is happening.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Permission Denied&lt;/strong&gt;&lt;br /&gt;
+This often happens and is a PITA to figure out. One thing that I have found is
+that once you add a user to the remote repository, they have problems
+connection to the remote machine to clone the repository. This may resolve the
+issue (this has always been on a Mac).&lt;/p&gt;
+
+&lt;p&gt;Add the following to the file: &lt;code&gt;~/.ssh/config&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Host REPOSITORY_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;User git&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;Hostname REPOSITORY_MACHINE&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;PreferredAuthentications publickey&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;IdentityFile /path/to/.ssh/filename&lt;/code&gt;&lt;br /&gt;
+(filename is the same as the filename.pub file, but without the .pub at the
+end)&lt;br /&gt;
+&lt;strong&gt;Notes&lt;/strong&gt; (end)&lt;/p&gt;
+
+&lt;p&gt;Once it clones the project, you will probably get the following error:&lt;br /&gt;
+&lt;code&gt;Warning: Remote HEAD refers to nonexistent ref, unable to checkout.&lt;/code&gt;&lt;br /&gt;
+This is basically saying &amp;ldquo;I don&amp;rsquo;t know what branch to checkout&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Check and see what branches you have available:&lt;br /&gt;
+&lt;code&gt;cd your_project&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git branch -a&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This should show you:&lt;br /&gt;
+&lt;code&gt;origin/drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;origin/modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;origin/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You will not want to check those branches out directly because they are remote
+branches and you will detach the head if you do. Basically you want to create
+local branches that you can change that will be linked to the remote branches.&lt;br /&gt;
+&lt;code&gt;git checkout -b drupal origin/drupal&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b modules origin/modules&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;git checkout -b production origin/production&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now they will have a working local copy of the repository and they will be
+able to make commits to the remote repository.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup Capistrano and server configuration&lt;/strong&gt;&lt;br /&gt;
+You need to &lt;a href=&#34;http://www.capify.org/getting-started/&#34;&gt;install Capistrano&lt;/a&gt; on
+your local machine. They have great documentation at the Capistrano website
+which I reference every time I do this, so I will leave that as an exercise
+for you to do.&lt;/p&gt;
+
+&lt;p&gt;At this point I am assuming that you have Capistrano installed on your local
+machine. We now need to setup our project to deploy with Capistrano.&lt;/p&gt;
+
+&lt;p&gt;In the root of your repository directory (eg: &lt;code&gt;your_project&lt;/code&gt;) on your local
+machine, do this.&lt;br /&gt;
+&lt;code&gt;mkdir config&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;capify .&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Download the file (&lt;code&gt;deploy.rb&lt;/code&gt;) that is attached and replace the &lt;code&gt;deploy.rb&lt;/code&gt;
+file in the &lt;code&gt;config&lt;/code&gt; directory. You will have to go through the file and
+change all the sections that are IN_CAPS to the correct information. I will
+try to make this painless, but it may take some playing to get it setup for
+your environment. A lot of this depends on how you want to setup your server,
+so you may have to change the configuration as needed&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Now that your configuration is correct we are going to do the setup.&lt;br /&gt;
+&lt;strong&gt;Note:&lt;/strong&gt; You need to setup your staging and production machines the same as you setup in the deploy.rb file. So you need to create the directory that you want to deploy to (in my example it is: &lt;code&gt;/var/www/&lt;/code&gt;, and make sure it is owned by the user that you specified in your deploy.rb file).&lt;/p&gt;
+
+&lt;p&gt;Now we need to create the skeleton of your deploy file structure.&lt;br /&gt;
+&lt;code&gt;cap deploy:setup&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure that you have everything in place to do the deploy.&lt;br /&gt;
+&lt;code&gt;cap deploy:check&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;(If you already have &amp;lsquo;files&amp;rsquo; for your project, you may want to copy them into
+the &lt;code&gt;/var/www/your_project/shared/files/&lt;/code&gt; directory at this point so the
+actual deploy command can change the permissions correctly.)&lt;/p&gt;
+
+&lt;p&gt;Lets do the deployment&amp;hellip;&lt;br /&gt;
+&lt;code&gt;cap deploy&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You have just deployed your code from your repository machine to you staging
+or production machine. You will have to make sure that your apache
+configuration is setup correctly to serve the site that is currently deployed.
+To do that I have attached a sample vhosts file (&lt;code&gt;sample_site.conf&lt;/code&gt;) that may
+get you moving in the right direction.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Congratulations!!!&lt;/strong&gt; Now you can hack the core to your hearts content and you will still have a clean upgrade path (just do it in your &lt;code&gt;production&lt;/code&gt; branch). ;)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way&#34;&gt;Hosting Git repositories, The Easy (and Secure) Way&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.ruzee.com/blog/2008/10/drupal-development-and-deployment-using-git&#34;&gt;Drupal Development and Deployment using Git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.simplicidade.org/notes/archives/2008/09/installing_gito.html&#34;&gt;Installing gitosis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tempe.st/tag/capistrano/&#34;&gt;A Tempest of Thoughts - Capistrano&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.schmidp.com/2009/06/23/enable-ssh-agent-key-forwarding-on-snow-leopard/comment-page-1/&#34;&gt;Enable SSH Agent (Key) Forwarding on Snow Leopard&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Attachments:&lt;/strong&gt;&lt;br /&gt;
+&lt;a href=&#34;http://www.swillops.com/files/deploy.rb&#34;&gt;deploy.rb&lt;/a&gt; 3.16 KB&lt;br /&gt;
+&lt;a href=&#34;http://www.swillops.com/files/sample_site.conf&#34;&gt;sample_site.conf&lt;/a&gt; 864 bytes&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Debian Rails Stack - NginX and Mongrel</title>
+      <link>http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</link>
+      <pubDate>Wed, 09 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</guid>
+      <description>&lt;p&gt;If you are reading this it is because you already know that you want a Rails
+setup on a Debian server with &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt; in
+front of a &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel
+Cluster&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;These are the steps I used to completely set up my server&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;The machine I started with had an existing Debian install and also had Apache2
+and MySQL installed.&lt;/p&gt;
+
+&lt;p&gt;Note: I am assuming you are working as root on your machine. If not you will
+have to do &lt;code&gt;sudo&lt;/code&gt; in front of all of the following commands.&lt;/p&gt;
+
+&lt;p&gt;Make sure that your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; is up to date and then update your
+repositories and installed packages.&lt;br /&gt;
+&lt;code&gt;# apt-get update&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get upgrade&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Remove all Apache instances&lt;br /&gt;
+&lt;code&gt;# dpkg --purge apache apache2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install Ruby and its friends&lt;br /&gt;
+&lt;code&gt;# apt-get install ruby1.8-dev ruby1.8 ri1.8 rdoc1.8 irb1.8 libreadline-
+ruby1.8 libruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I am also using SSL, so I need to install the ruby ssl libraries.&lt;br /&gt;
+&lt;code&gt;# apt-get install libopenssl-ruby libopenssl-ruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Setup symlinks for Ruby and its friends&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/ruby1.8 /usr/local/bin/ruby&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/ri1.8 /usr/local/bin/ri&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/rdoc1.8 /usr/local/bin/rdoc&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/irb1.8 /usr/local/bin/irb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install GCC, G++ and Make so you can compile code&lt;br /&gt;
+&lt;code&gt;# apt-get install gcc g++ make&lt;/code&gt;``&lt;/p&gt;
+
+&lt;p&gt;Get the most recent version of RubyGems (&lt;a href=&#34;http://rubyforge.org/frs/?group_id=126&#34;&gt;check for current
+version&lt;/a&gt;)&lt;br /&gt;
+&lt;code&gt;# wget http://rubyforge.org/frs/download.php/38646/rubygems-1.2.0.tgz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar xvzf rubygems*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd rubygems*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ruby setup.rb&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I cleaned up the install files after the install&lt;br /&gt;
+&lt;code&gt;# cd ..&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf rubygems-1.2.0 rubygems-1.2.0.tgz&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up a symlink for the Gem command&lt;br /&gt;
+&lt;code&gt;# ln -s /usr/bin/gem1.8 /usr/local/bin/gem&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we need to install &lt;a href=&#34;http://www.rubyonrails.org/&#34;&gt;Rails&lt;/a&gt; in all its glory&lt;br /&gt;
+&lt;code&gt;# gem install rails --include-dependencies&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I use &lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; for source code management, so I need to
+install it. I also use submodules and the code in Debian&amp;rsquo;s repository does not
+support it, so I need to install it from source.&lt;/p&gt;
+
+&lt;p&gt;In order to make sure that Git will actually make, we have to do a little
+setup work.&lt;br /&gt;
+&lt;code&gt;# apt-get install tcl8.4 tk8.4&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now lets get the &lt;a href=&#34;http://git.or.cz/&#34;&gt;latest version&lt;/a&gt; of Git and install it&lt;br /&gt;
+&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# wget http://kernel.org/pub/software/scm/git/git-1.5.6.2.tar.gz&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# tar xzf git*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd git*&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I cleaned up the install files after the install&lt;br /&gt;
+&lt;code&gt;# cd ..&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# rm -rf git-1.5.6.2 git-1.5.6.2.tar.gz&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also want to make sure that I have all of the dependencies&lt;br /&gt;
+&lt;code&gt;# apt-get build-dep git-core&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also wanted to have image libraries at my finger tips when I wanted them, so
+I installed &lt;a href=&#34;http://www.imagemagick.org/script/index.php&#34;&gt;ImageMagick&lt;/a&gt; and
+&lt;a href=&#34;http://rmagick.rubyforge.org/&#34;&gt;RMagick&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# apt-get install imagemagick librmagick-ruby1.8 librmagick-ruby-doc
+libfreetype6-dev xml-core&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Next we are going to install &lt;a href=&#34;http://mongrel.rubyforge.org/&#34;&gt;Mongrel&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mongrel&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;And then &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel Cluster&lt;/a&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mongrel_cluster&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Get the machine ready for the &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt;
+install&lt;br /&gt;
+&lt;code&gt;# apt-get install zlib1g-dev libgcrypt11-dev libpcre3-dev libssl-dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Install NginX and friends&lt;br /&gt;
+&lt;code&gt;# apt-get install libpcre3 nginx libfcgi-dev libfcgi-ruby1.8&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It is worth noting here that I am using
+&lt;a href=&#34;http://www.parallels.com/en/virtuozzo/&#34;&gt;Virtuozzo&lt;/a&gt;. At this point I cloned my
+machine and will be doing the Mongrel and Rails specific configuration on my
+cloned machine for easy Rails deployment.&lt;/p&gt;
+
+&lt;p&gt;I now need to get my Rails source code on my machine. Since I am using
+&lt;a href=&#34;https://github.com/&#34;&gt;github&lt;/a&gt;, I need to set up my server and github so they
+can talk to each other. This is done through an ssh key. The ssh keys reside
+in &lt;code&gt;~/.ssh/&lt;/code&gt;. If you do not have that directory, simply ssh from that machine
+into another machine and when it asks, add the machine as a &lt;code&gt;know_hosts&lt;/code&gt; and
+it will create the directory for you.&lt;br /&gt;
+&lt;code&gt;# cd ~/.ssh/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ls&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you already have &lt;code&gt;id_rsa.pub&lt;/code&gt; and &lt;code&gt;id_rsa&lt;/code&gt; in that directory, skip this
+step, otherwise create that key.&lt;br /&gt;
+&lt;code&gt;# ssh-keygen -t rsa&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Follow the instructions on screen (&lt;code&gt;,&lt;/code&gt;, ``).&lt;/p&gt;
+
+&lt;p&gt;Now log into github and under &amp;lsquo;account&amp;rsquo;, copy in the result of the following
+command into the Public Keys section (make sure not to have any new line
+characters when you copy and paste).&lt;br /&gt;
+&lt;code&gt;# cat id_rsa.pub&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that my server and github can talk to each other, I am going to create a
+directory for my &lt;code&gt;projects&lt;/code&gt; and move into it.&lt;br /&gt;
+&lt;code&gt;# mkdir ~/projects&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd ~/projects/&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that I have github setup with my machine I need to grab my code.&lt;br /&gt;
+&lt;code&gt;# git clone git@github.com:my_username/myproject.git&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Configure your Rails app now. Stuff like setting up your database and
+configuring Rails to work with them&amp;hellip; (&lt;code&gt;config/database.yml&lt;/code&gt;, etc&amp;hellip;)&lt;br /&gt;
+Note: Since you are using Debian, you may have to specify the socket in
+config/database.yml to be: &lt;code&gt;socket: /var/run/mysqld/mysqld.sock&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that my Rails app is configured, I need to configure the server
+environment. First I am going to configure Mongrel Cluster.&lt;br /&gt;
+&lt;code&gt;# cp
+/usr/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/resources/mongrel_cluster
+/etc/init.d/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# vi /etc/init.d/mongrel_cluster&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Add the following just above the CONF_DIR variable.&lt;br /&gt;
+&lt;code&gt;PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local:/usr/local/sbin:/usr/local/bin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;I also changed the user to:&lt;br /&gt;
+&lt;code&gt;USER=www-data&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Set up Mongrel Cluster to start at startup.&lt;br /&gt;
+&lt;code&gt;# chmod +x /etc/init.d/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# update-rc.d mongrel_cluster defaults&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now I need to set up the Mongrel Cluster correctly.&lt;br /&gt;
+&lt;code&gt;# mongrel_rails cluster::configure -e production -p 8000 -N 3 -c
+~/projects/myproject -a 127.0.0.1 --user www-data --group www-data&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;It should create a config file that looks like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;\--- 
+cwd: /root/projects/myproject
+port: 8000
+environment: production
+group: www-data
+user: www-data
+address: 127.0.0.1
+pid_file: log/mongrel.pid
+servers: 3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Putting the config for Mongrel Cluster in /etc like the rest of the config
+files.&lt;br /&gt;
+&lt;code&gt;# mkdir /etc/mongrel_cluster&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# cd /etc/mongrel_cluster/&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# ln -s ~/projects/myproject/config/mongrel_cluster.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the last thing we need to do is configure NginX. I have attached a sample
+config file that handles one rails app and phpmyadmin. Back up your current
+config (&lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt;) file before you mess with it.&lt;/p&gt;
+
+&lt;p&gt;Make sure that you change the ownership of your Rails app to www-data so it
+will run.&lt;br /&gt;
+&lt;code&gt;# chown -R www-data:www-data ~/projects/myproject&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;As a final set to make sure that everything is working, you need to restart
+everything.&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/mongrel_cluster stop&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/mongrel_cluster start&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/nginx stop&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# /etc/init.d/nginx start&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;1.&lt;/strong&gt;&lt;br /&gt;
+On my machine I was having problems with locales being wrong. Basically I was
+getting this problem every time I did &amp;lsquo;apt-get install&amp;rsquo;.&lt;br /&gt;
+&lt;code&gt;perl: warning: Setting locale failed.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;perl: warning: Please check that your locale settings:&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LANGUAGE = (unset),&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LC_ALL = (unset),&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;LANG = &amp;quot;en_CA.UTF-8&amp;quot;&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;are supported and installed on your system.&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;perl: warning: Falling back to the standard locale (&amp;quot;C&amp;quot;).&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to solve this on my machine I did the following and then followed the
+on screen instructions.&lt;br /&gt;
+&lt;code&gt;# dpkg-reconfigure locales&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2.&lt;/strong&gt;&lt;br /&gt;
+My system already had MySQL installed, but in my production.log file I was
+getting warnings that I was using the built in Rails MySQL something-or-other
+and that it was not safe to be used in production. They wanted you to install
+the MySQL C Ruby Bindings. This is how I was able to do it (ignore the NginX
+error it gives at the end and just restart NginX after).&lt;br /&gt;
+&lt;code&gt;# apt-get install libmysqlclient15-dev&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;# gem install mysql -- --with-mysql-config=/usr/bin/mysql_config&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://www.rubynaut.net/articles/2007/09/23/nginx-and-mongrel-cluster-on-debian&#34;&gt;Nginx and Mongrel cluster on debian&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://rubyjudo.com/2006/8/27/nginx-yet-another-rails-deployment-option&#34;&gt;nginx, Yet Another Rails Deployment Option&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://brainspl.at/rails_stack.html&#34;&gt;The Perfect Rails/Debian/Lighttpd Stack&amp;hellip;&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://blog.7thcross.com/?p=20&#34;&gt;Git repo failing on submodule in debian&lt;/a&gt;&lt;br /&gt;
+* &lt;a href=&#34;http://www.urbanpuddle.com/articles/2008/04/28/install-ruby-on-rails-hardy-heron&#34;&gt;Install Ruby on Rails on Ubuntu Hardy Heron 8.04&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Attachement: &lt;a href=&#34;http://www.swillops.com/files/nginx.conf&#34;&gt;nginx.conf&lt;/a&gt; 2.69 KB&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Dead simple GIT install on Mac</title>
+      <link>http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/</link>
+      <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/swillops.com/blog/dead-simple-git-install-mac/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; is the new cool kid in town when it comes to source
+code management. I wanted to install Git on my Mac, but I had heard installing
+it could be a bit of a pain. I did a bunch of research before I tried an
+install and it seemed &lt;a href=&#34;http://www.macports.org/&#34;&gt;Macports&lt;/a&gt; would be the
+easiest way to get it working.&lt;/p&gt;
+
+&lt;p&gt;I found &lt;a href=&#34;http://solutions.treypiepmeier.com/2008/02/25
+/installing-git-on-os-x-leopard/&#34;&gt;this article&lt;/a&gt; and had no problems getting everything
+working&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I will now be using &lt;a href=&#34;http://github.com/&#34;&gt;github&lt;/a&gt; for all of my source code
+management.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
