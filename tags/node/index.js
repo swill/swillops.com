@@ -7,13 +7,13 @@
     <meta name="description" content="">
     <meta name="author" content="Will Stevens"> 
 
-    <title>Node.Js - http://swill.github.io/swillops.com/</title>
-    <link rel="canonical" href="http://swill.github.io/swillops.com/tags/node/index.js/">
-    <link href="http://swill.github.io/swillops.com/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://swill.github.io/swillops.com/css/font-awesome.min.css" rel="stylesheet">
-    <link href="http://swill.github.io/swillops.com/css/highlight.css" rel="stylesheet">
-    <link href="http://swill.github.io/swillops.com/css/swillops-bootstrap.css" rel="stylesheet">
-    <link href="http://swill.github.io/swillops.com/tags/node.js/index.xml" rel="alternate" type="application/rss+xml" title="SwillOps" />
+    <title>Node.Js - http://willstevens.net/</title>
+    <link rel="canonical" href="http://willstevens.net/tags/node/index.js/">
+    <link href="http://willstevens.net/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://willstevens.net/css/font-awesome.min.css" rel="stylesheet">
+    <link href="http://willstevens.net/css/highlight.css" rel="stylesheet">
+    <link href="http://willstevens.net/css/swillops-bootstrap.css" rel="stylesheet">
+    <link href="http://willstevens.net/tags/node.js/index.xml" rel="alternate" type="application/rss+xml" title="SwillOps" />
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -25,11 +25,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://swill.github.io/swillops.com/"><img src="http://swill.github.io/swillops.com/imgs/logo.png" /></a>
+                <a class="navbar-brand" href="http://willstevens.net/"><img src="http://willstevens.net/imgs/logo.png" /></a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="http://swill.github.io/swillops.com/blog/">Blog</a></li>
+                    <li><a href="http://willstevens.net/blog/">Blog</a></li>
                     
                 </ul>
             </div>
@@ -43,13 +43,13 @@
                 <ul class="list-unstyled">
                     
                             <li>
-        <h4 class="blog-title-li"><a href="http://swill.github.io/swillops.com/blog/deploy-nodejs-on-cloudfoundry/">Deploy node.js on cloudfoundry.com</a><br>
+        <h4 class="blog-title-li"><a href="http://willstevens.net/blog/deploy-nodejs-on-cloudfoundry/">Deploy node.js on cloudfoundry.com</a><br>
         <small>
         	December 14, 2011
         	
-        		<code><a class="unstyle" href="http://swill.github.io/swillops.com/tags/cloud-foundry">cloud foundry</a></code> 
+        		<code><a class="unstyle" href="http://willstevens.net/tags/cloud-foundry">cloud foundry</a></code> 
         	
-        		<code><a class="unstyle" href="http://swill.github.io/swillops.com/tags/node.js">node.js</a></code> 
+        		<code><a class="unstyle" href="http://willstevens.net/tags/node.js">node.js</a></code> 
         	
         </small></h4>
     </li>
@@ -65,7 +65,7 @@
             <h4>Will Stevens (swill)</h4>
         </div>
         <div class="panel-body">
-            <img src="http://swill.github.io/swillops.com/imgs/author.png" style="width:100%" />
+            <img src="http://willstevens.net/imgs/author.png" style="width:100%" />
         </div>
     </div>
 
@@ -92,9 +92,9 @@
         </footer>
 </div>
 
-    <script src="http://swill.github.io/swillops.com/js/jquery.min.js"></script>
-    <script src="http://swill.github.io/swillops.com/js/bootstrap.min.js"></script>
-    <script src="http://swill.github.io/swillops.com/js/highlight.pack.js"></script>
+    <script src="http://willstevens.net/js/jquery.min.js"></script>
+    <script src="http://willstevens.net/js/bootstrap.min.js"></script>
+    <script src="http://willstevens.net/js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cloud Foundry on SwillOps</title>
-    <link>http://swill.github.io/swillops.com/tags/cloud-foundry/</link>
+    <link>http://willstevens.net/tags/cloud-foundry/</link>
     <description>Recent content in Cloud Foundry on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 14 Dec 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swill.github.io/swillops.com/tags/cloud-foundry/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://willstevens.net/tags/cloud-foundry/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Deploy node.js on cloudfoundry.com</title>
-      <link>http://swill.github.io/swillops.com/blog/deploy-nodejs-on-cloudfoundry/</link>
+      <link>http://willstevens.net/blog/deploy-nodejs-on-cloudfoundry/</link>
       <pubDate>Wed, 14 Dec 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://swill.github.io/swillops.com/blog/deploy-nodejs-on-cloudfoundry/</guid>
+      <guid>http://willstevens.net/blog/deploy-nodejs-on-cloudfoundry/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Instructions to create a simple node.js app called &lt;code&gt;node_app&lt;/code&gt; and then upload and run it on &lt;a href=&#34;http://cloudfoundry.com/&#34;&gt;cloudfoundry.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;In order to use cloudfoundry.com, you need to &lt;a href=&#34;http://my.cloudfoundry.com/signup&#34;&gt;sign

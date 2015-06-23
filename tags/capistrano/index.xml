@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Capistrano on SwillOps</title>
-    <link>http://swill.github.io/swillops.com/tags/capistrano/</link>
+    <link>http://willstevens.net/tags/capistrano/</link>
     <description>Recent content in Capistrano on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 23 Feb 2009 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swill.github.io/swillops.com/tags/capistrano/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://willstevens.net/tags/capistrano/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Manage and deploy Drupal code securely with Git, gitosis and Capistrano</title>
-      <link>http://swill.github.io/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
+      <link>http://willstevens.net/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
       <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://swill.github.io/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://swill.github.io/swillops.com/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
+      <guid>http://willstevens.net/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://willstevens.net/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://swill.github.io/swillops.com/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://willstevens.net/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
 
 &lt;p&gt;I have quite a few sites set up with Drupal and it has been working
 beautifully for me. However, with the fast turn over of Drupal code, I was
