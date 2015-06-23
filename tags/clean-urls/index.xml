@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Clean Urls on SwillOps</title>
-    <link>http://localhost:1313/swillops.com/tags/clean-urls/</link>
+    <link>http://swill.github.io/swillops.com/tags/clean-urls/</link>
     <description>Recent content in Clean Urls on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 18 Jun 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/swillops.com/tags/clean-urls/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swill.github.io/swillops.com/tags/clean-urls/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Drupal Clean Urls on Debian LAMP Stack</title>
-      <link>http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</link>
+      <link>http://swill.github.io/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</link>
       <pubDate>Wed, 18 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</guid>
       <description>&lt;p&gt;Clean Urls did not work out of the box for me when I installed
 &lt;a href=&#34;http://drupal.org/&#34;&gt;Drupal&lt;/a&gt; on a fresh install of
 &lt;a href=&#34;http://www.debian.org/&#34;&gt;Debian&lt;/a&gt;. These are the easy steps for setting them

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Debian on SwillOps</title>
-    <link>http://localhost:1313/swillops.com/tags/debian/</link>
+    <link>http://swill.github.io/swillops.com/tags/debian/</link>
     <description>Recent content in Debian on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 11 Sep 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/swillops.com/tags/debian/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swill.github.io/swillops.com/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Installing Django with Satchmo on Debian Etch</title>
-      <link>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</link>
+      <link>http://swill.github.io/swillops.com/blog/installing-django-satchmo-debian-etch/</link>
       <pubDate>Thu, 11 Sep 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
       <description>&lt;p&gt;This is how I got Django and Satchmo set up on my Debian Etch box with
 Apache2, MySQL, mod_python and Memcached.&lt;/p&gt;
 
@@ -326,10 +326,10 @@ multihost*&lt;/code&gt;&lt;/p&gt;
     
     <item>
       <title>Debian Rails Stack - NginX and Mongrel</title>
-      <link>http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</link>
+      <link>http://swill.github.io/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</link>
       <pubDate>Wed, 09 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</guid>
       <description>&lt;p&gt;If you are reading this it is because you already know that you want a Rails
 setup on a Debian server with &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt; in
 front of a &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel
@@ -558,10 +558,10 @@ error it gives at the end and just restart NginX after).&lt;br /&gt;
     
     <item>
       <title>Drupal Clean Urls on Debian LAMP Stack</title>
-      <link>http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</link>
+      <link>http://swill.github.io/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</link>
       <pubDate>Wed, 18 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</guid>
       <description>&lt;p&gt;Clean Urls did not work out of the box for me when I installed
 &lt;a href=&#34;http://drupal.org/&#34;&gt;Drupal&lt;/a&gt; on a fresh install of
 &lt;a href=&#34;http://www.debian.org/&#34;&gt;Debian&lt;/a&gt;. These are the easy steps for setting them

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SwillOps</title>
-    <link>http://localhost:1313/swillops.com/</link>
+    <link>http://swill.github.io/swillops.com/</link>
     <description>Recent content on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/swillops.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swill.github.io/swillops.com/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo on gh-pages</title>
-      <link>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</link>
+      <link>http://swill.github.io/swillops.com/blog/hugo-on-gh-pages/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/hugo-on-gh-pages/</guid>
       <description>&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
 
 &lt;p&gt;Your config.toml file will probably look something like this:&lt;/p&gt;
@@ -49,16 +49,16 @@ $ git commit -am &amp;quot;source of initial publication&amp;quot;
     
     <item>
       <title>Git branches to manage third party app customization</title>
-      <link>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
+      <link>http://swill.github.io/swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
       <pubDate>Wed, 26 Dec 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
       <description>
 
 &lt;h3 id=&#34;preface:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;Preface:&lt;/h3&gt;
 
 &lt;p&gt;I have been using this technique to customize different types of third party
-projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
+projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://swill.github.io/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
 post&lt;/a&gt;
 regarding the management of customizations on top of the ever changing Drupal
 code base. That post is very long winded and overly technical for most people,
@@ -112,10 +112,10 @@ to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;
     
     <item>
       <title>Redirect traffic from a wordpress site</title>
-      <link>http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/</link>
+      <link>http://swill.github.io/swillops.com/blog/redirect-traffic-wordpress-site/</link>
       <pubDate>Wed, 11 Jul 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/redirect-traffic-wordpress-site/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/redirect-traffic-wordpress-site/</guid>
       <description>
 
 &lt;h3 id=&#34;the-problem:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Problem:&lt;/h3&gt;
@@ -202,10 +202,10 @@ RewriteRule . /index.php [L]
     
     <item>
       <title>Deploy node.js on cloudfoundry.com</title>
-      <link>http://localhost:1313/swillops.com/blog/deploy-nodejs-on-cloudfoundry/</link>
+      <link>http://swill.github.io/swillops.com/blog/deploy-nodejs-on-cloudfoundry/</link>
       <pubDate>Wed, 14 Dec 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/deploy-nodejs-on-cloudfoundry/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/deploy-nodejs-on-cloudfoundry/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Instructions to create a simple node.js app called &lt;code&gt;node_app&lt;/code&gt; and then upload and run it on &lt;a href=&#34;http://cloudfoundry.com/&#34;&gt;cloudfoundry.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;In order to use cloudfoundry.com, you need to &lt;a href=&#34;http://my.cloudfoundry.com/signup&#34;&gt;sign
@@ -289,10 +289,10 @@ work.&lt;/p&gt;
     
     <item>
       <title>Using a 1and1 git repository</title>
-      <link>http://localhost:1313/swillops.com/blog/using-1and1-git-repository/</link>
+      <link>http://swill.github.io/swillops.com/blog/using-1and1-git-repository/</link>
       <pubDate>Mon, 03 Oct 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/using-1and1-git-repository/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/using-1and1-git-repository/</guid>
       <description>&lt;p&gt;&lt;strong&gt;On the 1and1 business accounts you can now use Git via SSH. Here is how&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Setup your master FTP password (which will be used for SSH).&lt;/p&gt;
@@ -315,10 +315,10 @@ work.&lt;/p&gt;
     
     <item>
       <title>Secure push and pull with git-http-backend</title>
-      <link>http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
+      <link>http://swill.github.io/swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
       <pubDate>Mon, 26 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
       <description>&lt;p&gt;I am setting up a new repository machine for my code. I will be setting it up
 with Active Directory later on, but I figured my basic setup would be a good
 starting point for most people.&lt;/p&gt;
@@ -404,10 +404,10 @@ to your existing repository:&lt;br /&gt;
     
     <item>
       <title>Delete a remote branch in Git</title>
-      <link>http://localhost:1313/swillops.com/blog/delete-remote-branch-git/</link>
+      <link>http://swill.github.io/swillops.com/blog/delete-remote-branch-git/</link>
       <pubDate>Fri, 17 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/delete-remote-branch-git/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/delete-remote-branch-git/</guid>
       <description>&lt;p&gt;I run into this all the time. I am typing too fast when I push code to my
 remote repository and I make a typo that creates a new branch in my remote
 repository.&lt;/p&gt;
@@ -426,10 +426,10 @@ remove it. You can remove this newly created branch with.&lt;/p&gt;
     
     <item>
       <title>Editing your hosts file on a Mac</title>
-      <link>http://localhost:1313/swillops.com/blog/editing-your-hosts-file-mac/</link>
+      <link>http://swill.github.io/swillops.com/blog/editing-your-hosts-file-mac/</link>
       <pubDate>Thu, 12 Aug 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/editing-your-hosts-file-mac/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/editing-your-hosts-file-mac/</guid>
       <description>&lt;p&gt;This is a relatively common thing that I have to explain to clients.&lt;/p&gt;
 
 &lt;p&gt;It is often difficult to walk someone through changing their hosts file on a
@@ -447,10 +447,10 @@ Mac, so I figured I would share the way I do it.&lt;/p&gt;
     
     <item>
       <title>Apache, MySQL and PHP on Snow Leopard</title>
-      <link>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
+      <link>http://swill.github.io/swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
       <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
       <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
 Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
 downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup
@@ -470,10 +470,10 @@ their AMP stack, so this is how I was able to get an acceptable one setup.&lt;/p
     
     <item>
       <title>Setting up a new UTF8 MySQL Database</title>
-      <link>http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/</link>
+      <link>http://swill.github.io/swillops.com/blog/setting-new-utf8-mysql-database/</link>
       <pubDate>Wed, 20 Jan 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/setting-new-utf8-mysql-database/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/setting-new-utf8-mysql-database/</guid>
       <description>&lt;p&gt;Create a UTF8 database:&lt;br /&gt;
 &lt;code&gt;&amp;gt; CREATE DATABASE db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;&lt;/code&gt;&lt;/p&gt;
 
@@ -499,13 +499,13 @@ change that as needed.&lt;/p&gt;
     
     <item>
       <title>Manage and deploy Drupal code securely with Git, gitosis and Capistrano</title>
-      <link>http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
+      <link>http://swill.github.io/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
       <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
+      <guid>http://swill.github.io/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://swill.github.io/swillops.com/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://localhost:1313/swillops.com/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://swill.github.io/swillops.com/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
 
 &lt;p&gt;I have quite a few sites set up with Drupal and it has been working
 beautifully for me. However, with the fast turn over of Drupal code, I was
@@ -922,10 +922,10 @@ get you moving in the right direction.&lt;/p&gt;
     
     <item>
       <title>Eurotrip launches a new Trip Planning feature</title>
-      <link>http://localhost:1313/swillops.com/blog/eurotrip-launches-new-trip-planning-feature/</link>
+      <link>http://swill.github.io/swillops.com/blog/eurotrip-launches-new-trip-planning-feature/</link>
       <pubDate>Thu, 18 Dec 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/eurotrip-launches-new-trip-planning-feature/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/eurotrip-launches-new-trip-planning-feature/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.eurotrip.com/&#34;&gt;Eurotrip.com&lt;/a&gt; has released its new and innovative
 &lt;a href=&#34;http://www.eurotrip.com/trips&#34;&gt;Trip Planning&lt;/a&gt; tool today. This European
 travel website is jumping into the ring with companies like
@@ -962,10 +962,10 @@ to solving travelers problems&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>Virtualized Development Environment</title>
-      <link>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</link>
+      <link>http://swill.github.io/swillops.com/blog/virtualized-development-environment/</link>
       <pubDate>Mon, 08 Dec 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/virtualized-development-environment/</guid>
       <description>&lt;p&gt;Recently, while developing, I have had people looking over my shoulder and
 asking questions like; &amp;ldquo;How are you able to code and test so quickly?&amp;rdquo; and
 &amp;ldquo;You just wrote that, how is the person you are talking to on Skype able to
@@ -1051,10 +1051,10 @@ for testing purposes.&lt;/p&gt;
     
     <item>
       <title>Thoughtful Design: Relational Scaling</title>
-      <link>http://localhost:1313/swillops.com/blog/thoughtful-design-relational-scaling/</link>
+      <link>http://swill.github.io/swillops.com/blog/thoughtful-design-relational-scaling/</link>
       <pubDate>Tue, 07 Oct 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/thoughtful-design-relational-scaling/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/thoughtful-design-relational-scaling/</guid>
       <description>&lt;p&gt;This has become one of my signatures, so it is about time I write something
 about it. The basic motivation is the rapid improvements in resolutions and
 screen sizes. This has made it difficult for developers to know what size
@@ -1095,10 +1095,10 @@ size (Ctrl + if you are using firefox).&lt;/p&gt;
     
     <item>
       <title>Installing Django with Satchmo on Debian Etch</title>
-      <link>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</link>
+      <link>http://swill.github.io/swillops.com/blog/installing-django-satchmo-debian-etch/</link>
       <pubDate>Thu, 11 Sep 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
       <description>&lt;p&gt;This is how I got Django and Satchmo set up on my Debian Etch box with
 Apache2, MySQL, mod_python and Memcached.&lt;/p&gt;
 

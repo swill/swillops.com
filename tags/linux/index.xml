@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on SwillOps</title>
-    <link>http://localhost:1313/swillops.com/tags/linux/</link>
+    <link>http://swill.github.io/swillops.com/tags/linux/</link>
     <description>Recent content in Linux on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Aug 2007 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/swillops.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swill.github.io/swillops.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Ubuntu: An Alternative to Windows</title>
-      <link>http://localhost:1313/swillops.com/blog/ubuntu-alternative-windows/</link>
+      <link>http://swill.github.io/swillops.com/blog/ubuntu-alternative-windows/</link>
       <pubDate>Mon, 06 Aug 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/ubuntu-alternative-windows/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/ubuntu-alternative-windows/</guid>
       <description>&lt;p&gt;I think Windows release of Vista is a turning point in the desktop environment
 landscape. People are going to start looking for alternatives instead of
 trying to relearn how to use their computer, all the while dealing with the

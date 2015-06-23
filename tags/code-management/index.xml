@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Code Management on SwillOps</title>
-    <link>http://localhost:1313/swillops.com/tags/code-management/</link>
+    <link>http://swill.github.io/swillops.com/tags/code-management/</link>
     <description>Recent content in Code Management on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 26 Dec 2012 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/swillops.com/tags/code-management/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swill.github.io/swillops.com/tags/code-management/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Git branches to manage third party app customization</title>
-      <link>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
+      <link>http://swill.github.io/swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
       <pubDate>Wed, 26 Dec 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
       <description>
 
 &lt;h3 id=&#34;preface:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;Preface:&lt;/h3&gt;
 
 &lt;p&gt;I have been using this technique to customize different types of third party
-projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://localhost:1313/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
+projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://swill.github.io/swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
 post&lt;/a&gt;
 regarding the management of customizations on top of the ever changing Drupal
 code base. That post is very long winded and overly technical for most people,

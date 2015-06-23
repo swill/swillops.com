@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gh Pages on SwillOps</title>
-    <link>http://localhost:1313/swillops.com/tags/gh-pages/</link>
+    <link>http://swill.github.io/swillops.com/tags/gh-pages/</link>
     <description>Recent content in Gh Pages on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/swillops.com/tags/gh-pages/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swill.github.io/swillops.com/tags/gh-pages/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo on gh-pages</title>
-      <link>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</link>
+      <link>http://swill.github.io/swillops.com/blog/hugo-on-gh-pages/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/hugo-on-gh-pages/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/hugo-on-gh-pages/</guid>
       <description>&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
 
 &lt;p&gt;Your config.toml file will probably look something like this:&lt;/p&gt;

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mesh Conference on SwillOps</title>
-    <link>http://localhost:1313/swillops.com/tags/mesh-conference/</link>
+    <link>http://swill.github.io/swillops.com/tags/mesh-conference/</link>
     <description>Recent content in Mesh Conference on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 30 May 2007 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/swillops.com/tags/mesh-conference/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swill.github.io/swillops.com/tags/mesh-conference/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Enabling Communities: What are we learning???</title>
-      <link>http://localhost:1313/swillops.com/blog/enabling-communities-what-are-we-learning/</link>
+      <link>http://swill.github.io/swillops.com/blog/enabling-communities-what-are-we-learning/</link>
       <pubDate>Wed, 30 May 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/enabling-communities-what-are-we-learning/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/enabling-communities-what-are-we-learning/</guid>
       <description>&lt;p&gt;I recently attended the &lt;a href=&#34;http://www.meshconference.com/&#34;&gt;Mesh 2007 Conference&lt;/a&gt;
 in Toronto with many notable keynotes and guests. One of the more interesting
 presentations I attended was &amp;lsquo;The Web and Philanthropy&amp;rsquo;. It was a conversation

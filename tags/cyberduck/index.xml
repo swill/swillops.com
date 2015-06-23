@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cyberduck on SwillOps</title>
-    <link>http://localhost:1313/swillops.com/tags/cyberduck/</link>
+    <link>http://swill.github.io/swillops.com/tags/cyberduck/</link>
     <description>Recent content in Cyberduck on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Dec 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/swillops.com/tags/cyberduck/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swill.github.io/swillops.com/tags/cyberduck/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Virtualized Development Environment</title>
-      <link>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</link>
+      <link>http://swill.github.io/swillops.com/blog/virtualized-development-environment/</link>
       <pubDate>Mon, 08 Dec 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/swillops.com/blog/virtualized-development-environment/</guid>
+      <guid>http://swill.github.io/swillops.com/blog/virtualized-development-environment/</guid>
       <description>&lt;p&gt;Recently, while developing, I have had people looking over my shoulder and
 asking questions like; &amp;ldquo;How are you able to code and test so quickly?&amp;rdquo; and
 &amp;ldquo;You just wrote that, how is the person you are talking to on Skype able to
