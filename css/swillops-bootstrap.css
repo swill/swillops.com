@@ -63,3 +63,12 @@ pre *::-moz-selection {
 .label-default {
   background-color: #646464;
 }
+
+.well h3 {
+  margin-top: 10px;
+}
+.well hr {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-top: 1px solid #E3E3E3;
+}
