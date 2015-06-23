@@ -85,17 +85,19 @@ $ hugo --baseUrl=&quot;http://yourdomain.com&quot;
 
 <pre><code class="language-bash">$ cd public
 $ vim CNAME # you can use whatever editor you want
-# just your domain to the new file.  eg: yourdomain.com
-# save
+# add just the domain name to this file and save.  eg: yourdomain.com
 $ git add .
-$ git commit -am &quot;added a CNAME&quot;
+$ git commit -am &quot;added a CNAME and updated url&quot;
 $ git push origin gh-pages
 </code></pre>
 
-<p>Then on you domain registrar (like godaddy.com) you would do the following:
-* Edit DNS settings
-* If using a subdomain, create a <code>CNAME</code> that points to <code>http://&lt;username&gt;.github.io/&lt;reponame&gt;</code>
-* If using a base domain, create an <code>A Record</code> to either <code>192.30.252.153</code> or <code>192.30.252.154</code></p>
+<p>Then on you domain registrar (like godaddy.com) you would do the following:</p>
+
+<ul>
+<li>Edit DNS settings</li>
+<li>If using a subdomain, create a <code>CNAME</code> that points to <code>http://&lt;username&gt;.github.io/&lt;reponame&gt;</code></li>
+<li>If using a base domain, create an <code>A Record</code> to either <code>192.30.252.153</code> or <code>192.30.252.154</code></li>
+</ul>
 
 <p>Now once the DNS has propagated you will be able to navigate to your domain and see your website.</p>
 
@@ -106,7 +108,7 @@ $ git push origin gh-pages
         <div class="col-md-3">
             <div class="well well-sm"> 
                 <h4>June 22, 2015<br>
-                <small>345 words</small></h4>
+                <small>346 words</small></h4>
                 <strong>Tags</strong><br>
                 <a class="label label-default" href="http://willstevens.net/tags/hugo">hugo</a> <a class="label label-default" href="http://willstevens.net/tags/git">git</a> <a class="label label-default" href="http://willstevens.net/tags/github">github</a> <a class="label label-default" href="http://willstevens.net/tags/gh-pages">gh-pages</a> 
             </div>

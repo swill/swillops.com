@@ -59,17 +59,19 @@ $ hugo --baseUrl=&amp;quot;http://yourdomain.com&amp;quot;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cd public
 $ vim CNAME # you can use whatever editor you want
-# just your domain to the new file.  eg: yourdomain.com
-# save
+# add just the domain name to this file and save.  eg: yourdomain.com
 $ git add .
-$ git commit -am &amp;quot;added a CNAME&amp;quot;
+$ git commit -am &amp;quot;added a CNAME and updated url&amp;quot;
 $ git push origin gh-pages
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then on you domain registrar (like godaddy.com) you would do the following:
-* Edit DNS settings
-* If using a subdomain, create a &lt;code&gt;CNAME&lt;/code&gt; that points to &lt;code&gt;http://&amp;lt;username&amp;gt;.github.io/&amp;lt;reponame&amp;gt;&lt;/code&gt;
-* If using a base domain, create an &lt;code&gt;A Record&lt;/code&gt; to either &lt;code&gt;192.30.252.153&lt;/code&gt; or &lt;code&gt;192.30.252.154&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Then on you domain registrar (like godaddy.com) you would do the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Edit DNS settings&lt;/li&gt;
+&lt;li&gt;If using a subdomain, create a &lt;code&gt;CNAME&lt;/code&gt; that points to &lt;code&gt;http://&amp;lt;username&amp;gt;.github.io/&amp;lt;reponame&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;If using a base domain, create an &lt;code&gt;A Record&lt;/code&gt; to either &lt;code&gt;192.30.252.153&lt;/code&gt; or &lt;code&gt;192.30.252.154&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Now once the DNS has propagated you will be able to navigate to your domain and see your website.&lt;/p&gt;
 </description>
