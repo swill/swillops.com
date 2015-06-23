@@ -621,7 +621,7 @@ used to being able to install an entire LAMPs stack with this one command:&lt;/p
 &lt;p&gt;&lt;code&gt;$ sudo apt-get install apache2 mysql-server php5 libapache2-mod-php5 php5-xsl
 php5-gd php-pear libapache2-mod-auth-mysql php5-mysql&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Apparently on a Mac this is a complete PITA.&lt;/p&gt;
+&lt;p&gt;Apparently on a Mac this is a complete PITA&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;After spending hours installing and uninstalling MySQL with the final result
 being the dreaded error:&lt;/p&gt;

@@ -46,17 +46,18 @@
 
 <p>Setup your master FTP password (which will be used for SSH).</p>
 
-<p>SSH into your 1and1 account with (assuming example.com is on this account):<br />
-<code>ssh username@example.com</code><br />
-<code>mkdir repositories</code><br />
-<code>cd repositories</code><br />
-<code>git init --bare my_repo.git</code></p>
+<pre><code class="language-bash"># SSH into your 1and1 account with (assuming example.com is on this account): 
+$ ssh username@example.com
+$ mkdir repositories
+$ cd repositories
+$ git init --bare my_repo.git
 
-<p>Now on your local machine you can clone this repository with:<br />
-<code>git clone ssh://username@example.com/~/repositories/my_repo.git</code></p>
+# Now on your local machine you can clone this repository with:  
+$ git clone ssh://username@example.com/~/repositories/my_repo.git
 
-<p>Or to add 1and1 as a remote location for an existing repository do:<br />
-<code>git remote add origin ssh://username@example.com/~/repositories/my_repo.git</code></p>
+# Or to add 1and1 as a remote location for an existing repository do:  
+$ git remote add origin ssh://username@example.com/~/repositories/my_repo.git
+</code></pre>
 
 <p>Enjoy&hellip;</p>
 
@@ -67,7 +68,7 @@
         <div class="col-md-3">
             <div class="well well-sm"> 
                 <h4>October 3, 2011<br>
-                <small>81 words</small></h4>
+                <small>90 words</small></h4>
                 <strong>Tags</strong><br>
                 <a class="label label-default" href="http://swillops.com/tags/1and1">1and1</a> <a class="label label-default" href="http://swillops.com/tags/git">Git</a> 
             </div>

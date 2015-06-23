@@ -154,17 +154,18 @@ to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;
 
 &lt;p&gt;Setup your master FTP password (which will be used for SSH).&lt;/p&gt;
 
-&lt;p&gt;SSH into your 1and1 account with (assuming example.com is on this account):&lt;br /&gt;
-&lt;code&gt;ssh username@example.com&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;mkdir repositories&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;cd repositories&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git init --bare my_repo.git&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# SSH into your 1and1 account with (assuming example.com is on this account): 
+$ ssh username@example.com
+$ mkdir repositories
+$ cd repositories
+$ git init --bare my_repo.git
 
-&lt;p&gt;Now on your local machine you can clone this repository with:&lt;br /&gt;
-&lt;code&gt;git clone ssh://username@example.com/~/repositories/my_repo.git&lt;/code&gt;&lt;/p&gt;
+# Now on your local machine you can clone this repository with:  
+$ git clone ssh://username@example.com/~/repositories/my_repo.git
 
-&lt;p&gt;Or to add 1and1 as a remote location for an existing repository do:&lt;br /&gt;
-&lt;code&gt;git remote add origin ssh://username@example.com/~/repositories/my_repo.git&lt;/code&gt;&lt;/p&gt;
+# Or to add 1and1 as a remote location for an existing repository do:  
+$ git remote add origin ssh://username@example.com/~/repositories/my_repo.git
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Enjoy&amp;hellip;&lt;/p&gt;
 </description>
