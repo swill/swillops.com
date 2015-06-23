@@ -15,7 +15,11 @@
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       
       <guid>http://swillops.com/blog/hugo-on-gh-pages/</guid>
-      <description>&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
+      <description>&lt;p&gt;Traditional web hosting and web application frameworks have become a bit of an annoyance for me.  If you use Wordpress or Drupal you likely can sympathize with the never ending stream of updates and such.  Many of them actually make your site less stable.  Then there is the problem of keeping your site backed up in case your cheap hosting provider accidentally deletes all your work.  Well no more&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I am now managing the content of this website in static markdown files compiled with &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt; and then hosted for free using &lt;a href=&#34;https://pages.github.com/&#34;&gt;gh-pages&lt;/a&gt;.  This is how I did it&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
 
 &lt;p&gt;Your &lt;code&gt;config.toml&lt;/code&gt; file will probably look something like this:&lt;/p&gt;
 
