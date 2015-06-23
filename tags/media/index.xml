@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Media on SwillOps</title>
-    <link>http://willstevens.net/tags/media/</link>
+    <link>http://swillops.com/tags/media/</link>
     <description>Recent content in Media on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 01 Jun 2007 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://willstevens.net/tags/media/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/media/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Old Media vs New Media</title>
-      <link>http://willstevens.net/blog/old-media-vs-new-media/</link>
+      <link>http://swillops.com/blog/old-media-vs-new-media/</link>
       <pubDate>Fri, 01 Jun 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/old-media-vs-new-media/</guid>
+      <guid>http://swillops.com/blog/old-media-vs-new-media/</guid>
       <description>&lt;p&gt;With many new types of media available online, the newspaper industry has been
 loosing traction and are being forced to downsize. Is this just an inevitable
 chain of events due to the onset of the information age, or do newspapers

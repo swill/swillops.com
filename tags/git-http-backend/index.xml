@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git Http Backend on SwillOps</title>
-    <link>http://willstevens.net/tags/git-http-backend/</link>
+    <link>http://swillops.com/tags/git-http-backend/</link>
     <description>Recent content in Git Http Backend on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 26 Sep 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://willstevens.net/tags/git-http-backend/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/git-http-backend/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Secure push and pull with git-http-backend</title>
-      <link>http://willstevens.net/blog/secure-push-and-pull-git-http-backend/</link>
+      <link>http://swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
       <pubDate>Mon, 26 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/secure-push-and-pull-git-http-backend/</guid>
+      <guid>http://swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
       <description>&lt;p&gt;I am setting up a new repository machine for my code. I will be setting it up
 with Active Directory later on, but I figured my basic setup would be a good
 starting point for most people.&lt;/p&gt;

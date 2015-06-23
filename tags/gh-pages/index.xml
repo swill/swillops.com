@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gh Pages on SwillOps</title>
-    <link>http://willstevens.net/tags/gh-pages/</link>
+    <link>http://swillops.com/tags/gh-pages/</link>
     <description>Recent content in Gh Pages on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://willstevens.net/tags/gh-pages/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/gh-pages/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo on gh-pages</title>
-      <link>http://willstevens.net/blog/hugo-on-gh-pages/</link>
+      <link>http://swillops.com/blog/hugo-on-gh-pages/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/hugo-on-gh-pages/</guid>
+      <guid>http://swillops.com/blog/hugo-on-gh-pages/</guid>
       <description>&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
 
 &lt;p&gt;Your &lt;code&gt;config.toml&lt;/code&gt; file will probably look something like this:&lt;/p&gt;
@@ -45,7 +45,7 @@ $ git add .
 $ git commit -am &amp;quot;source of initial publication&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;At this point you should see your website at: http://&lt;username&gt;.github.io/&lt;reponame&gt;/&lt;/p&gt;
+&lt;p&gt;At this point you should see your website at: &lt;code&gt;http://username.github.io/reponame/&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;BONUS POINTS:&lt;/strong&gt; If you want to use a custom domain name, you would do the following.&lt;/p&gt;
 
@@ -61,7 +61,7 @@ $ hugo --baseUrl=&amp;quot;http://yourdomain.com&amp;quot;
 $ vim CNAME # you can use whatever editor you want
 # add just the domain name to this file and save.  eg: yourdomain.com
 $ git add .
-$ git commit -am &amp;quot;added a CNAME and updated url&amp;quot;
+$ git commit -am &amp;quot;added a CNAME and updated urls&amp;quot;
 $ git push origin gh-pages
 &lt;/code&gt;&lt;/pre&gt;
 

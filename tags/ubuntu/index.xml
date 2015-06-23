@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ubuntu on SwillOps</title>
-    <link>http://willstevens.net/tags/ubuntu/</link>
+    <link>http://swillops.com/tags/ubuntu/</link>
     <description>Recent content in Ubuntu on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 10 Mar 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://willstevens.net/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Install Ubuntu in Parallel to Mac OSX</title>
-      <link>http://willstevens.net/blog/install-ubuntu-parallel-mac-osx/</link>
+      <link>http://swillops.com/blog/install-ubuntu-parallel-mac-osx/</link>
       <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/install-ubuntu-parallel-mac-osx/</guid>
+      <guid>http://swillops.com/blog/install-ubuntu-parallel-mac-osx/</guid>
       <description>
 
 &lt;p&gt;If you are trying to do this you will need &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;Parallels Desktop 3.0 for Mac
@@ -78,10 +78,10 @@ Mac&amp;hellip; :)&lt;/p&gt;
     
     <item>
       <title>Ubuntu: An Alternative to Windows</title>
-      <link>http://willstevens.net/blog/ubuntu-alternative-windows/</link>
+      <link>http://swillops.com/blog/ubuntu-alternative-windows/</link>
       <pubDate>Mon, 06 Aug 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/ubuntu-alternative-windows/</guid>
+      <guid>http://swillops.com/blog/ubuntu-alternative-windows/</guid>
       <description>&lt;p&gt;I think Windows release of Vista is a turning point in the desktop environment
 landscape. People are going to start looking for alternatives instead of
 trying to relearn how to use their computer, all the while dealing with the
@@ -172,10 +172,10 @@ best guide for anything you could ever want to do with the OS&amp;hellip;&lt;/p&
     
     <item>
       <title>Ubuntu: backed by a great community</title>
-      <link>http://willstevens.net/blog/ubuntu-backed-great-community/</link>
+      <link>http://swillops.com/blog/ubuntu-backed-great-community/</link>
       <pubDate>Fri, 20 Apr 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/ubuntu-backed-great-community/</guid>
+      <guid>http://swillops.com/blog/ubuntu-backed-great-community/</guid>
       <description>&lt;p&gt;I promised to come back and visit the community aspect of Ubuntu because I
 feel that it is an underrated feature of this OS. I&amp;rsquo;m sure most of you have
 had an experience where you are trying to do something with Windows and you

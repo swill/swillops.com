@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Git on SwillOps</title>
-    <link>http://willstevens.net/tags/git/</link>
+    <link>http://swillops.com/tags/git/</link>
     <description>Recent content in Git on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://willstevens.net/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/git/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo on gh-pages</title>
-      <link>http://willstevens.net/blog/hugo-on-gh-pages/</link>
+      <link>http://swillops.com/blog/hugo-on-gh-pages/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/hugo-on-gh-pages/</guid>
+      <guid>http://swillops.com/blog/hugo-on-gh-pages/</guid>
       <description>&lt;p&gt;This is not a hugo tutorial, so I will assume you have built something in hugo and you have run &lt;code&gt;hugo server -w&lt;/code&gt; and can view the website locally.&lt;/p&gt;
 
 &lt;p&gt;Your &lt;code&gt;config.toml&lt;/code&gt; file will probably look something like this:&lt;/p&gt;
@@ -45,7 +45,7 @@ $ git add .
 $ git commit -am &amp;quot;source of initial publication&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;At this point you should see your website at: http://&lt;username&gt;.github.io/&lt;reponame&gt;/&lt;/p&gt;
+&lt;p&gt;At this point you should see your website at: &lt;code&gt;http://username.github.io/reponame/&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;BONUS POINTS:&lt;/strong&gt; If you want to use a custom domain name, you would do the following.&lt;/p&gt;
 
@@ -61,7 +61,7 @@ $ hugo --baseUrl=&amp;quot;http://yourdomain.com&amp;quot;
 $ vim CNAME # you can use whatever editor you want
 # add just the domain name to this file and save.  eg: yourdomain.com
 $ git add .
-$ git commit -am &amp;quot;added a CNAME and updated url&amp;quot;
+$ git commit -am &amp;quot;added a CNAME and updated urls&amp;quot;
 $ git push origin gh-pages
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -79,16 +79,16 @@ $ git push origin gh-pages
     
     <item>
       <title>Git branches to manage third party app customization</title>
-      <link>http://willstevens.net/blog/git-branches-manage-third-party-app-customization/</link>
+      <link>http://swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
       <pubDate>Wed, 26 Dec 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/git-branches-manage-third-party-app-customization/</guid>
+      <guid>http://swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
       <description>
 
 &lt;h3 id=&#34;preface:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;Preface:&lt;/h3&gt;
 
 &lt;p&gt;I have been using this technique to customize different types of third party
-projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://willstevens.net/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
+projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
 post&lt;/a&gt;
 regarding the management of customizations on top of the ever changing Drupal
 code base. That post is very long winded and overly technical for most people,
@@ -142,10 +142,10 @@ to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;
     
     <item>
       <title>Using a 1and1 git repository</title>
-      <link>http://willstevens.net/blog/using-1and1-git-repository/</link>
+      <link>http://swillops.com/blog/using-1and1-git-repository/</link>
       <pubDate>Mon, 03 Oct 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/using-1and1-git-repository/</guid>
+      <guid>http://swillops.com/blog/using-1and1-git-repository/</guid>
       <description>&lt;p&gt;&lt;strong&gt;On the 1and1 business accounts you can now use Git via SSH. Here is how&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Setup your master FTP password (which will be used for SSH).&lt;/p&gt;
@@ -168,10 +168,10 @@ to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;
     
     <item>
       <title>Secure push and pull with git-http-backend</title>
-      <link>http://willstevens.net/blog/secure-push-and-pull-git-http-backend/</link>
+      <link>http://swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
       <pubDate>Mon, 26 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/secure-push-and-pull-git-http-backend/</guid>
+      <guid>http://swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
       <description>&lt;p&gt;I am setting up a new repository machine for my code. I will be setting it up
 with Active Directory later on, but I figured my basic setup would be a good
 starting point for most people.&lt;/p&gt;
@@ -257,10 +257,10 @@ to your existing repository:&lt;br /&gt;
     
     <item>
       <title>Delete a remote branch in Git</title>
-      <link>http://willstevens.net/blog/delete-remote-branch-git/</link>
+      <link>http://swillops.com/blog/delete-remote-branch-git/</link>
       <pubDate>Fri, 17 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/delete-remote-branch-git/</guid>
+      <guid>http://swillops.com/blog/delete-remote-branch-git/</guid>
       <description>&lt;p&gt;I run into this all the time. I am typing too fast when I push code to my
 remote repository and I make a typo that creates a new branch in my remote
 repository.&lt;/p&gt;
@@ -279,13 +279,13 @@ remove it. You can remove this newly created branch with.&lt;/p&gt;
     
     <item>
       <title>Manage and deploy Drupal code securely with Git, gitosis and Capistrano</title>
-      <link>http://willstevens.net/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
+      <link>http://swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
       <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://willstevens.net/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
+      <guid>http://swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://swillops.com/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://willstevens.net/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://swillops.com/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
 
 &lt;p&gt;I have quite a few sites set up with Drupal and it has been working
 beautifully for me. However, with the fast turn over of Drupal code, I was
@@ -702,10 +702,10 @@ get you moving in the right direction.&lt;/p&gt;
     
     <item>
       <title>Debian Rails Stack - NginX and Mongrel</title>
-      <link>http://willstevens.net/blog/debian-rails-stack-nginx-and-mongrel/</link>
+      <link>http://swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</link>
       <pubDate>Wed, 09 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/debian-rails-stack-nginx-and-mongrel/</guid>
+      <guid>http://swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</guid>
       <description>&lt;p&gt;If you are reading this it is because you already know that you want a Rails
 setup on a Debian server with &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt; in
 front of a &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel
@@ -934,10 +934,10 @@ error it gives at the end and just restart NginX after).&lt;br /&gt;
     
     <item>
       <title>Dead simple GIT install on Mac</title>
-      <link>http://willstevens.net/blog/dead-simple-git-install-mac/</link>
+      <link>http://swillops.com/blog/dead-simple-git-install-mac/</link>
       <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/dead-simple-git-install-mac/</guid>
+      <guid>http://swillops.com/blog/dead-simple-git-install-mac/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; is the new cool kid in town when it comes to source
 code management. I wanted to install Git on my Mac, but I had heard installing
 it could be a bit of a pain. I did a bunch of research before I tried an

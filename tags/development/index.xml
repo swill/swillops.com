@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Development on SwillOps</title>
-    <link>http://willstevens.net/tags/development/</link>
+    <link>http://swillops.com/tags/development/</link>
     <description>Recent content in Development on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 Dec 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://willstevens.net/tags/development/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/development/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Virtualized Development Environment</title>
-      <link>http://willstevens.net/blog/virtualized-development-environment/</link>
+      <link>http://swillops.com/blog/virtualized-development-environment/</link>
       <pubDate>Mon, 08 Dec 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/virtualized-development-environment/</guid>
+      <guid>http://swillops.com/blog/virtualized-development-environment/</guid>
       <description>&lt;p&gt;Recently, while developing, I have had people looking over my shoulder and
 asking questions like; &amp;ldquo;How are you able to code and test so quickly?&amp;rdquo; and
 &amp;ldquo;You just wrote that, how is the person you are talking to on Skype able to
@@ -100,10 +100,10 @@ for testing purposes.&lt;/p&gt;
     
     <item>
       <title>From the beginning...</title>
-      <link>http://willstevens.net/blog/beginning/</link>
+      <link>http://swillops.com/blog/beginning/</link>
       <pubDate>Fri, 20 Apr 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://willstevens.net/blog/beginning/</guid>
+      <guid>http://swillops.com/blog/beginning/</guid>
       <description>&lt;p&gt;I started working with web based development and design when I was 16. I
 started out working mainly with graphic design and then moving more towards
 web development as I got closer to heading off to university.&lt;/p&gt;
