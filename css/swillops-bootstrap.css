@@ -72,3 +72,7 @@ pre *::-moz-selection {
   margin-bottom: 15px;
   border-top: 1px solid #E3E3E3;
 }
+
+.navbar-nav>li>a, .navbar-nav>li>a:hover {
+  font-size: 115%;
+}

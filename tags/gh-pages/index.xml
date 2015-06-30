@@ -6,8 +6,37 @@
     <description>Recent content in Gh Pages on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2015 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://swillops.com/tags/gh-pages/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Back to blogging</title>
+      <link>http://swillops.com/blog/back-to-blogging/</link>
+      <pubDate>Tue, 30 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://swillops.com/blog/back-to-blogging/</guid>
+      <description>&lt;p&gt;As you can see from the recent inactivity on my blog, I have had a hard time publishing content recently.  It has not been for a lack blog worthy content, but how amazingly not fun blogging was on my old platform.  I spent a lot of time on my old website, making the theme perfect, adding all the features I thought I needed, etc&amp;hellip;  I used it quite a bit for a while, but the writing experience always felt strained.  It turns out that I hate WYSIWYG editors and would much prefer to just write my content in markdown files.  This led me the awesome &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; software which I am using now.  For more info on my current setup, check my &lt;a href=&#34;http://swillops.com/blog/hugo-on-gh-pages&#34;&gt;Hugo on gh-pages&lt;/a&gt; post.&lt;/p&gt;
+
+&lt;p&gt;As a developer there are a few places where I feel completely comfortable; a text editor (&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt; in this case), the command line, and working with Git repositories.  It makes so much more sense to me to use tools I love for managing my content rather than some web UI which just does not feel right.&lt;/p&gt;
+
+&lt;p&gt;Here are some of the benefits of a statically generated website:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Better security.&lt;/strong&gt;  Publishing only HTML, CSS and JS reduces the attack surface of your website giving you better security.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better performance.&lt;/strong&gt;  Serving only static files reduces server load and increases performance.  Slow queries be gone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host your website anywhere.&lt;/strong&gt;  I am currently hosting my website for free on &lt;a href=&#34;https://pages.github.com/&#34;&gt;gh-pages&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;History of changes.&lt;/strong&gt;  By tracking everything in Git repositories you have a history of all your changes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Never worry about backups.&lt;/strong&gt;  With everything in Git you never have to worry about backups again, its baked in.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write in your favorite editor.&lt;/strong&gt;  Every developer has their favorite tools.  There is no place like &lt;code&gt;127.0.0.1&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write content offline.&lt;/strong&gt;  All the source markdown files are local, so you can work offline easily.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Review before publishing.&lt;/strong&gt;  Use Hugo&amp;rsquo;s built in server to review your content locally before publishing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No WYSIWYG editor.&lt;/strong&gt;  This is such a quality of life improvement.  I love working in markdown in comparison.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No security updates.&lt;/strong&gt;  I hated logging into Drupal or Wordpress and seeing a &amp;lsquo;security updates available&amp;rsquo; message.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So far this has been an enjoyable change and I am looking forward to discovering more benefits as I get deeper.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Hugo on gh-pages</title>
@@ -69,7 +98,7 @@ $ git commit -am &amp;quot;added a CNAME and updated urls&amp;quot;
 $ git push origin gh-pages
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then on you domain registrar (like godaddy.com) you would do the following:&lt;/p&gt;
+&lt;p&gt;Then on your domain registrar (like godaddy.com) you would do the following:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Edit DNS settings&lt;/li&gt;

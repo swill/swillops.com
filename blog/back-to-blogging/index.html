@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Install Ubuntu in Parallel to Mac OSX">
+    <meta name="description" content="Technology changes to make blogging fun again">
     <meta name="author" content="Will Stevens"> 
     <meta name="google-site-verification" content="qFeBE6ArH88taCtrl6_teGEGJV3iiZavODW5hLZTxJI" />
 
-    <title>Install Ubuntu in Parallel to Mac OSX - swillops.com</title>
-    <link rel="canonical" href="http://swillops.com/blog/install-ubuntu-parallel-mac-osx/">
+    <title>Back to blogging - swillops.com</title>
+    <link rel="canonical" href="http://swillops.com/blog/back-to-blogging/">
     <link href="http://swillops.com/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://swillops.com/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://swillops.com/css/highlight.css" rel="stylesheet">
@@ -40,66 +40,28 @@
     <div class="row">
         <div class="col-md-9">
             <div class="post">
-                <h2>Install Ubuntu in Parallel to Mac OSX<br> <small>Install Ubuntu in Parallel to Mac OSX</small></h2>
+                <h2>Back to blogging<br> <small>Technology changes to make blogging fun again</small></h2>
                 <hr>
-                
+                <p>As you can see from the recent inactivity on my blog, I have had a hard time publishing content recently.  It has not been for a lack blog worthy content, but how amazingly not fun blogging was on my old platform.  I spent a lot of time on my old website, making the theme perfect, adding all the features I thought I needed, etc&hellip;  I used it quite a bit for a while, but the writing experience always felt strained.  It turns out that I hate WYSIWYG editors and would much prefer to just write my content in markdown files.  This led me the awesome <a href="http://gohugo.io/">Hugo</a> software which I am using now.  For more info on my current setup, check my <a href="http://swillops.com/blog/hugo-on-gh-pages">Hugo on gh-pages</a> post.</p>
 
-<p>If you are trying to do this you will need <a href="http://kb.parallels.com/entry/32/568/">Parallels Desktop 3.0 for Mac
-(~$79.99 USD)</a>. This software allows
-you to run Windows and Linux on your Mac so you have access to all three
-operating systems without rebooting. I think this will be an ideal web
-developing environment, but that is another article all together&hellip;</p>
+<p>As a developer there are a few places where I feel completely comfortable; a text editor (<a href="http://www.sublimetext.com/">Sublime Text</a> in this case), the command line, and working with Git repositories.  It makes so much more sense to me to use tools I love for managing my content rather than some web UI which just does not feel right.</p>
 
-<p>Install Parallels Desktop 3.0 for Mac and then launch it. Go to <strong>File -&gt;
-New</strong>. In the new window select <strong>Typical</strong>, then click <strong>(Next)</strong>. Select
-<strong>Linux</strong> and <strong>Ubuntu Linux</strong>, then click <strong>(Next)</strong>. Finish the guide with
-the appropriate information that you want for the system.</p>
+<p>Here are some of the benefits of a statically generated website:</p>
 
-<p>I got an error when I tried to install Ubuntu 7.10 (Gutsy):</p>
+<ul>
+<li><strong>Better security.</strong>  Publishing only HTML, CSS and JS reduces the attack surface of your website giving you better security.</li>
+<li><strong>Better performance.</strong>  Serving only static files reduces server load and increases performance.  Slow queries be gone.</li>
+<li><strong>Host your website anywhere.</strong>  I am currently hosting my website for free on <a href="https://pages.github.com/">gh-pages</a>.</li>
+<li><strong>History of changes.</strong>  By tracking everything in Git repositories you have a history of all your changes.</li>
+<li><strong>Never worry about backups.</strong>  With everything in Git you never have to worry about backups again, its baked in.</li>
+<li><strong>Write in your favorite editor.</strong>  Every developer has their favorite tools.  There is no place like <code>127.0.0.1</code>.</li>
+<li><strong>Write content offline.</strong>  All the source markdown files are local, so you can work offline easily.</li>
+<li><strong>Review before publishing.</strong>  Use Hugo&rsquo;s built in server to review your content locally before publishing.</li>
+<li><strong>No WYSIWYG editor.</strong>  This is such a quality of life improvement.  I love working in markdown in comparison.</li>
+<li><strong>No security updates.</strong>  I hated logging into Drupal or Wordpress and seeing a &lsquo;security updates available&rsquo; message.</li>
+</ul>
 
-<blockquote>
-<p>The display server has been shut down about 6 times in the last 90 seconds.
-It is likely that something bad is going on. Waiting for 2 minutes before
-trying again on display.</p>
-
-<p><strong>OK</strong></p>
-</blockquote>
-
-<p>If you get this error, follow <a href="http://kb.parallels.com/entry/32/568/">this
-guide</a> in the very good knowledge base
-provided by Parallels.</p>
-
-<h3 id="troubleshooting-section:ed60267dc24e98ddc27c68ab970f1367">Troubleshooting Section:</h3>
-
-<h4 id="you-can-t-update-ubuntu:ed60267dc24e98ddc27c68ab970f1367">You can&rsquo;t Update Ubuntu</h4>
-
-<p>You have to manually connect to your internet connection. Just go up to the
-top right of your Ubuntu screen and select &lsquo;Wired Network&rsquo; from the network
-monitor and it will connect (assuming your Mac has an internet connection).
-Also since the install could not find a connection, it may have commented out
-all of your repositories in <code>/etc/apt/sources.list</code>. <a href="http://
-ubuntuguide.org/wiki/Ubuntu:Gutsy#Manual_Method_for_Adding_Repositories">Follow this guide</a> to
-set up your repositories (you should probably use these repositories anyway).</p>
-
-<h4 id="can-t-start-ubuntu-after-an-update:ed60267dc24e98ddc27c68ab970f1367">Can&rsquo;t start Ubuntu after an Update</h4>
-
-<p>For some reason <strong>single</strong> gets added back into the string <code>kernel /boot/....</code>
-in your <code>/boot/grub/menu.lst</code> file. Refer back to <a href="http://kb.parallels.com/entry/32/568/">step 5 in this
-guide</a> to fix that problem.<br />
-<em><strong>Note:</strong> My machine crashed after the update and before the reboot which may
-have caused this issue.</em></p>
-
-<h4 id="cant-use-full-screen-resolution:ed60267dc24e98ddc27c68ab970f1367">Cant use Full Screen Resolution</h4>
-
-<p>If you are getting warnings telling you that you cant set a resolution that
-size when you start the Ubuntu machine, <a href="http://muffinresearch.co.uk/archives/2006/08/13/running-ubuntu-under-
-parallels-desktop-for-mac/">check out this
-article</a>. Basically, changing the setting in
-<code>/etc/X11/xorg.conf</code> does not work, you have to use <code>sudo dpkg-reconfigure 
--phigh xserver-xorg</code> to change the resolution settings.</p>
-
-<p>At this point you should be set. Enjoy the wonderfulness of Linux on your
-Mac&hellip; :)</p>
+<p>So far this has been an enjoyable change and I am looking forward to discovering more benefits as I get deeper.</p>
 
             </div>
 
@@ -124,10 +86,10 @@ Mac&hellip; :)</p>
         
         <div class="col-md-3">
             <div class="well well-sm"> 
-                <h4>March 10, 2008<br>
-                <small>364 words</small></h4>
+                <h4>June 30, 2015<br>
+                <small>382 words</small></h4>
                 <strong>Tags</strong><br>
-                <a class="label label-default" href="http://swillops.com/tags/mac">Mac</a> <a class="label label-default" href="http://swillops.com/tags/parallels">Parallels</a> <a class="label label-default" href="http://swillops.com/tags/ubuntu">Ubuntu</a> <a class="label label-default" href="http://swillops.com/tags/windows">Windows</a> 
+                <a class="label label-default" href="http://swillops.com/tags/hugo">hugo</a> <a class="label label-default" href="http://swillops.com/tags/gh-pages">gh-pages</a> <a class="label label-default" href="http://swillops.com/tags/git">Git</a> 
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 2px 15px;">
@@ -145,6 +107,58 @@ Mac&hellip; :)</p>
                         
                         
                         
+                            <li><a href="http://swillops.com/blog/hugo-on-gh-pages/">Hugo on gh-pages</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://swillops.com/blog/git-branches-manage-third-party-app-customization/">Git branches to manage third party app customization</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://swillops.com/blog/using-1and1-git-repository/">Using a 1and1 git repository</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://swillops.com/blog/secure-push-and-pull-git-http-backend/">Secure push and pull with git-http-backend</a></li>
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://swillops.com/blog/delete-remote-branch-git/">Delete a remote branch in Git</a></li>
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                    
+                        
+                        
+                        
+                            <li><a href="http://swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/">Manage and deploy Drupal code securely with Git, gitosis and Capistrano</a></li>
+                        
                     
                         
                         
@@ -165,53 +179,11 @@ Mac&hellip; :)</p>
                         
                         
                         
-                    
-                        
-                        
+                            <li><a href="http://swillops.com/blog/debian-rails-stack-nginx-and-mongrel/">Debian Rails Stack - NginX and Mongrel</a></li>
                         
                     
                         
                         
-                        
-                    
-                        
-                        
-                        
-                    
-                        
-                        
-                        
-                    
-                        
-                        
-                        
-                    
-                        
-                        
-                        
-                    
-                        
-                        
-                        
-                            <li><a href="http://swillops.com/blog/virtualized-development-environment/">Virtualized Development Environment</a></li>
-                        
-                    
-                        
-                        
-                        
-                    
-                        
-                        
-                        
-                    
-                        
-                        
-                        
-                    
-                        
-                        
-                        
-                            <li><a href="http://swillops.com/blog/batch-image-resizing-mac/">Batch image resizing on a Mac</a></li>
                         
                     
                         
@@ -239,8 +211,6 @@ Mac&hellip; :)</p>
                         
                         
                         
-                            <li><a href="http://swillops.com/blog/mysql-mac-what-headache/">MySQL on a Mac: What a headache</a></li>
-                        
                     
                         
                         
@@ -249,17 +219,9 @@ Mac&hellip; :)</p>
                         
                         
                         
-                            <li><a href="http://swillops.com/blog/mac-tweaks/">Mac Tweaks</a></li>
-                        
                     
                         
                         
-                        
-                    
-                        
-                        
-                        
-                            <li><a href="http://swillops.com/blog/ubuntu-alternative-windows/">Ubuntu: An Alternative to Windows</a></li>
                         
                     
                         
@@ -277,7 +239,9 @@ Mac&hellip; :)</p>
                         
                         
                         
-                            <li><a href="http://swillops.com/blog/ubuntu-backed-great-community/">Ubuntu: backed by a great community</a></li>
+                    
+                        
+                        
                         
                     
                         

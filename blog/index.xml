@@ -6,8 +6,37 @@
     <description>Recent content in Blogs on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Jun 2015 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://swillops.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Back to blogging</title>
+      <link>http://swillops.com/blog/back-to-blogging/</link>
+      <pubDate>Tue, 30 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://swillops.com/blog/back-to-blogging/</guid>
+      <description>&lt;p&gt;As you can see from the recent inactivity on my blog, I have had a hard time publishing content recently.  It has not been for a lack blog worthy content, but how amazingly not fun blogging was on my old platform.  I spent a lot of time on my old website, making the theme perfect, adding all the features I thought I needed, etc&amp;hellip;  I used it quite a bit for a while, but the writing experience always felt strained.  It turns out that I hate WYSIWYG editors and would much prefer to just write my content in markdown files.  This led me the awesome &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; software which I am using now.  For more info on my current setup, check my &lt;a href=&#34;http://swillops.com/blog/hugo-on-gh-pages&#34;&gt;Hugo on gh-pages&lt;/a&gt; post.&lt;/p&gt;
+
+&lt;p&gt;As a developer there are a few places where I feel completely comfortable; a text editor (&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt; in this case), the command line, and working with Git repositories.  It makes so much more sense to me to use tools I love for managing my content rather than some web UI which just does not feel right.&lt;/p&gt;
+
+&lt;p&gt;Here are some of the benefits of a statically generated website:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Better security.&lt;/strong&gt;  Publishing only HTML, CSS and JS reduces the attack surface of your website giving you better security.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better performance.&lt;/strong&gt;  Serving only static files reduces server load and increases performance.  Slow queries be gone.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Host your website anywhere.&lt;/strong&gt;  I am currently hosting my website for free on &lt;a href=&#34;https://pages.github.com/&#34;&gt;gh-pages&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;History of changes.&lt;/strong&gt;  By tracking everything in Git repositories you have a history of all your changes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Never worry about backups.&lt;/strong&gt;  With everything in Git you never have to worry about backups again, its baked in.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write in your favorite editor.&lt;/strong&gt;  Every developer has their favorite tools.  There is no place like &lt;code&gt;127.0.0.1&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Write content offline.&lt;/strong&gt;  All the source markdown files are local, so you can work offline easily.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Review before publishing.&lt;/strong&gt;  Use Hugo&amp;rsquo;s built in server to review your content locally before publishing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No WYSIWYG editor.&lt;/strong&gt;  This is such a quality of life improvement.  I love working in markdown in comparison.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No security updates.&lt;/strong&gt;  I hated logging into Drupal or Wordpress and seeing a &amp;lsquo;security updates available&amp;rsquo; message.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So far this has been an enjoyable change and I am looking forward to discovering more benefits as I get deeper.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Hugo on gh-pages</title>
@@ -69,7 +98,7 @@ $ git commit -am &amp;quot;added a CNAME and updated urls&amp;quot;
 $ git push origin gh-pages
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Then on you domain registrar (like godaddy.com) you would do the following:&lt;/p&gt;
+&lt;p&gt;Then on your domain registrar (like godaddy.com) you would do the following:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Edit DNS settings&lt;/li&gt;
@@ -118,34 +147,47 @@ deployments and builds will be done from the &lt;code&gt;custom&lt;/code&gt; bra
 
 &lt;h3 id=&#34;an-example:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;An Example:&lt;/h3&gt;
 
-&lt;p&gt;Get the third party code (this will create the &lt;code&gt;master&lt;/code&gt; branch):&lt;br /&gt;
-&lt;code&gt;git clone https://github.com/third_party/project.git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Get the third party code (this will create the &lt;code&gt;master&lt;/code&gt; branch):&lt;/p&gt;
 
-&lt;p&gt;Create the &lt;code&gt;custom&lt;/code&gt; branch for our modifications:&lt;br /&gt;
-&lt;code&gt;git checkout -b custom&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone https://github.com/third_party/project.git
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;... do your customizations ...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Create the &lt;code&gt;custom&lt;/code&gt; branch for our modifications:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git commit -a -m &amp;quot;Initial customizations&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout -b custom
+  # ... do your customizations ...
+$ git add .  
+$ git commit -a -m &amp;quot;Initial customizations&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;At this point you can create your first build/deployment from the &lt;code&gt;custom&lt;/code&gt;
 branch&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;When the third party updates their code and you want to incorporate their
-changes:&lt;br /&gt;
-&lt;code&gt;git checkout master&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git pull origin master&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git checkout custom&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git pull . master&lt;/code&gt;&lt;/p&gt;
+changes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout master  
+$ git pull origin master  
+$ git checkout custom  
+$ git pull . master
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now you have merged their changes into the &lt;code&gt;custom&lt;/code&gt; branch and you are ready
 to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt;&lt;br /&gt;
+Since I originally wrote this, I have changed my process slightly when incorporating third party updates.  Here is how I do it now&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout master  
+$ git pull origin master  
+$ git checkout custom  
+$ git rebase master
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
     <item>
-      <title>Redirect traffic from a wordpress site</title>
+      <title>Redirect traffic from a Wordpress site</title>
       <link>http://swillops.com/blog/redirect-traffic-wordpress-site/</link>
       <pubDate>Wed, 11 Jul 2012 00:00:00 +0000</pubDate>
       
@@ -154,14 +196,14 @@ to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;
 
 &lt;h3 id=&#34;the-problem:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Problem:&lt;/h3&gt;
 
-&lt;p&gt;A wordpress site has depreciated and you want to redirect all of its traffic
+&lt;p&gt;A Wordpress site has deprecated and you want to redirect all of its traffic
 to a landing page on a new site. However, you want to explain why the site has
 been deprecated in the context of the old site.&lt;/p&gt;
 
 &lt;h3 id=&#34;the-solution:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Solution:&lt;/h3&gt;
 
 &lt;p&gt;You should explain to the user why they are being redirected, so create a page
-on the old wordpress site at some url, say: &lt;a href=&#34;http://www.oldsite.com/we-moved&#34;&gt;www.oldsite.com/we-
+on the old Wordpress site at some url, say: &lt;a href=&#34;http://www.oldsite.com/we-moved&#34;&gt;www.oldsite.com/we-
 moved&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;On that new page (/we-moved), we want it to have a countdown and then redirect
@@ -1125,321 +1167,6 @@ will be discussed in another post.&lt;/p&gt;
 This site also has relational scaling, but does not have the slider as a
 visual cue. To change the size of this site, you will need to change the font
 size (Ctrl + if you are using firefox).&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Installing Django with Satchmo on Debian Etch</title>
-      <link>http://swillops.com/blog/installing-django-satchmo-debian-etch/</link>
-      <pubDate>Thu, 11 Sep 2008 00:00:00 +0000</pubDate>
-      
-      <guid>http://swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
-      <description>&lt;p&gt;This is how I got Django and Satchmo set up on my Debian Etch box with
-Apache2, MySQL, mod_python and Memcached.&lt;/p&gt;
-
-&lt;p&gt;The machine I started with had Debian Etch installed as well as Apache2 and
-MySQL.&lt;/p&gt;
-
-&lt;p&gt;Note: I am assuming you are working as root on your machine. If not you will
-have to do &lt;code&gt;sudo&lt;/code&gt; in front of all of the following commands.&lt;/p&gt;
-
-&lt;p&gt;Make sure that your &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; is up to date and then update your
-repositories and installed packages. I usually get my &lt;a href=&#34;http://www.linuxquestions.org/questions/debian-26/post-your-
-source.list-330913/&#34;&gt;sources from
-here&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# apt-get update&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# apt-get upgrade&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Since it is a new server and my &lt;code&gt;locales&lt;/code&gt; are not right, I reconfigure them.&lt;br /&gt;
-&lt;code&gt;# dpkg-reconfigure locales&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install GCC, G++ and Make so you can compile code&lt;br /&gt;
-&lt;code&gt;# apt-get install gcc g++ make&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install the newest version of
-&lt;a href=&#34;http://www.python.org/download/releases/&#34;&gt;Python&lt;/a&gt;
-(&lt;a href=&#34;http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz&#34;&gt;2.5.2&lt;/a&gt; as of this
-writing).&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://www.python.org/ftp/python/2.5.2/Python-2.5.2.tgz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf Python*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd Python*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# ./configure --enable-shared&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Set up a config file for python.&lt;br /&gt;
-&lt;code&gt;# vi /etc/ld.so.conf.d/python2.5.conf&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Put the following in it (path to the libpython2.5.so.1.0):&lt;br /&gt;
-&lt;code&gt;/usr/local/lib&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Make the settings take effect.&lt;br /&gt;
-&lt;code&gt;# ldconfig&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Make this version of python the default version.&lt;br /&gt;
-&lt;code&gt;# vi /usr/share/python/debian_defaults&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Change the contents of this file to:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ini&#34;&gt;[DEFAULT]
-# the default python version  
-default-version = python2.5
-
-# all supported python versions  
-supported-versions = python2.4, python2.5
-
-# formerly supported python versions  
-old-versions = python2.3
-
-# unsupported versions, including older versions  
-unsupported-versions = python2.3
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Create a symlink to point to the new version of python.&lt;br /&gt;
-&lt;code&gt;# rm /usr/bin/python&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# ln -s /usr/local/bin/python2.5 /usr/bin/python&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Set up MySQL (&lt;a href=&#34;http://sourceforge.net/projects/mysql-python&#34;&gt;MySQL-python&lt;/a&gt;) to
-work with Python.&lt;br /&gt;
-&lt;code&gt;# apt-get install libmysqlclient15-dev&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://voxel.dl.sourceforge.net/sourceforge/mysql-python/MySQL-
-python-1.2.2.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf MySQL-python*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd MySQL-python*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py build&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Installing &lt;code&gt;mod_python&lt;/code&gt; for Apache2 in Debian Etch is a total PITA. Here are
-the steps I took to get it installed&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# apt-get install apache2-prefork-dev&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://ftp.wayne.edu/apache/httpd/modpython/mod_python-3.3.1.tgz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf mod_python*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd mod_python*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# ./configure --with-apxs=/usr/bin/apxs2 --with-
-python=/usr/local/bin/python2.5&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install the newest version of &lt;a href=&#34;http://www.djangoproject.com/&#34;&gt;Django&lt;/a&gt; (1.0 as
-of this writing).&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://www.djangoproject.com/download/1.0/tarball/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf Django*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd Django*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;On my machine, this installed Django into &lt;code&gt;/usr/local/lib/python2.5/site-
-packages&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Set up your Django project.&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# django-admin.py startproject mysite&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Set up your MySQL database. Since my machine is a fresh install I need to set
-up a password first.&lt;br /&gt;
-&lt;code&gt;# mysqladmin -u root password PASSWORD&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# mysql -u root -p&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;mysql&amp;gt; CREATE DATABASE mysite CHARACTER SET utf8;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Set up your project settings in &lt;code&gt;settings.py&lt;/code&gt;.&lt;br /&gt;
-* Enter up your admin information.&lt;br /&gt;
-* Enter up your &lt;a href=&#34;http://docs.djangoproject.com/en/dev/ref/databases/#ref-databases&#34;&gt;database connection info&lt;/a&gt;.&lt;br /&gt;
-* Change your timezone and language settings if needed.&lt;/p&gt;
-
-&lt;p&gt;Sync your installed apps and your database.&lt;br /&gt;
-&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python manage.py syncdb&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Check this &lt;a href=&#34;http://docs.djangoproject.com/en/dev/howto/deployment/modpython
-/#howto-deployment-modpython&#34;&gt;Django
-documentation&lt;/a&gt; page for how to set up &lt;code&gt;mod_python&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;You need to set up a directory where mod_python can extract eggs and you need
-to set up the permissions so it can write to it (don&amp;rsquo;t use 777 as in my
-example in production).&lt;br /&gt;
-&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# mkdir cache_directory&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# chmod 777 cache_directory&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# chown www-data cache_directory&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Now set up a config file to import those settings.&lt;br /&gt;
-&lt;code&gt;# vi cache_file.py&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Put the following lines in that file:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import os
-os.environ[&#39;PYTHON_EGG_CACHE&#39;] = &#39;/absolute/path/to/cache_directory&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Configure &lt;code&gt;mod_python&lt;/code&gt; to work with Apache2.&lt;br /&gt;
-&lt;code&gt;# vi /etc/apache2/httpd.conf&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Add the following lines to that file:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;LoadModule python_module /usr/lib/apache2/modules/mod_python.so
-PythonInterpreter mysite
-PythonImport /absolute/path/to/cache_file.py mysite
-&amp;lt;Location &amp;quot;/&amp;quot;&amp;gt;
-  SetHandler python-program
-  PythonHandler django.core.handlers.modpython
-  SetEnv DJANGO_SETTINGS_MODULE mysite.settings
-  PythonOption django.root /mysite
-  PythonDebug On
-  PythonPath &amp;quot;[&#39;/path/to/project&#39;] + sys.path&amp;quot;
-&amp;lt;/Location&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Restart Apache.&lt;br /&gt;
-&lt;code&gt;# /etc/init.d/apache2 restart&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;At this point you should have a working Django install and you should be able
-to start adding apps&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;Now lets get our install ready for Satchmo. We will need to install a bunch of
-things, as laid out &lt;a href=&#34;http://www.satchmoproject.com/docs/rel/0.7/requirements.html&#34;&gt;on this
-page&lt;/a&gt;&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://www.pythonware.com/products/pil/&#34;&gt;Python Imaging Library&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://effbot.org/downloads/Imaging-1.1.6.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf Imaging*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd Imaging*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://www.amk.ca/python/code/crypto&#34;&gt;Python cryptography&lt;/a&gt; toolkit&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://www.amk.ca/files/python/crypto/pycrypto-2.0.1.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf pycrypto*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd pycrypto*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://www.reportlab.org/&#34;&gt;ReportLab&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# apt-get install libfreetype6 libfreetype6-dev&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://www.reportlab.org/ftp/ReportLab_2_2.tgz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf ReportLab*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd ReportLab*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz&#34;&gt;Tiny
-RML2PDF&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://tinyforge.org/frs/download.php/1/trml2pdf.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf trml2pdf*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd trml2pdf*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# mv trml2pdf /usr/local/lib/python2.5/site-packages&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import trml2pdf&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://code.google.com/p/django-comment-
-utils/&#34;&gt;django-comment-utils&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://django-comment-
-utils.googlecode.com/files/comment_utils-0.3p1.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf comment_utils*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd comment_utils*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://code.google.com/p/django-
-registration/&#34;&gt;Django Registration&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://django-registration.googlecode.com/files/django-
-registration-0.6.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf django-registration*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd django-registration*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://www.danga.com/memcached/&#34;&gt;Memcached&lt;/a&gt; for
-&lt;a href=&#34;http://docs.djangoproject.com/en/dev/topics/cache/&#34;&gt;caching&lt;/a&gt; (including its
-dependencies and python bindings)&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://www.monkey.org/~provos/libevent-1.4.8-stable.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf libevent*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd libevent*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# make install&lt;/code&gt;&lt;br /&gt;
-Create a link so the memcached knows where to find the library&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# ln -s /usr/local/lib/libevent-1.4.so.2 /lib/libevent-1.4.so.2&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://danga.com/memcached/dist/memcached-1.2.6.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf memcached*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd memcached*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# ./configure&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# make&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# make install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget ftp://ftp.tummy.com/pub/python-memcached/python-memcached-
-latest.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf python-memcached*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd python-memcached*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Start the memcached daemon&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# memcached -d -u www-data -m 32 127.0.0.1 -p 11211&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Configure your django project to use memcached&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/mysite&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# vi settings.py&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;In that file add:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;CACHE_BACKEND = &#39;memcached://127.0.0.1:11211/&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://pyyaml.org/&#34;&gt;PyYaml&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://pyyaml.org/download/pyyaml/PyYAML-3.05.tar.gz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf PyYAML*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd PyYAML*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://docutils.sourceforge.net/&#34;&gt;Docutils&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://docutils.sf.net/docutils-snapshot.tgz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf docutils-snapshot*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd docutils*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Install &lt;a href=&#34;http://gosatchmo.com/apps/django-threaded-
-multihost/&#34;&gt;Django Threaded Multihost&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# wget http://gosatchmo.com/static/files/threaded-multihost-1.1-source.tgz&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# tar -zxvf threaded-multihost*&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd django-threaded-multihost&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Now you have all the prerequisites installed for Satchmo&amp;hellip;&lt;br /&gt;
-Its time to install &lt;a href=&#34;http://www.satchmoproject.com/&#34;&gt;Satchmo&lt;/a&gt;&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# apt-get install subversion&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# svn co svn://satchmoproject.com/satchmo/trunk&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# cd trunk&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python setup.py install&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Check it&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# python&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import django&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import satchmo&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;If they both import fine, then you are all set&amp;hellip; Enjoy&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;To finish configuring your store &lt;a href=&#34;http://www.satchmoproject.com/docs/svn/new_installation.html&#34;&gt;check this
-page&lt;/a&gt;&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;I like to have a clean machine, so I remove all of the source files after
-installs&amp;hellip;&lt;br /&gt;
-&lt;code&gt;# cd ~/&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;# rm -rf Python* MySQL-python* mod_python* Django* Imaging* pycrypto*
-ReportLab* trml2pdf* comment_utils* django-registration* libevent* memcached*
-python-memcached* PyYAML* docutils* trunk* django-threaded-multihost threaded-
-multihost*&lt;/code&gt;&lt;/p&gt;
 </description>
     </item>
     

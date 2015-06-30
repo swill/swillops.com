@@ -10,7 +10,7 @@
     <atom:link href="http://swillops.com/tags/apache/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Redirect traffic from a wordpress site</title>
+      <title>Redirect traffic from a Wordpress site</title>
       <link>http://swillops.com/blog/redirect-traffic-wordpress-site/</link>
       <pubDate>Wed, 11 Jul 2012 00:00:00 +0000</pubDate>
       
@@ -19,14 +19,14 @@
 
 &lt;h3 id=&#34;the-problem:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Problem:&lt;/h3&gt;
 
-&lt;p&gt;A wordpress site has depreciated and you want to redirect all of its traffic
+&lt;p&gt;A Wordpress site has deprecated and you want to redirect all of its traffic
 to a landing page on a new site. However, you want to explain why the site has
 been deprecated in the context of the old site.&lt;/p&gt;
 
 &lt;h3 id=&#34;the-solution:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Solution:&lt;/h3&gt;
 
 &lt;p&gt;You should explain to the user why they are being redirected, so create a page
-on the old wordpress site at some url, say: &lt;a href=&#34;http://www.oldsite.com/we-moved&#34;&gt;www.oldsite.com/we-
+on the old Wordpress site at some url, say: &lt;a href=&#34;http://www.oldsite.com/we-moved&#34;&gt;www.oldsite.com/we-
 moved&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;On that new page (/we-moved), we want it to have a countdown and then redirect

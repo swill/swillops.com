@@ -46,29 +46,42 @@ deployments and builds will be done from the &lt;code&gt;custom&lt;/code&gt; bra
 
 &lt;h3 id=&#34;an-example:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;An Example:&lt;/h3&gt;
 
-&lt;p&gt;Get the third party code (this will create the &lt;code&gt;master&lt;/code&gt; branch):&lt;br /&gt;
-&lt;code&gt;git clone https://github.com/third_party/project.git&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Get the third party code (this will create the &lt;code&gt;master&lt;/code&gt; branch):&lt;/p&gt;
 
-&lt;p&gt;Create the &lt;code&gt;custom&lt;/code&gt; branch for our modifications:&lt;br /&gt;
-&lt;code&gt;git checkout -b custom&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone https://github.com/third_party/project.git
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;... do your customizations ...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Create the &lt;code&gt;custom&lt;/code&gt; branch for our modifications:&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;git add .&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git commit -a -m &amp;quot;Initial customizations&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout -b custom
+  # ... do your customizations ...
+$ git add .  
+$ git commit -a -m &amp;quot;Initial customizations&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;At this point you can create your first build/deployment from the &lt;code&gt;custom&lt;/code&gt;
 branch&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;When the third party updates their code and you want to incorporate their
-changes:&lt;br /&gt;
-&lt;code&gt;git checkout master&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git pull origin master&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git checkout custom&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;git pull . master&lt;/code&gt;&lt;/p&gt;
+changes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout master  
+$ git pull origin master  
+$ git checkout custom  
+$ git pull . master
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Now you have merged their changes into the &lt;code&gt;custom&lt;/code&gt; branch and you are ready
 to build/deploy the &lt;code&gt;custom&lt;/code&gt; branch again&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt;&lt;br /&gt;
+Since I originally wrote this, I have changed my process slightly when incorporating third party updates.  Here is how I do it now&amp;hellip;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git checkout master  
+$ git pull origin master  
+$ git checkout custom  
+$ git rebase master
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
