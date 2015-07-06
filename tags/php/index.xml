@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Php on SwillOps</title>
-    <link>http://swillops.com:1313/tags/php/</link>
+    <link>http://swillops.com/tags/php/</link>
     <description>Recent content in Php on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 19 May 2010 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com:1313/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/php/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Apache, MySQL and PHP on Snow Leopard</title>
-      <link>http://swillops.com:1313/blog/apache-mysql-and-php-snow-leopard/</link>
+      <link>http://swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
       <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <guid>http://swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
       <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
 Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
 downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup

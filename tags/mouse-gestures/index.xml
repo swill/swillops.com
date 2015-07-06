@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mouse Gestures on SwillOps</title>
-    <link>http://swillops.com:1313/tags/mouse-gestures/</link>
+    <link>http://swillops.com/tags/mouse-gestures/</link>
     <description>Recent content in Mouse Gestures on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 10 Mar 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com:1313/tags/mouse-gestures/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/mouse-gestures/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Mac Tweaks</title>
-      <link>http://swillops.com:1313/blog/mac-tweaks/</link>
+      <link>http://swillops.com/blog/mac-tweaks/</link>
       <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/mac-tweaks/</guid>
+      <guid>http://swillops.com/blog/mac-tweaks/</guid>
       <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/39&#34;&gt;Firefox Mouse Gestures Plugin&lt;/a&gt;&lt;/strong&gt;: &lt;em&gt;Click and drag a mouse button to navigate web pages.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Go to the link above and click on the &amp;ldquo;Install Now&amp;rdquo; button in the middle of

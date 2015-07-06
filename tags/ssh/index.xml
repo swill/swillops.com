@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ssh on SwillOps</title>
-    <link>http://swillops.com:1313/tags/ssh/</link>
+    <link>http://swillops.com/tags/ssh/</link>
     <description>Recent content in Ssh on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Jul 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com:1313/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>SSH Lockdown</title>
-      <link>http://swillops.com:1313/blog/ssh-lockdown/</link>
+      <link>http://swillops.com/blog/ssh-lockdown/</link>
       <pubDate>Mon, 06 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/ssh-lockdown/</guid>
+      <guid>http://swillops.com/blog/ssh-lockdown/</guid>
       <description>&lt;p&gt;I spend a lot of time SSHed into remote machines for work.  After getting a couple machines hacked because I stupidly used short passwords, I started locking down my machines with the following mechanism and disabling username/password authentication.&lt;/p&gt;
 
 &lt;p&gt;Keep in mind that I have console access to these machines through CloudStack if I lose my SSH keys for some reason.  Because of this, I remove the ability to login with username/password over SSH entirely.&lt;/p&gt;

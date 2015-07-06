@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Relational Scaling on SwillOps</title>
-    <link>http://swillops.com:1313/tags/relational-scaling/</link>
+    <link>http://swillops.com/tags/relational-scaling/</link>
     <description>Recent content in Relational Scaling on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Oct 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com:1313/tags/relational-scaling/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/relational-scaling/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Thoughtful Design: Relational Scaling</title>
-      <link>http://swillops.com:1313/blog/thoughtful-design-relational-scaling/</link>
+      <link>http://swillops.com/blog/thoughtful-design-relational-scaling/</link>
       <pubDate>Tue, 07 Oct 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/thoughtful-design-relational-scaling/</guid>
+      <guid>http://swillops.com/blog/thoughtful-design-relational-scaling/</guid>
       <description>&lt;p&gt;This has become one of my signatures, so it is about time I write something
 about it. The basic motivation is the rapid improvements in resolutions and
 screen sizes. This has made it difficult for developers to know what size

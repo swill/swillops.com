@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SwillOps</title>
-    <link>http://swillops.com:1313/</link>
+    <link>http://swillops.com/</link>
     <description>Recent content on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Jul 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>SSH Lockdown</title>
-      <link>http://swillops.com:1313/blog/ssh-lockdown/</link>
+      <link>http://swillops.com/blog/ssh-lockdown/</link>
       <pubDate>Mon, 06 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/ssh-lockdown/</guid>
+      <guid>http://swillops.com/blog/ssh-lockdown/</guid>
       <description>&lt;p&gt;I spend a lot of time SSHed into remote machines for work.  After getting a couple machines hacked because I stupidly used short passwords, I started locking down my machines with the following mechanism and disabling username/password authentication.&lt;/p&gt;
 
 &lt;p&gt;Keep in mind that I have console access to these machines through CloudStack if I lose my SSH keys for some reason.  Because of this, I remove the ability to login with username/password over SSH entirely.&lt;/p&gt;
@@ -50,11 +50,11 @@ $&amp;gt; exit
     
     <item>
       <title>Back to blogging</title>
-      <link>http://swillops.com:1313/blog/back-to-blogging/</link>
+      <link>http://swillops.com/blog/back-to-blogging/</link>
       <pubDate>Tue, 30 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/back-to-blogging/</guid>
-      <description>&lt;p&gt;As you can see from the recent inactivity on my blog, I have had a hard time publishing content recently.  It has not been for a lack blog worthy content, but how amazingly not fun blogging was on my old platform.  I spent a lot of time on my old website, making the theme perfect, adding all the features I thought I needed, etc&amp;hellip;  I used it quite a bit for a while, but the writing experience always felt strained.  It turns out that I hate WYSIWYG editors and would much prefer to just write my content in markdown files.  This led me the awesome &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; software which I am using now.  For more info on my current setup, check my &lt;a href=&#34;http://swillops.com:1313/blog/hugo-on-gh-pages&#34;&gt;Hugo on gh-pages&lt;/a&gt; post.&lt;/p&gt;
+      <guid>http://swillops.com/blog/back-to-blogging/</guid>
+      <description>&lt;p&gt;As you can see from the recent inactivity on my blog, I have had a hard time publishing content recently.  It has not been for a lack blog worthy content, but how amazingly not fun blogging was on my old platform.  I spent a lot of time on my old website, making the theme perfect, adding all the features I thought I needed, etc&amp;hellip;  I used it quite a bit for a while, but the writing experience always felt strained.  It turns out that I hate WYSIWYG editors and would much prefer to just write my content in markdown files.  This led me the awesome &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; software which I am using now.  For more info on my current setup, check my &lt;a href=&#34;http://swillops.com/blog/hugo-on-gh-pages&#34;&gt;Hugo on gh-pages&lt;/a&gt; post.&lt;/p&gt;
 
 &lt;p&gt;As a developer there are a few places where I feel completely comfortable; a text editor (&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt; in this case), the command line, and working with Git repositories.  It makes so much more sense to me to use tools I love for managing my content rather than some web UI which just does not feel right.&lt;/p&gt;
 
@@ -79,10 +79,10 @@ $&amp;gt; exit
     
     <item>
       <title>Hugo on gh-pages</title>
-      <link>http://swillops.com:1313/blog/hugo-on-gh-pages/</link>
+      <link>http://swillops.com/blog/hugo-on-gh-pages/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/hugo-on-gh-pages/</guid>
+      <guid>http://swillops.com/blog/hugo-on-gh-pages/</guid>
       <description>&lt;p&gt;Traditional web hosting and web application frameworks have become a bit of an annoyance for me.  If you use Wordpress or Drupal you likely can sympathize with the never ending stream of updates and such.  Many of them actually make your site less stable.  Then there is the problem of keeping your site backed up in case your cheap hosting provider accidentally deletes all your work.  Well no more&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;I am now managing the content of this website in static markdown files compiled with &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt; and then hosted for free using &lt;a href=&#34;https://pages.github.com/&#34;&gt;gh-pages&lt;/a&gt;.  This is how I did it&amp;hellip;&lt;/p&gt;
@@ -151,16 +151,16 @@ $ git push origin gh-pages
     
     <item>
       <title>Git branches to manage third party app customization</title>
-      <link>http://swillops.com:1313/blog/git-branches-manage-third-party-app-customization/</link>
+      <link>http://swillops.com/blog/git-branches-manage-third-party-app-customization/</link>
       <pubDate>Wed, 26 Dec 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/git-branches-manage-third-party-app-customization/</guid>
+      <guid>http://swillops.com/blog/git-branches-manage-third-party-app-customization/</guid>
       <description>
 
 &lt;h3 id=&#34;preface:c9bffdf4a72483a5ba0025d6d0033c3f&#34;&gt;Preface:&lt;/h3&gt;
 
 &lt;p&gt;I have been using this technique to customize different types of third party
-projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://swillops.com:1313/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
+projects for years. I originally wrote about it back in 2009 in &lt;a href=&#34;http://swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano&#34;&gt;this popular
 post&lt;/a&gt;
 regarding the management of customizations on top of the ever changing Drupal
 code base. That post is very long winded and overly technical for most people,
@@ -227,10 +227,10 @@ $ git rebase master
     
     <item>
       <title>Redirect traffic from a Wordpress site</title>
-      <link>http://swillops.com:1313/blog/redirect-traffic-wordpress-site/</link>
+      <link>http://swillops.com/blog/redirect-traffic-wordpress-site/</link>
       <pubDate>Wed, 11 Jul 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/redirect-traffic-wordpress-site/</guid>
+      <guid>http://swillops.com/blog/redirect-traffic-wordpress-site/</guid>
       <description>
 
 &lt;h3 id=&#34;the-problem:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Problem:&lt;/h3&gt;
@@ -317,10 +317,10 @@ RewriteRule . /index.php [L]
     
     <item>
       <title>Deploy node.js on cloudfoundry.com</title>
-      <link>http://swillops.com:1313/blog/deploy-nodejs-on-cloudfoundry/</link>
+      <link>http://swillops.com/blog/deploy-nodejs-on-cloudfoundry/</link>
       <pubDate>Wed, 14 Dec 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/deploy-nodejs-on-cloudfoundry/</guid>
+      <guid>http://swillops.com/blog/deploy-nodejs-on-cloudfoundry/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Instructions to create a simple node.js app called &lt;code&gt;node_app&lt;/code&gt; and then upload and run it on &lt;a href=&#34;http://cloudfoundry.com/&#34;&gt;cloudfoundry.com&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;In order to use cloudfoundry.com, you need to &lt;a href=&#34;http://my.cloudfoundry.com/signup&#34;&gt;sign
@@ -404,10 +404,10 @@ work.&lt;/p&gt;
     
     <item>
       <title>Using a 1and1 git repository</title>
-      <link>http://swillops.com:1313/blog/using-1and1-git-repository/</link>
+      <link>http://swillops.com/blog/using-1and1-git-repository/</link>
       <pubDate>Mon, 03 Oct 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/using-1and1-git-repository/</guid>
+      <guid>http://swillops.com/blog/using-1and1-git-repository/</guid>
       <description>&lt;p&gt;&lt;strong&gt;On the 1and1 business accounts you can now use Git via SSH. Here is how&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Setup your master FTP password (which will be used for SSH).&lt;/p&gt;
@@ -431,10 +431,10 @@ $ git remote add origin ssh://username@example.com/~/repositories/my_repo.git
     
     <item>
       <title>Secure push and pull with git-http-backend</title>
-      <link>http://swillops.com:1313/blog/secure-push-and-pull-git-http-backend/</link>
+      <link>http://swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
       <pubDate>Mon, 26 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/secure-push-and-pull-git-http-backend/</guid>
+      <guid>http://swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
       <description>&lt;p&gt;I am setting up a new repository machine for my code. I will be setting it up
 with Active Directory later on, but I figured my basic setup would be a good
 starting point for most people.&lt;/p&gt;
@@ -520,10 +520,10 @@ to your existing repository:&lt;br /&gt;
     
     <item>
       <title>Delete a remote branch in Git</title>
-      <link>http://swillops.com:1313/blog/delete-remote-branch-git/</link>
+      <link>http://swillops.com/blog/delete-remote-branch-git/</link>
       <pubDate>Fri, 17 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/delete-remote-branch-git/</guid>
+      <guid>http://swillops.com/blog/delete-remote-branch-git/</guid>
       <description>&lt;p&gt;I run into this all the time. I am typing too fast when I push code to my
 remote repository and I make a typo that creates a new branch in my remote
 repository.&lt;/p&gt;
@@ -542,10 +542,10 @@ remove it. You can remove this newly created branch with.&lt;/p&gt;
     
     <item>
       <title>Editing your hosts file on a Mac</title>
-      <link>http://swillops.com:1313/blog/editing-your-hosts-file-mac/</link>
+      <link>http://swillops.com/blog/editing-your-hosts-file-mac/</link>
       <pubDate>Thu, 12 Aug 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/editing-your-hosts-file-mac/</guid>
+      <guid>http://swillops.com/blog/editing-your-hosts-file-mac/</guid>
       <description>&lt;p&gt;This is a relatively common thing that I have to explain to clients.&lt;/p&gt;
 
 &lt;p&gt;It is often difficult to walk someone through changing their hosts file on a
@@ -563,10 +563,10 @@ Mac, so I figured I would share the way I do it.&lt;/p&gt;
     
     <item>
       <title>Apache, MySQL and PHP on Snow Leopard</title>
-      <link>http://swillops.com:1313/blog/apache-mysql-and-php-snow-leopard/</link>
+      <link>http://swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
       <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <guid>http://swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
       <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
 Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
 downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup
@@ -586,10 +586,10 @@ their AMP stack, so this is how I was able to get an acceptable one setup.&lt;/p
     
     <item>
       <title>Setting up a new UTF8 MySQL Database</title>
-      <link>http://swillops.com:1313/blog/setting-new-utf8-mysql-database/</link>
+      <link>http://swillops.com/blog/setting-new-utf8-mysql-database/</link>
       <pubDate>Wed, 20 Jan 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/setting-new-utf8-mysql-database/</guid>
+      <guid>http://swillops.com/blog/setting-new-utf8-mysql-database/</guid>
       <description>&lt;p&gt;Create a UTF8 database:&lt;br /&gt;
 &lt;code&gt;&amp;gt; CREATE DATABASE db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;&lt;/code&gt;&lt;/p&gt;
 
@@ -615,13 +615,13 @@ change that as needed.&lt;/p&gt;
     
     <item>
       <title>Manage and deploy Drupal code securely with Git, gitosis and Capistrano</title>
-      <link>http://swillops.com:1313/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
+      <link>http://swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</link>
       <pubDate>Mon, 23 Feb 2009 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://swillops.com:1313/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
+      <guid>http://swillops.com/blog/manage-and-deploy-drupal-code-securely-git-gitosis-and-capistrano/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;UPDATE 2:&lt;/strong&gt; I have written a &lt;a href=&#34;http://swillops.com/blog/git-branches-manage-third-party-app-customization&#34;&gt;follow-up article&lt;/a&gt; which simply covers the branching technique described in this post.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://swillops.com:1313/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;/strong&gt; I am now using &lt;a href=&#34;http://swillops.com/blog/secure-push-and-pull-git-http-backend&#34;&gt;git-http-backend&lt;/a&gt; instead of Gitosis. I made the switch because I needed a more central location for managing our projects. I have not written about it yet, but this new approach allows me to authenticate via an LDAP/Active Directory type service.&lt;/p&gt;
 
 &lt;p&gt;I have quite a few sites set up with Drupal and it has been working
 beautifully for me. However, with the fast turn over of Drupal code, I was
@@ -1038,10 +1038,10 @@ get you moving in the right direction.&lt;/p&gt;
     
     <item>
       <title>Eurotrip launches a new Trip Planning feature</title>
-      <link>http://swillops.com:1313/blog/eurotrip-launches-new-trip-planning-feature/</link>
+      <link>http://swillops.com/blog/eurotrip-launches-new-trip-planning-feature/</link>
       <pubDate>Thu, 18 Dec 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/eurotrip-launches-new-trip-planning-feature/</guid>
+      <guid>http://swillops.com/blog/eurotrip-launches-new-trip-planning-feature/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://www.eurotrip.com/&#34;&gt;Eurotrip.com&lt;/a&gt; has released its new and innovative
 &lt;a href=&#34;http://www.eurotrip.com/trips&#34;&gt;Trip Planning&lt;/a&gt; tool today. This European
 travel website is jumping into the ring with companies like
@@ -1078,10 +1078,10 @@ to solving travelers problems&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>Virtualized Development Environment</title>
-      <link>http://swillops.com:1313/blog/virtualized-development-environment/</link>
+      <link>http://swillops.com/blog/virtualized-development-environment/</link>
       <pubDate>Mon, 08 Dec 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/virtualized-development-environment/</guid>
+      <guid>http://swillops.com/blog/virtualized-development-environment/</guid>
       <description>&lt;p&gt;Recently, while developing, I have had people looking over my shoulder and
 asking questions like; &amp;ldquo;How are you able to code and test so quickly?&amp;rdquo; and
 &amp;ldquo;You just wrote that, how is the person you are talking to on Skype able to

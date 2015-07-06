@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Macports on SwillOps</title>
-    <link>http://swillops.com:1313/tags/macports/</link>
+    <link>http://swillops.com/tags/macports/</link>
     <description>Recent content in Macports on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 19 May 2010 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com:1313/tags/macports/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/macports/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Apache, MySQL and PHP on Snow Leopard</title>
-      <link>http://swillops.com:1313/blog/apache-mysql-and-php-snow-leopard/</link>
+      <link>http://swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
       <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <guid>http://swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
       <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
 Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
 downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup
@@ -34,10 +34,10 @@ their AMP stack, so this is how I was able to get an acceptable one setup.&lt;/p
     
     <item>
       <title>Dead simple GIT install on Mac</title>
-      <link>http://swillops.com:1313/blog/dead-simple-git-install-mac/</link>
+      <link>http://swillops.com/blog/dead-simple-git-install-mac/</link>
       <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/dead-simple-git-install-mac/</guid>
+      <guid>http://swillops.com/blog/dead-simple-git-install-mac/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; is the new cool kid in town when it comes to source
 code management. I wanted to install Git on my Mac, but I had heard installing
 it could be a bit of a pain. I did a bunch of research before I tried an
@@ -55,10 +55,10 @@ management.&lt;/p&gt;
     
     <item>
       <title>MySQL on a Mac: What a headache</title>
-      <link>http://swillops.com:1313/blog/mysql-mac-what-headache/</link>
+      <link>http://swillops.com/blog/mysql-mac-what-headache/</link>
       <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/mysql-mac-what-headache/</guid>
+      <guid>http://swillops.com/blog/mysql-mac-what-headache/</guid>
       <description>&lt;p&gt;I have spent a stupid amount of time trying to get MySQL
 installed/configured/working on my Mac. Since I am coming from Ubuntu, I am
 used to being able to install an entire LAMPs stack with this one command:&lt;/p&gt;

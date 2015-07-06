@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mac on SwillOps</title>
-    <link>http://swillops.com:1313/tags/mac/</link>
+    <link>http://swillops.com/tags/mac/</link>
     <description>Recent content in Mac on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 08 Jul 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com:1313/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Batch image resizing on a Mac</title>
-      <link>http://swillops.com:1313/blog/batch-image-resizing-mac/</link>
+      <link>http://swillops.com/blog/batch-image-resizing-mac/</link>
       <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/batch-image-resizing-mac/</guid>
+      <guid>http://swillops.com/blog/batch-image-resizing-mac/</guid>
       <description>&lt;p&gt;As a web developer I need simple ways to manipulate images easily so I can get
 them online without wasting large amounts of time. Resizing huge digital
 images to a reasonable web size was always difficult until I found this.&lt;/p&gt;
@@ -30,10 +30,10 @@ install any additional software&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>Dead simple GIT install on Mac</title>
-      <link>http://swillops.com:1313/blog/dead-simple-git-install-mac/</link>
+      <link>http://swillops.com/blog/dead-simple-git-install-mac/</link>
       <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/dead-simple-git-install-mac/</guid>
+      <guid>http://swillops.com/blog/dead-simple-git-install-mac/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; is the new cool kid in town when it comes to source
 code management. I wanted to install Git on my Mac, but I had heard installing
 it could be a bit of a pain. I did a bunch of research before I tried an
@@ -51,10 +51,10 @@ management.&lt;/p&gt;
     
     <item>
       <title>MySQL on a Mac: What a headache</title>
-      <link>http://swillops.com:1313/blog/mysql-mac-what-headache/</link>
+      <link>http://swillops.com/blog/mysql-mac-what-headache/</link>
       <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/mysql-mac-what-headache/</guid>
+      <guid>http://swillops.com/blog/mysql-mac-what-headache/</guid>
       <description>&lt;p&gt;I have spent a stupid amount of time trying to get MySQL
 installed/configured/working on my Mac. Since I am coming from Ubuntu, I am
 used to being able to install an entire LAMPs stack with this one command:&lt;/p&gt;
@@ -92,10 +92,10 @@ work for me because it was the wrong path. Here is the command I used:&lt;/p&gt;
     
     <item>
       <title>Install Ubuntu in Parallel to Mac OSX</title>
-      <link>http://swillops.com:1313/blog/install-ubuntu-parallel-mac-osx/</link>
+      <link>http://swillops.com/blog/install-ubuntu-parallel-mac-osx/</link>
       <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/install-ubuntu-parallel-mac-osx/</guid>
+      <guid>http://swillops.com/blog/install-ubuntu-parallel-mac-osx/</guid>
       <description>
 
 &lt;p&gt;If you are trying to do this you will need &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;Parallels Desktop 3.0 for Mac
@@ -159,10 +159,10 @@ Mac&amp;hellip; :)&lt;/p&gt;
     
     <item>
       <title>Mac Tweaks</title>
-      <link>http://swillops.com:1313/blog/mac-tweaks/</link>
+      <link>http://swillops.com/blog/mac-tweaks/</link>
       <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com:1313/blog/mac-tweaks/</guid>
+      <guid>http://swillops.com/blog/mac-tweaks/</guid>
       <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;https://addons.mozilla.org/en-US/firefox/addon/39&#34;&gt;Firefox Mouse Gestures Plugin&lt;/a&gt;&lt;/strong&gt;: &lt;em&gt;Click and drag a mouse button to navigate web pages.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Go to the link above and click on the &amp;ldquo;Install Now&amp;rdquo; button in the middle of
