@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Society on SwillOps</title>
-    <link>http://swillops.com/tags/society/</link>
+    <link>http://localhost:1313/tags/society/</link>
     <description>Recent content in Society on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 21 Apr 2007 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com/tags/society/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/society/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Re:Web of Mediocrity</title>
-      <link>http://swillops.com/blog/reweb-mediocrity/</link>
+      <link>http://localhost:1313/blog/reweb-mediocrity/</link>
       <pubDate>Sat, 21 Apr 2007 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com/blog/reweb-mediocrity/</guid>
+      <guid>http://localhost:1313/blog/reweb-mediocrity/</guid>
       <description>&lt;p&gt;Juan Rodriguez wrote an article in the Montreal Gazette titled the &amp;lsquo;Web of
 Mediocrity&amp;rsquo; which I found somewhat obtuse. Here is my response to that
 article.&lt;br /&gt;

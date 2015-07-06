@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Apache on SwillOps</title>
-    <link>http://swillops.com/tags/apache/</link>
+    <link>http://localhost:1313/tags/apache/</link>
     <description>Recent content in Apache on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 11 Jul 2012 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com/tags/apache/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/apache/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Redirect traffic from a Wordpress site</title>
-      <link>http://swillops.com/blog/redirect-traffic-wordpress-site/</link>
+      <link>http://localhost:1313/blog/redirect-traffic-wordpress-site/</link>
       <pubDate>Wed, 11 Jul 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com/blog/redirect-traffic-wordpress-site/</guid>
+      <guid>http://localhost:1313/blog/redirect-traffic-wordpress-site/</guid>
       <description>
 
 &lt;h3 id=&#34;the-problem:86f5f76d6fb0c1b6354f669cae720f5e&#34;&gt;The Problem:&lt;/h3&gt;
@@ -101,10 +101,10 @@ RewriteRule . /index.php [L]
     
     <item>
       <title>Secure push and pull with git-http-backend</title>
-      <link>http://swillops.com/blog/secure-push-and-pull-git-http-backend/</link>
+      <link>http://localhost:1313/blog/secure-push-and-pull-git-http-backend/</link>
       <pubDate>Mon, 26 Sep 2011 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com/blog/secure-push-and-pull-git-http-backend/</guid>
+      <guid>http://localhost:1313/blog/secure-push-and-pull-git-http-backend/</guid>
       <description>&lt;p&gt;I am setting up a new repository machine for my code. I will be setting it up
 with Active Directory later on, but I figured my basic setup would be a good
 starting point for most people.&lt;/p&gt;
@@ -190,10 +190,10 @@ to your existing repository:&lt;br /&gt;
     
     <item>
       <title>Apache, MySQL and PHP on Snow Leopard</title>
-      <link>http://swillops.com/blog/apache-mysql-and-php-snow-leopard/</link>
+      <link>http://localhost:1313/blog/apache-mysql-and-php-snow-leopard/</link>
       <pubDate>Wed, 19 May 2010 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com/blog/apache-mysql-and-php-snow-leopard/</guid>
+      <guid>http://localhost:1313/blog/apache-mysql-and-php-snow-leopard/</guid>
       <description>&lt;p&gt;Snow Leopard comes with PHP 5.3 installed by default. Since I do a lot of
 Drupal development, I can&amp;rsquo;t actually use that version of PHP and I needed to
 downgrade to PHP 5.2.x. I personally do not like the way that Apple has setup
@@ -213,10 +213,10 @@ their AMP stack, so this is how I was able to get an acceptable one setup.&lt;/p
     
     <item>
       <title>Installing Django with Satchmo on Debian Etch</title>
-      <link>http://swillops.com/blog/installing-django-satchmo-debian-etch/</link>
+      <link>http://localhost:1313/blog/installing-django-satchmo-debian-etch/</link>
       <pubDate>Thu, 11 Sep 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com/blog/installing-django-satchmo-debian-etch/</guid>
+      <guid>http://localhost:1313/blog/installing-django-satchmo-debian-etch/</guid>
       <description>&lt;p&gt;This is how I got Django and Satchmo set up on my Debian Etch box with
 Apache2, MySQL, mod_python and Memcached.&lt;/p&gt;
 
@@ -528,10 +528,10 @@ multihost*&lt;/code&gt;&lt;/p&gt;
     
     <item>
       <title>Debian Rails Stack - NginX and Mongrel</title>
-      <link>http://swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</link>
+      <link>http://localhost:1313/blog/debian-rails-stack-nginx-and-mongrel/</link>
       <pubDate>Wed, 09 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com/blog/debian-rails-stack-nginx-and-mongrel/</guid>
+      <guid>http://localhost:1313/blog/debian-rails-stack-nginx-and-mongrel/</guid>
       <description>&lt;p&gt;If you are reading this it is because you already know that you want a Rails
 setup on a Debian server with &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt; in
 front of a &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel
@@ -760,10 +760,10 @@ error it gives at the end and just restart NginX after).&lt;br /&gt;
     
     <item>
       <title>Drupal Clean Urls on Debian LAMP Stack</title>
-      <link>http://swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</link>
+      <link>http://localhost:1313/blog/drupal-clean-urls-debian-lamp-stack/</link>
       <pubDate>Wed, 18 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com/blog/drupal-clean-urls-debian-lamp-stack/</guid>
+      <guid>http://localhost:1313/blog/drupal-clean-urls-debian-lamp-stack/</guid>
       <description>&lt;p&gt;Clean Urls did not work out of the box for me when I installed
 &lt;a href=&#34;http://drupal.org/&#34;&gt;Drupal&lt;/a&gt; on a fresh install of
 &lt;a href=&#34;http://www.debian.org/&#34;&gt;Debian&lt;/a&gt;. These are the easy steps for setting them

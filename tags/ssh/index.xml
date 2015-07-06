@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ssh on SwillOps</title>
+    <link>http://localhost:1313/tags/ssh/</link>
+    <description>Recent content in Ssh on SwillOps</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 06 Jul 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SSH Lockdown</title>
+      <link>http://localhost:1313/blog/ssh-lockdown/</link>
+      <pubDate>Mon, 06 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/blog/ssh-lockdown/</guid>
+      <description>&lt;p&gt;I spend a lot of time SSHed into remote machines for work.  After getting a couple machines hacked because I stupidly used short passwords, I started locking down my machines with the following mechanism and disabling username/password authentication.&lt;/p&gt;
+
+&lt;p&gt;Keep in mind that I have console access to these machines through CloudStack if I lose my SSH keys for some reason.  Because of this, I remove the ability to login with username/password over SSH entirely.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Create an SSH key if you don&#39;t have one already.  Defaults: ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub
+$ ssh-keygen -t rsa
+
+# Copy the local SSH pub key to the remote authorized_keys.
+$ cat ~/.ssh/id_rsa.pub | ssh &amp;lt;user&amp;gt;@&amp;lt;ip_address&amp;gt; &amp;quot;mkdir -p ~/.ssh &amp;amp;&amp;amp; cat &amp;gt;&amp;gt; ~/.ssh/authorized_keys&amp;quot;
+
+# SSH to the remote machine to remove the ability to SSH with a password.
+$ ssh &amp;lt;user&amp;gt;@&amp;lt;ip_address&amp;gt;
+    
+# The &#39;$&amp;gt;&#39; prompt denotes the remote machine&#39;s command prompt
+
+# Edit your sshd_config and verify the following values.
+$&amp;gt; sudo vim /etc/ssh/sshd_config
+    
+    # enable the ability to use SSH keys
+    RSAAuthentication yes
+    PubkeyAuthentication yes
+
+    # disable the ability to SSH with just a password
+    ChallengeResponseAuthentication no
+    PasswordAuthentication no
+    UsePAM no
+
+$&amp;gt; sudo service ssh reload
+$&amp;gt; exit
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Youtube on SwillOps</title>
-    <link>http://swillops.com/tags/youtube/</link>
+    <link>http://localhost:1313/tags/youtube/</link>
     <description>Recent content in Youtube on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 19 Jun 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://swillops.com/tags/youtube/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/youtube/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>HowTo: Rip audio from a YouTube video</title>
-      <link>http://swillops.com/blog/howto-rip-audio-youtube-video/</link>
+      <link>http://localhost:1313/blog/howto-rip-audio-youtube-video/</link>
       <pubDate>Thu, 19 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://swillops.com/blog/howto-rip-audio-youtube-video/</guid>
+      <guid>http://localhost:1313/blog/howto-rip-audio-youtube-video/</guid>
       <description>&lt;p&gt;I was asked recently if there was a way to extract the audio from a
 &lt;a href=&#34;http://www.youtube.com/&#34;&gt;YouTube&lt;/a&gt; video to an mp3 on a Mac. This is an
 explanation of how I ripped the attached mp3 from this video&amp;hellip;&lt;/p&gt;
