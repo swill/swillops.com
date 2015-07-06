@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mongrel on SwillOps</title>
-    <link>http://localhost:1313/tags/mongrel/</link>
+    <link>http://swillops.com:1313/tags/mongrel/</link>
     <description>Recent content in Mongrel on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 09 Jul 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/mongrel/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com:1313/tags/mongrel/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Debian Rails Stack - NginX and Mongrel</title>
-      <link>http://localhost:1313/blog/debian-rails-stack-nginx-and-mongrel/</link>
+      <link>http://swillops.com:1313/blog/debian-rails-stack-nginx-and-mongrel/</link>
       <pubDate>Wed, 09 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/debian-rails-stack-nginx-and-mongrel/</guid>
+      <guid>http://swillops.com:1313/blog/debian-rails-stack-nginx-and-mongrel/</guid>
       <description>&lt;p&gt;If you are reading this it is because you already know that you want a Rails
 setup on a Debian server with &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt; in
 front of a &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel

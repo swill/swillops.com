@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Github on SwillOps</title>
-    <link>http://localhost:1313/tags/github/</link>
+    <link>http://swillops.com:1313/tags/github/</link>
     <description>Recent content in Github on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com:1313/tags/github/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugo on gh-pages</title>
-      <link>http://localhost:1313/blog/hugo-on-gh-pages/</link>
+      <link>http://swillops.com:1313/blog/hugo-on-gh-pages/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/hugo-on-gh-pages/</guid>
+      <guid>http://swillops.com:1313/blog/hugo-on-gh-pages/</guid>
       <description>&lt;p&gt;Traditional web hosting and web application frameworks have become a bit of an annoyance for me.  If you use Wordpress or Drupal you likely can sympathize with the never ending stream of updates and such.  Many of them actually make your site less stable.  Then there is the problem of keeping your site backed up in case your cheap hosting provider accidentally deletes all your work.  Well no more&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;I am now managing the content of this website in static markdown files compiled with &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt; and then hosted for free using &lt;a href=&#34;https://pages.github.com/&#34;&gt;gh-pages&lt;/a&gt;.  This is how I did it&amp;hellip;&lt;/p&gt;
@@ -83,10 +83,10 @@ $ git push origin gh-pages
     
     <item>
       <title>Debian Rails Stack - NginX and Mongrel</title>
-      <link>http://localhost:1313/blog/debian-rails-stack-nginx-and-mongrel/</link>
+      <link>http://swillops.com:1313/blog/debian-rails-stack-nginx-and-mongrel/</link>
       <pubDate>Wed, 09 Jul 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/debian-rails-stack-nginx-and-mongrel/</guid>
+      <guid>http://swillops.com:1313/blog/debian-rails-stack-nginx-and-mongrel/</guid>
       <description>&lt;p&gt;If you are reading this it is because you already know that you want a Rails
 setup on a Debian server with &lt;a href=&#34;http://wiki.codemongers.com/Main&#34;&gt;NginX&lt;/a&gt; in
 front of a &lt;a href=&#34;http://mongrel.rubyforge.org/wiki/MongrelCluster&#34;&gt;Mongrel
@@ -315,10 +315,10 @@ error it gives at the end and just restart NginX after).&lt;br /&gt;
     
     <item>
       <title>Dead simple GIT install on Mac</title>
-      <link>http://localhost:1313/blog/dead-simple-git-install-mac/</link>
+      <link>http://swillops.com:1313/blog/dead-simple-git-install-mac/</link>
       <pubDate>Fri, 13 Jun 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/dead-simple-git-install-mac/</guid>
+      <guid>http://swillops.com:1313/blog/dead-simple-git-install-mac/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://git.or.cz/&#34;&gt;Git&lt;/a&gt; is the new cool kid in town when it comes to source
 code management. I wanted to install Git on my Mac, but I had heard installing
 it could be a bit of a pain. I did a bunch of research before I tried an

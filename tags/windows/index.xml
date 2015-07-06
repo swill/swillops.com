@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows on SwillOps</title>
-    <link>http://localhost:1313/tags/windows/</link>
+    <link>http://swillops.com:1313/tags/windows/</link>
     <description>Recent content in Windows on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 10 Mar 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com:1313/tags/windows/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Install Ubuntu in Parallel to Mac OSX</title>
-      <link>http://localhost:1313/blog/install-ubuntu-parallel-mac-osx/</link>
+      <link>http://swillops.com:1313/blog/install-ubuntu-parallel-mac-osx/</link>
       <pubDate>Mon, 10 Mar 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/install-ubuntu-parallel-mac-osx/</guid>
+      <guid>http://swillops.com:1313/blog/install-ubuntu-parallel-mac-osx/</guid>
       <description>
 
 &lt;p&gt;If you are trying to do this you will need &lt;a href=&#34;http://kb.parallels.com/entry/32/568/&#34;&gt;Parallels Desktop 3.0 for Mac

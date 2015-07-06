@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ec2 on SwillOps</title>
-    <link>http://localhost:1313/tags/ec2/</link>
+    <link>http://swillops.com:1313/tags/ec2/</link>
     <description>Recent content in Ec2 on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Feb 2008 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/ec2/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com:1313/tags/ec2/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Amazon: The New Web Empire</title>
-      <link>http://localhost:1313/blog/amazon-new-web-empire/</link>
+      <link>http://swillops.com:1313/blog/amazon-new-web-empire/</link>
       <pubDate>Tue, 26 Feb 2008 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/amazon-new-web-empire/</guid>
+      <guid>http://swillops.com:1313/blog/amazon-new-web-empire/</guid>
       <description>&lt;p&gt;I have been trying to sit down to write this article for a while, but I never
 seem to have the time. I had put together some links while researching that
 were pretty good, so I figured I would publish them anyway so interested

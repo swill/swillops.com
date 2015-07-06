@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gh Pages on SwillOps</title>
-    <link>http://localhost:1313/tags/gh-pages/</link>
+    <link>http://swillops.com:1313/tags/gh-pages/</link>
     <description>Recent content in Gh Pages on SwillOps</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 30 Jun 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/gh-pages/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://swillops.com:1313/tags/gh-pages/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Back to blogging</title>
-      <link>http://localhost:1313/blog/back-to-blogging/</link>
+      <link>http://swillops.com:1313/blog/back-to-blogging/</link>
       <pubDate>Tue, 30 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/back-to-blogging/</guid>
-      <description>&lt;p&gt;As you can see from the recent inactivity on my blog, I have had a hard time publishing content recently.  It has not been for a lack blog worthy content, but how amazingly not fun blogging was on my old platform.  I spent a lot of time on my old website, making the theme perfect, adding all the features I thought I needed, etc&amp;hellip;  I used it quite a bit for a while, but the writing experience always felt strained.  It turns out that I hate WYSIWYG editors and would much prefer to just write my content in markdown files.  This led me the awesome &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; software which I am using now.  For more info on my current setup, check my &lt;a href=&#34;http://localhost:1313/blog/hugo-on-gh-pages&#34;&gt;Hugo on gh-pages&lt;/a&gt; post.&lt;/p&gt;
+      <guid>http://swillops.com:1313/blog/back-to-blogging/</guid>
+      <description>&lt;p&gt;As you can see from the recent inactivity on my blog, I have had a hard time publishing content recently.  It has not been for a lack blog worthy content, but how amazingly not fun blogging was on my old platform.  I spent a lot of time on my old website, making the theme perfect, adding all the features I thought I needed, etc&amp;hellip;  I used it quite a bit for a while, but the writing experience always felt strained.  It turns out that I hate WYSIWYG editors and would much prefer to just write my content in markdown files.  This led me the awesome &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; software which I am using now.  For more info on my current setup, check my &lt;a href=&#34;http://swillops.com:1313/blog/hugo-on-gh-pages&#34;&gt;Hugo on gh-pages&lt;/a&gt; post.&lt;/p&gt;
 
 &lt;p&gt;As a developer there are a few places where I feel completely comfortable; a text editor (&lt;a href=&#34;http://www.sublimetext.com/&#34;&gt;Sublime Text&lt;/a&gt; in this case), the command line, and working with Git repositories.  It makes so much more sense to me to use tools I love for managing my content rather than some web UI which just does not feel right.&lt;/p&gt;
 
@@ -40,10 +40,10 @@
     
     <item>
       <title>Hugo on gh-pages</title>
-      <link>http://localhost:1313/blog/hugo-on-gh-pages/</link>
+      <link>http://swillops.com:1313/blog/hugo-on-gh-pages/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/blog/hugo-on-gh-pages/</guid>
+      <guid>http://swillops.com:1313/blog/hugo-on-gh-pages/</guid>
       <description>&lt;p&gt;Traditional web hosting and web application frameworks have become a bit of an annoyance for me.  If you use Wordpress or Drupal you likely can sympathize with the never ending stream of updates and such.  Many of them actually make your site less stable.  Then there is the problem of keeping your site backed up in case your cheap hosting provider accidentally deletes all your work.  Well no more&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;I am now managing the content of this website in static markdown files compiled with &lt;a href=&#34;http://gohugo.io/&#34;&gt;hugo&lt;/a&gt; and then hosted for free using &lt;a href=&#34;https://pages.github.com/&#34;&gt;gh-pages&lt;/a&gt;.  This is how I did it&amp;hellip;&lt;/p&gt;
